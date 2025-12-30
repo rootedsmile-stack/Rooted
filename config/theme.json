@@ -1,0 +1,56 @@
+{
+  "colors": {
+    "couponPanel": {
+      "background": "#2D5016",
+      "text": "#FFFFFF",
+      "accent": "#F4E5D3"
+    },
+    "header": {
+      "background": "#FFFFFF",
+      "text": "#2D5016",
+      "border": "#E8DCC8"
+    },
+    "body": {
+      "background": "#FDFBF7",
+      "text": "#3A3A3A",
+      "textLight": "#6B6B6B",
+      "cardBackground": "#FFFFFF",
+      "border": "#E8DCC8"
+    },
+    "footer": {
+      "background": "#2D5016",
+      "text": "#F4E5D3",
+      "linkHover": "#FFFFFF"
+    },
+    "primary": {
+      "main": "#2D5016",
+      "hover": "#3D6820",
+      "light": "#4A7F2A",
+      "dark": "#1E3610"
+    },
+    "secondary": {
+      "main": "#D4A574",
+      "hover": "#C69563",
+      "light": "#E8C9A0",
+      "dark": "#B8864F"
+    },
+    "accent": {
+      "sage": "#8BA888",
+      "cream": "#F4E5D3",
+      "terracotta": "#C87941",
+      "warmGray": "#AFA396"
+    },
+    "status": {
+      "success": "#4A7F2A",
+      "error": "#C94C3E",
+      "warning": "#D4A574",
+      "info": "#5A8299"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "heading": "'Playfair Display', serif",
+      "body": "'Inter', sans-serif"
+    }
+  }
+}
