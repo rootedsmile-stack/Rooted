@@ -25,8 +25,8 @@ type RequiredField = (typeof REQUIRED_FIELDS)[number];
 
 function getMissingRequiredField(body: Record<string, unknown>): RequiredField | null {
   for (const field of REQUIRED_FIELDS) {
-    // Treat empty string / null / undefined as missing
     const value = body[field];
+    // Treat undefined, null, and empty string as missing
     if (value === undefined || value === null || value === '') return field;
   }
   return null;
@@ -67,10 +67,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      data: order,
-    });
+    return NextResponse.json({ success: true, data: order });
   } catch (error) {
     console.error('Error fetching order:', error);
     return NextResponse.json(
@@ -98,7 +95,7 @@ export async function POST(request: NextRequest) {
 
     const body = (await request.json()) as Record<string, unknown>;
 
-    // Validate required fields
+    // Validate required fields (runtime)
     const missing = getMissingRequiredField(body);
     if (missing) {
       return NextResponse.json(
@@ -115,12 +112,13 @@ export async function POST(request: NextRequest) {
     const userAgent = request.headers.get('user-agent') || 'unknown';
 
     /**
-     * At this point we’ve validated the required keys exist,
-     * but TS can’t infer that from dynamic key checks.
-     * The cast is now safe given the runtime validation.
+     * TS 5.x disallows direct conversion from Record<string, unknown> -> CreateOrderInput.
+     * We validated required keys above, so we intentionally convert via `unknown`.
      */
+    const orderInputFromBody = (body as unknown) as CreateOrderInput;
+
     const orderInput: CreateOrderInput = {
-      ...(body as CreateOrderInput),
+      ...orderInputFromBody,
       ip_address: ip,
       user_agent: userAgent,
     };
@@ -129,11 +127,7 @@ export async function POST(request: NextRequest) {
     const order = await createOrder(env.DB, orderInput);
 
     return NextResponse.json(
-      {
-        success: true,
-        data: order,
-        message: 'Order created successfully',
-      },
+      { success: true, data: order, message: 'Order created successfully' },
       { status: 201 }
     );
   } catch (error) {
