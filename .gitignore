@@ -56,3 +56,6 @@ wrangler.toml.bak
 
 # OS
 Thumbs.db
+
+# Cloudflare
+.dev.vars
