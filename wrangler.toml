@@ -1,48 +1,8 @@
 name = "herbal-tooth-powder-store"
 compatibility_date = "2024-01-01"
 
-# Cloudflare Pages configuration
-[env.production]
-# Production environment variables will be set via Cloudflare dashboard
-
-[env.preview]
-# Preview environment variables will be set via Cloudflare dashboard
-
-# D1 Database binding
+# D1 Database binding for Cloudflare Pages
 [[d1_databases]]
 binding = "DB"
 database_name = "tooth-powder-orders"
-database_id = "" # Will be filled after creating D1 database
-migrations_dir = "migrations"
-
-# Environment variables (set these in Cloudflare Pages dashboard)
-# NEXT_PUBLIC_SITE_URL - Your production domain
-# NEXT_PUBLIC_PRODUCT_NAME - Product name for SEO
-# STRIPE_SECRET_KEY - (To be added when payment integration is implemented)
-# STRIPE_WEBHOOK_SECRET - (To be added when payment integration is implemented)
-
-# KV Namespaces (optional, for future caching/sessions)
-# [[kv_namespaces]]
-# binding = "CACHE"
-# id = ""
-
-# Analytics (optional)
-# [analytics_engine_datasets]
-# binding = "ANALYTICS"
-
-# Custom headers for security
-[[headers]]
-for = "/*"
-
-[headers.values]
-X-Frame-Options = "DENY"
-X-Content-Type-Options = "nosniff"
-Referrer-Policy = "strict-origin-when-cross-origin"
-Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-
-# Cache static assets
-[[headers]]
-for = "/_next/static/*"
-
-[headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
+database_id = "" # Fill this after creating D1 database
