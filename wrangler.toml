@@ -1,6 +1,5 @@
 name = "herbal-tooth-powder-store"
 compatibility_date = "2024-01-01"
-pages_build_output_dir = ".vercel/output/static"
 
 # Cloudflare Pages configuration
 [env.production]
@@ -31,10 +30,6 @@ migrations_dir = "migrations"
 # [analytics_engine_datasets]
 # binding = "ANALYTICS"
 
-# Build configuration
-[build]
-command = "npm run build"
-
 # Custom headers for security
 [[headers]]
 for = "/*"
@@ -46,10 +41,8 @@ Referrer-Policy = "strict-origin-when-cross-origin"
 Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 # Cache static assets
-[[redirects]]
-from = "/_next/static/*"
-to = "/_next/static/:splat"
-status = 200
+[[headers]]
+for = "/_next/static/*"
 
-[redirects.headers]
+[headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
