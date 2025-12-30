@@ -1,0 +1,55 @@
+name = "herbal-tooth-powder-store"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = ".vercel/output/static"
+
+# Cloudflare Pages configuration
+[env.production]
+# Production environment variables will be set via Cloudflare dashboard
+
+[env.preview]
+# Preview environment variables will be set via Cloudflare dashboard
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "tooth-powder-orders"
+database_id = "" # Will be filled after creating D1 database
+migrations_dir = "migrations"
+
+# Environment variables (set these in Cloudflare Pages dashboard)
+# NEXT_PUBLIC_SITE_URL - Your production domain
+# NEXT_PUBLIC_PRODUCT_NAME - Product name for SEO
+# STRIPE_SECRET_KEY - (To be added when payment integration is implemented)
+# STRIPE_WEBHOOK_SECRET - (To be added when payment integration is implemented)
+
+# KV Namespaces (optional, for future caching/sessions)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = ""
+
+# Analytics (optional)
+# [analytics_engine_datasets]
+# binding = "ANALYTICS"
+
+# Build configuration
+[build]
+command = "npm run build"
+
+# Custom headers for security
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets
+[[redirects]]
+from = "/_next/static/*"
+to = "/_next/static/:splat"
+status = 200
+
+[redirects.headers]
+Cache-Control = "public, max-age=31536000, immutable"
