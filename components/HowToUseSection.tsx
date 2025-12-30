@@ -1,3 +1,5 @@
+'use client';
+
 import { product } from '../content/product';
 
 export default function HowToUseSection() {
