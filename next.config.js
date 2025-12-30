@@ -3,16 +3,10 @@ const nextConfig = {
   // Enable React strict mode for better error handling
   reactStrictMode: true,
 
-  // Optimize images (Cloudflare Pages compatible)
+  // Optimize images for Cloudflare Pages
   images: {
     unoptimized: true,
   },
-
-  // Output configuration for Cloudflare Pages
-  output: 'export',
-
-  // Disable server-side features that don't work with static export
-  trailingSlash: true,
 
   // Environment variables available to the browser
   env: {
@@ -20,9 +14,8 @@ const nextConfig = {
     NEXT_PUBLIC_PRODUCT_NAME: process.env.NEXT_PUBLIC_PRODUCT_NAME || 'Pure Herbal Tooth Powder',
   },
 
-  // Webpack configuration
+  // Webpack configuration for Cloudflare Workers compatibility
   webpack: (config, { isServer }) => {
-    // Fixes for Cloudflare Workers compatibility
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
