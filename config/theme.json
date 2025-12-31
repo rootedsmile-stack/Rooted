@@ -1,61 +1,65 @@
 {
   "colors": {
     "couponPanel": {
-      "background": "#CDD4B1",
-      "text": "#4A4A3A",
-      "accent": "#DCA278"
+      "background": "#F4D58D",
+      "text": "#3D2817",
+      "accent": "#5A7A7C"
     },
     "header": {
-      "background": "#FFF9E2",
-      "text": "#4A4A3A",
-      "border": "#EBECCC"
+      "background": "#F5F1E8",
+      "text": "#3D2817",
+      "border": "#3D2817"
     },
     "body": {
-      "background": "#FFF9E2",
-      "text": "#4A4A3A",
-      "textLight": "#7A7A6A",
+      "background": "#F5F1E8",
+      "text": "#3D2817",
+      "textLight": "#3D2817",
       "cardBackground": "#FFFFFF",
-      "border": "#EBECCC"
+      "border": "#3D2817"
     },
     "footer": {
-      "background": "#CDD4B1",
-      "text": "#4A4A3A",
-      "linkHover": "#DCA278"
+      "background": "#3D2817",
+      "text": "#F5F1E8",
+      "linkHover": "#5A7A7C"
     },
     "primary": {
-      "main": "#6B7A5E",
-      "hover": "#5A6950",
-      "light": "#8A9A7D",
-      "dark": "#4A5A3E"
+      "main": "#3D2817",
+      "hover": "#2D1F10",
+      "light": "#5A4332",
+      "dark": "#1F0F08"
     },
     "secondary": {
-      "main": "#DCA278",
-      "hover": "#C99268",
-      "light": "#E8B598",
-      "dark": "#B88258"
+      "main": "#5A7A7C",
+      "hover": "#4A6668",
+      "light": "#7A9A9C",
+      "dark": "#3A5658"
     },
     "accent": {
-      "sage": "#CDD4B1",
-      "cream": "#FEEDCD",
-      "terracotta": "#DCA278",
-      "warmGray": "#EBECCC",
-      "eucalyptus": "#CDD4B1",
-      "peach": "#FEEDCD",
-      "ivory": "#FFF9E2",
-      "pistachio": "#EBECCC",
-      "clay": "#DCA278"
+      "sage": "#5A7A7C",
+      "cream": "#F5F1E8",
+      "terracotta": "#E8C4B8",
+      "warmGray": "#D4CFC4",
+      "eucalyptus": "#5A7A7C",
+      "peach": "#E8C4B8",
+      "ivory": "#F5F1E8",
+      "pistachio": "#F5F1E8",
+      "clay": "#E8C4B8",
+      "citrus": "#F4D58D",
+      "beige": "#F5F1E8",
+      "umber": "#3D2817",
+      "teal": "#5A7A7C"
     },
     "status": {
-      "success": "#6B7A5E",
+      "success": "#5A7A7C",
       "error": "#C85A54",
-      "warning": "#DCA278",
-      "info": "#8A9A7D"
+      "warning": "#F4D58D",
+      "info": "#5A7A7C"
     }
   },
   "typography": {
     "fontFamily": {
-      "heading": "'Playfair Display', serif",
-      "body": "'Inter', sans-serif"
+      "heading": "'Cormorant Garamond', serif",
+      "body": "'Raleway', sans-serif"
     }
   }
 }
