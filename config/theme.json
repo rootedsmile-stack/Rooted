@@ -1,58 +1,50 @@
 {
   "colors": {
     "couponPanel": {
-      "background": "#F4D58D",
-      "text": "#3D2817",
-      "accent": "#5A7A7C"
+      "background": "#5A7A7C",
+      "text": "#FFFFFF",
+      "accent": "#B8976A"
     },
     "header": {
-      "background": "#F5F1E8",
-      "text": "#3D2817",
-      "border": "#3D2817"
+      "background": "rgba(90, 122, 124, 0.6)",
+      "text": "#E8E4DC",
+      "border": "rgba(232, 228, 220, 0.2)"
     },
     "body": {
-      "background": "#F5F1E8",
-      "text": "#3D2817",
-      "textLight": "#3D2817",
-      "cardBackground": "#FFFFFF",
-      "border": "#3D2817"
+      "background": "#5A7A7C",
+      "text": "#E8E4DC",
+      "textLight": "rgba(232, 228, 220, 0.75)",
+      "cardBackground": "rgba(255, 255, 255, 0.92)",
+      "border": "rgba(232, 228, 220, 0.3)"
     },
     "footer": {
-      "background": "#3D2817",
-      "text": "#F5F1E8",
-      "linkHover": "#5A7A7C"
+      "background": "#2D3F40",
+      "text": "#E8E4DC",
+      "linkHover": "#B8976A"
     },
     "primary": {
-      "main": "#3D2817",
-      "hover": "#2D1F10",
-      "light": "#5A4332",
-      "dark": "#1F0F08"
-    },
-    "secondary": {
       "main": "#5A7A7C",
       "hover": "#4A6668",
       "light": "#7A9A9C",
       "dark": "#3A5658"
     },
+    "secondary": {
+      "main": "#B8976A",
+      "hover": "#A8866A",
+      "light": "#C8A77A",
+      "dark": "#98765A"
+    },
     "accent": {
-      "sage": "#5A7A7C",
-      "cream": "#F5F1E8",
-      "terracotta": "#E8C4B8",
-      "warmGray": "#D4CFC4",
-      "eucalyptus": "#5A7A7C",
-      "peach": "#E8C4B8",
-      "ivory": "#F5F1E8",
-      "pistachio": "#F5F1E8",
-      "clay": "#E8C4B8",
-      "citrus": "#F4D58D",
-      "beige": "#F5F1E8",
-      "umber": "#3D2817",
-      "teal": "#5A7A7C"
+      "teal": "#5A7A7C",
+      "stone": "#E8E4DC",
+      "gold": "#B8976A",
+      "charcoal": "#2D3F40",
+      "white": "#FFFFFF"
     },
     "status": {
-      "success": "#5A7A7C",
+      "success": "#7A9A9C",
       "error": "#C85A54",
-      "warning": "#F4D58D",
+      "warning": "#B8976A",
       "info": "#5A7A7C"
     }
   },
