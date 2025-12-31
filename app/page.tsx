@@ -5,7 +5,6 @@ import CouponPanel from '../components/CouponPanel';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Container from '../components/Container';
-import Section from '../components/Section';
 import Button from '../components/Button';
 import Accordion from '../components/Accordion';
 import CartDrawer from '../components/CartDrawer';
@@ -19,7 +18,6 @@ export default function HomePage() {
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
-  // Static seed reviews
   const reviews = [
     {
       id: 1,
@@ -52,19 +50,19 @@ export default function HomePage() {
       <CouponPanel />
       <Header />
 
-      <main>
-        {/* Hero Product Section - Ranavat Style */}
-        <Section background="white">
+      <main className="main-content">
+        {/* Hero Product Section */}
+        <section className="hero-section">
           <Container>
-            <div className="hero-wrapper">
+            <div className="hero-grid">
               <div className="hero-images">
-                <div className="main-image">
-                  <div className="image-placeholder">
+                <div className="main-image-wrapper">
+                  <div className="main-image">
                     <span className="placeholder-icon">🌿</span>
                   </div>
                 </div>
-                <div className="thumbnail-gallery">
-                  {[1, 2, 3].map((i) => (
+                <div className="thumbnail-strip">
+                  {[1, 2, 3, 4].map((i) => (
                     <div 
                       key={i} 
                       className={`thumbnail ${activeImageIndex === i - 1 ? 'active' : ''}`}
@@ -76,189 +74,203 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="hero-details">
-                <h1 className="product-name">{product.productName}</h1>
-                <p className="product-tagline">{product.tagline}</p>
-                
-                <div className="price-section">
-                  <span className="price">${(selectedVariant.price / 100).toFixed(2)}</span>
-                  {selectedVariant.compareAtPrice && (
-                    <span className="compare-price">${(selectedVariant.compareAtPrice / 100).toFixed(2)}</span>
-                  )}
-                </div>
-
-                <div className="variant-selector">
-                  <label className="variant-label">Size</label>
-                  <div className="size-options">
-                    {product.variants.map((variant) => (
-                      <button
-                        key={variant.id}
-                        className={`size-option ${selectedVariant.id === variant.id ? 'selected' : ''}`}
-                        onClick={() => setSelectedVariant(variant)}
-                      >
-                        {variant.size}
-                      </button>
-                    ))}
+              <div className="product-info">
+                <div className="product-info-inner">
+                  <h1 className="product-title">{product.productName}</h1>
+                  <p className="product-subtitle">{product.tagline}</p>
+                  
+                  <div className="price-display">
+                    <span className="current-price">${(selectedVariant.price / 100).toFixed(2)}</span>
+                    {selectedVariant.compareAtPrice && (
+                      <span className="original-price">${(selectedVariant.compareAtPrice / 100).toFixed(2)}</span>
+                    )}
                   </div>
-                </div>
 
-                <Button variant="primary" size="large" fullWidth onClick={openCart}>
-                  Add to Cart
-                </Button>
-
-                <div className="product-description">
-                  <p>{product.shortDescription}</p>
-                </div>
-
-                <div className="product-highlights">
-                  <div className="highlight-item">
-                    <span className="highlight-icon">✓</span>
-                    <span>Natural Ingredients</span>
+                  <div className="size-selector">
+                    <label className="size-label">Size</label>
+                    <div className="size-buttons">
+                      {product.variants.map((variant) => (
+                        <button
+                          key={variant.id}
+                          className={`size-btn ${selectedVariant.id === variant.id ? 'active' : ''}`}
+                          onClick={() => setSelectedVariant(variant)}
+                        >
+                          {variant.size}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                  <div className="highlight-item">
-                    <span className="highlight-icon">✓</span>
-                    <span>Cruelty Free</span>
+
+                  <Button variant="primary" size="large" fullWidth onClick={openCart}>
+                    Add to Cart
+                  </Button>
+
+                  <div className="product-desc">
+                    <p>{product.shortDescription}</p>
                   </div>
-                  <div className="highlight-item">
-                    <span className="highlight-icon">✓</span>
-                    <span>Eco-Friendly Packaging</span>
+
+                  <div className="product-features">
+                    <div className="feature">✓ Natural Ingredients</div>
+                    <div className="feature">✓ Cruelty Free</div>
+                    <div className="feature">✓ Eco-Friendly</div>
                   </div>
                 </div>
               </div>
             </div>
           </Container>
-        </Section>
+        </section>
 
-        {/* Ingredients - Clean List */}
-        <Section id="ingredients" background="cream">
+        {/* Description Section */}
+        <section className="description-section">
           <Container>
-            <div className="content-centered">
-              <h2 className="section-heading">Ingredients</h2>
-              <p className="section-intro">
-                Every ingredient is carefully selected for its traditional use in oral care
+            <div className="desc-content">
+              <h2 className="desc-title">A Traditional Approach to Oral Care</h2>
+              <p className="desc-text">
+                Our herbal tooth powder combines time-honored botanical ingredients with modern oral care science. 
+                Each carefully selected ingredient works in harmony to cleanse, strengthen, and refresh.
               </p>
-              
-              <div className="ingredient-list">
-                {product.ingredients.map((ingredient, index) => (
-                  <div key={index} className="ingredient-row">
-                    <h4 className="ingredient-title">{ingredient.name}</h4>
-                    <p className="ingredient-desc">{ingredient.purpose}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </Container>
-        </Section>
+        </section>
 
-        {/* Benefits - Minimal Cards */}
-        <Section id="benefits" background="white">
+        {/* Ingredients Section */}
+        <section className="ingredients-section" id="ingredients">
           <Container>
-            <div className="content-centered">
-              <h2 className="section-heading">Benefits</h2>
-              
-              <div className="benefits-minimal">
-                {product.benefits.map((benefit, index) => (
-                  <div key={index} className="benefit-minimal">
-                    <h3 className="benefit-minimal-title">{benefit.title}</h3>
-                    <p className="benefit-minimal-text">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
+            <h2 className="section-title">Ingredients</h2>
+            <div className="ingredients-grid">
+              {product.ingredients.map((ingredient, index) => (
+                <div key={index} className="ingredient-item">
+                  <h3 className="ingredient-name">{ingredient.name}</h3>
+                  <p className="ingredient-purpose">{ingredient.purpose}</p>
+                </div>
+              ))}
             </div>
           </Container>
-        </Section>
+        </section>
 
-        {/* How to Use - Simple Steps */}
-        <Section id="how-to-use" background="cream">
+        {/* Benefits Section */}
+        <section className="benefits-section" id="benefits">
           <Container>
-            <div className="content-centered">
-              <h2 className="section-heading">How to Use</h2>
-              
-              <div className="steps-simple">
-                {product.howToUse.map((step) => (
-                  <div key={step.step} className="step-simple">
-                    <div className="step-num">{step.step}</div>
-                    <p className="step-text">{step.instruction}</p>
-                  </div>
-                ))}
-              </div>
+            <h2 className="section-title">Benefits</h2>
+            <div className="benefits-grid">
+              {product.benefits.map((benefit, index) => (
+                <div key={index} className="benefit-item">
+                  <h3 className="benefit-name">{benefit.title}</h3>
+                  <p className="benefit-text">{benefit.description}</p>
+                </div>
+              ))}
             </div>
           </Container>
-        </Section>
+        </section>
 
-        {/* Reviews - Elegant Layout */}
-        <Section id="reviews" background="white">
+        {/* How to Use Section */}
+        <section className="usage-section" id="how-to-use">
           <Container>
-            <div className="content-centered">
-              <h2 className="section-heading">Reviews</h2>
-              
-              <div className="reviews-elegant">
-                {reviews.map((review) => (
-                  <div key={review.id} className="review-elegant">
-                    <div className="review-stars-elegant">{'★'.repeat(review.rating)}</div>
-                    <p className="review-text-elegant">"{review.comment}"</p>
-                    <p className="review-author-elegant">— {review.name}</p>
-                  </div>
-                ))}
-              </div>
+            <h2 className="section-title">How to Use</h2>
+            <div className="steps-list">
+              {product.howToUse.map((step) => (
+                <div key={step.step} className="usage-step">
+                  <span className="step-number">{step.step}</span>
+                  <p className="step-instruction">{step.instruction}</p>
+                </div>
+              ))}
             </div>
           </Container>
-        </Section>
+        </section>
 
-        {/* FAQ - Clean Accordion */}
-        <Section id="faq" background="cream">
+        {/* Reviews Section */}
+        <section className="reviews-section" id="reviews">
           <Container>
-            <div className="content-centered">
-              <h2 className="section-heading">Frequently Asked Questions</h2>
-              
-              <div className="faq-elegant">
-                {product.faqs.map((faq, index) => (
-                  <Accordion key={index} title={faq.question}>
-                    <p>{faq.answer}</p>
-                  </Accordion>
-                ))}
-              </div>
+            <h2 className="section-title">What Our Customers Say</h2>
+            <div className="reviews-list">
+              {reviews.map((review) => (
+                <div key={review.id} className="review-item">
+                  <div className="review-stars">{'★'.repeat(review.rating)}</div>
+                  <p className="review-quote">"{review.comment}"</p>
+                  <p className="review-author">— {review.name}</p>
+                </div>
+              ))}
             </div>
           </Container>
-        </Section>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="faq-section" id="faq">
+          <Container>
+            <h2 className="section-title">Frequently Asked Questions</h2>
+            <div className="faq-list">
+              {product.faqs.map((faq, index) => (
+                <Accordion key={index} title={faq.question}>
+                  <p className="faq-answer">{faq.answer}</p>
+                </Accordion>
+              ))}
+            </div>
+          </Container>
+        </section>
       </main>
 
       <Footer />
       <CartDrawer isOpen={isCartOpen} onClose={closeCart} />
 
       <style jsx>{`
-        /* Hero Section - Ranavat Style */
-        .hero-wrapper {
+        .main-content {
+          background-color: var(--color-body-bg);
+        }
+
+        /* Hero Section */
+        .hero-section {
+          padding: 3rem 0 4rem;
+        }
+
+        .hero-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--spacing-3xl);
-          padding: var(--spacing-3xl) 0;
-          max-width: 1400px;
-          margin: 0 auto;
+          grid-template-columns: 1.2fr 1fr;
+          gap: 4rem;
+          align-items: start;
         }
 
         .hero-images {
           display: flex;
-          gap: var(--spacing-lg);
+          gap: 1rem;
+          flex-direction: row-reverse;
         }
 
-        .thumbnail-gallery {
+        .main-image-wrapper {
+          flex: 1;
+        }
+
+        .main-image {
+          width: 100%;
+          aspect-ratio: 2/3;
+          background: linear-gradient(135deg, var(--color-accent-eucalyptus) 0%, var(--color-accent-peach) 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 2px;
+        }
+
+        .placeholder-icon {
+          font-size: 5rem;
+          opacity: 0.6;
+        }
+
+        .thumbnail-strip {
           display: flex;
           flex-direction: column;
-          gap: var(--spacing-md);
+          gap: 0.75rem;
         }
 
         .thumbnail {
-          width: 80px;
-          height: 80px;
-          background-color: var(--color-accent-cream);
-          border: 2px solid transparent;
-          border-radius: var(--radius-sm);
+          width: 70px;
+          height: 90px;
+          background: linear-gradient(135deg, var(--color-accent-eucalyptus) 0%, var(--color-accent-peach) 100%);
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          transition: all 0.2s ease;
+          border: 2px solid transparent;
+          transition: border-color 0.2s ease;
+          border-radius: 2px;
         }
 
         .thumbnail:hover,
@@ -268,339 +280,375 @@ export default function HomePage() {
 
         .thumb-icon {
           font-size: 1.5rem;
+          opacity: 0.7;
         }
 
-        .main-image {
-          flex: 1;
+        .product-info {
+          padding-top: 1rem;
         }
 
-        .image-placeholder {
-          width: 100%;
-          aspect-ratio: 3/4;
-          background-color: var(--color-accent-cream);
-          border-radius: var(--radius-md);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .product-info-inner {
+          max-width: 500px;
         }
 
-        .placeholder-icon {
-          font-size: 6rem;
-        }
-
-        .hero-details {
-          display: flex;
-          flex-direction: column;
-          gap: var(--spacing-xl);
-          padding: var(--spacing-xl) 0;
-        }
-
-        .product-name {
-          font-size: 2.5rem;
-          font-family: var(--font-heading);
+        .product-title {
+          font-size: 2.25rem;
           font-weight: 400;
-          letter-spacing: 0.5px;
-          margin: 0;
+          letter-spacing: 0.02em;
+          margin: 0 0 0.5rem 0;
           color: var(--color-primary-dark);
+          line-height: 1.2;
         }
 
-        .product-tagline {
+        .product-subtitle {
           font-size: 1rem;
-          font-style: italic;
           color: var(--color-body-text-light);
-          margin: 0;
-          letter-spacing: 0.3px;
+          margin: 0 0 1.5rem 0;
+          font-style: italic;
+          letter-spacing: 0.01em;
         }
 
-        .price-section {
+        .price-display {
           display: flex;
           align-items: baseline;
-          gap: var(--spacing-md);
+          gap: 0.75rem;
+          margin-bottom: 1.5rem;
         }
 
-        .price {
+        .current-price {
           font-size: 1.5rem;
-          font-weight: 500;
+          font-weight: 400;
           color: var(--color-primary-dark);
+          letter-spacing: 0.01em;
         }
 
-        .compare-price {
+        .original-price {
           font-size: 1.125rem;
           color: var(--color-body-text-light);
           text-decoration: line-through;
         }
 
-        .variant-selector {
-          display: flex;
-          flex-direction: column;
-          gap: var(--spacing-sm);
+        .size-selector {
+          margin-bottom: 1.5rem;
         }
 
-        .variant-label {
-          font-size: 0.875rem;
+        .size-label {
+          display: block;
+          font-size: 0.8125rem;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: 0.1em;
+          margin-bottom: 0.75rem;
           color: var(--color-body-text);
           font-weight: 500;
         }
 
-        .size-options {
+        .size-buttons {
           display: flex;
-          gap: var(--spacing-sm);
+          gap: 0.5rem;
         }
 
-        .size-option {
-          padding: var(--spacing-md) var(--spacing-xl);
+        .size-btn {
+          flex: 1;
+          padding: 0.75rem 1rem;
+          background: transparent;
           border: 1px solid var(--color-body-border);
-          background-color: white;
           color: var(--color-body-text);
-          font-size: 0.95rem;
+          font-size: 0.875rem;
           cursor: pointer;
           transition: all 0.2s ease;
-          min-width: 100px;
-          text-align: center;
+          letter-spacing: 0.02em;
         }
 
-        .size-option:hover {
+        .size-btn:hover {
           border-color: var(--color-primary-main);
         }
 
-        .size-option.selected {
+        .size-btn.active {
+          background: var(--color-primary-main);
           border-color: var(--color-primary-main);
-          background-color: var(--color-primary-main);
           color: white;
         }
 
-        .product-description {
-          padding: var(--spacing-lg) 0;
+        .product-desc {
+          margin: 2rem 0;
+          padding: 1.5rem 0;
           border-top: 1px solid var(--color-body-border);
           border-bottom: 1px solid var(--color-body-border);
         }
 
-        .product-description p {
-          font-size: 0.95rem;
-          line-height: 1.8;
+        .product-desc p {
+          font-size: 0.9375rem;
+          line-height: 1.7;
           color: var(--color-body-text);
           margin: 0;
+          letter-spacing: 0.01em;
         }
 
-        .product-highlights {
+        .product-features {
           display: flex;
           flex-direction: column;
-          gap: var(--spacing-sm);
+          gap: 0.5rem;
         }
 
-        .highlight-item {
-          display: flex;
-          align-items: center;
-          gap: var(--spacing-sm);
+        .feature {
           font-size: 0.875rem;
           color: var(--color-body-text);
+          letter-spacing: 0.01em;
         }
 
-        .highlight-icon {
-          color: var(--color-primary-main);
-          font-weight: 600;
+        /* Description Section */
+        .description-section {
+          padding: 3rem 0;
+          background-color: var(--color-accent-eucalyptus);
         }
 
-        /* Content Centered Layout */
-        .content-centered {
+        .desc-content {
           max-width: 800px;
           margin: 0 auto;
           text-align: center;
         }
 
-        .section-heading {
-          font-size: 2rem;
-          font-family: var(--font-heading);
+        .desc-title {
+          font-size: 1.75rem;
           font-weight: 400;
-          letter-spacing: 1px;
-          margin: 0 0 var(--spacing-md) 0;
+          letter-spacing: 0.02em;
+          margin: 0 0 1rem 0;
           color: var(--color-primary-dark);
         }
 
-        .section-intro {
+        .desc-text {
           font-size: 1rem;
-          color: var(--color-body-text-light);
-          margin: 0 0 var(--spacing-3xl) 0;
-          line-height: 1.6;
+          line-height: 1.8;
+          color: var(--color-body-text);
+          margin: 0;
+          letter-spacing: 0.01em;
         }
 
-        /* Ingredients List */
-        .ingredient-list {
-          display: flex;
-          flex-direction: column;
-          gap: var(--spacing-2xl);
-          text-align: left;
-          max-width: 600px;
+        /* Ingredients Section */
+        .ingredients-section {
+          padding: 4rem 0;
+        }
+
+        .section-title {
+          font-size: 1.75rem;
+          font-weight: 400;
+          text-align: center;
+          letter-spacing: 0.02em;
+          margin: 0 0 3rem 0;
+          color: var(--color-primary-dark);
+        }
+
+        .ingredients-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2.5rem;
+          max-width: 900px;
           margin: 0 auto;
         }
 
-        .ingredient-row {
-          padding-bottom: var(--spacing-lg);
+        .ingredient-item {
+          padding-bottom: 1.5rem;
           border-bottom: 1px solid var(--color-body-border);
         }
 
-        .ingredient-row:last-child {
-          border-bottom: none;
-        }
-
-        .ingredient-title {
-          font-size: 1.125rem;
+        .ingredient-name {
+          font-size: 1.0625rem;
           font-weight: 500;
-          margin: 0 0 var(--spacing-sm) 0;
+          margin: 0 0 0.5rem 0;
           color: var(--color-primary-dark);
+          letter-spacing: 0.01em;
         }
 
-        .ingredient-desc {
-          font-size: 0.95rem;
-          line-height: 1.7;
+        .ingredient-purpose {
+          font-size: 0.9375rem;
+          line-height: 1.6;
           color: var(--color-body-text);
           margin: 0;
+          letter-spacing: 0.01em;
         }
 
-        /* Benefits Minimal */
-        .benefits-minimal {
+        /* Benefits Section */
+        .benefits-section {
+          padding: 4rem 0;
+          background-color: var(--color-accent-peach);
+        }
+
+        .benefits-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: var(--spacing-3xl);
-          text-align: left;
-        }
-
-        .benefit-minimal {
-          display: flex;
-          flex-direction: column;
-          gap: var(--spacing-sm);
-        }
-
-        .benefit-minimal-title {
-          font-size: 1.125rem;
-          font-weight: 500;
-          margin: 0;
-          color: var(--color-primary-dark);
-        }
-
-        .benefit-minimal-text {
-          font-size: 0.95rem;
-          line-height: 1.7;
-          color: var(--color-body-text);
-          margin: 0;
-        }
-
-        /* Steps Simple */
-        .steps-simple {
-          display: flex;
-          flex-direction: column;
-          gap: var(--spacing-2xl);
-          text-align: left;
-          max-width: 600px;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.5rem;
+          max-width: 1000px;
           margin: 0 auto;
         }
 
-        .step-simple {
+        .benefit-item {
+          text-align: left;
+        }
+
+        .benefit-name {
+          font-size: 1.0625rem;
+          font-weight: 500;
+          margin: 0 0 0.75rem 0;
+          color: var(--color-primary-dark);
+          letter-spacing: 0.01em;
+        }
+
+        .benefit-text {
+          font-size: 0.9375rem;
+          line-height: 1.6;
+          color: var(--color-body-text);
+          margin: 0;
+          letter-spacing: 0.01em;
+        }
+
+        /* Usage Section */
+        .usage-section {
+          padding: 4rem 0;
+        }
+
+        .steps-list {
+          max-width: 700px;
+          margin: 0 auto;
+        }
+
+        .usage-step {
           display: flex;
-          gap: var(--spacing-lg);
+          gap: 1.5rem;
+          margin-bottom: 2rem;
           align-items: flex-start;
         }
 
-        .step-num {
-          min-width: 40px;
-          height: 40px;
+        .step-number {
+          min-width: 36px;
+          height: 36px;
           border-radius: 50%;
           background-color: var(--color-primary-main);
           color: white;
           display: flex;
           align-items: center;
           justify-content: center;
+          font-size: 0.875rem;
           font-weight: 500;
           flex-shrink: 0;
         }
 
-        .step-text {
-          font-size: 0.95rem;
+        .step-instruction {
+          font-size: 0.9375rem;
           line-height: 1.7;
           color: var(--color-body-text);
           margin: 0;
-          padding-top: 8px;
+          padding-top: 0.5rem;
+          letter-spacing: 0.01em;
         }
 
-        /* Reviews Elegant */
-        .reviews-elegant {
-          display: flex;
-          flex-direction: column;
-          gap: var(--spacing-3xl);
-          max-width: 700px;
+        /* Reviews Section */
+        .reviews-section {
+          padding: 4rem 0;
+          background-color: var(--color-accent-eucalyptus);
+        }
+
+        .reviews-list {
+          max-width: 800px;
           margin: 0 auto;
+          display: grid;
+          gap: 3rem;
         }
 
-        .review-elegant {
-          padding: var(--spacing-2xl) 0;
+        .review-item {
+          text-align: center;
+          padding-bottom: 2rem;
           border-bottom: 1px solid var(--color-body-border);
         }
 
-        .review-elegant:last-child {
+        .review-item:last-child {
           border-bottom: none;
         }
 
-        .review-stars-elegant {
-          font-size: 1rem;
+        .review-stars {
+          font-size: 0.875rem;
           color: var(--color-secondary-main);
-          margin-bottom: var(--spacing-md);
-          letter-spacing: 2px;
+          margin-bottom: 1rem;
+          letter-spacing: 0.15em;
         }
 
-        .review-text-elegant {
-          font-size: 1.05rem;
-          line-height: 1.8;
+        .review-quote {
+          font-size: 1.0625rem;
+          line-height: 1.7;
           font-style: italic;
           color: var(--color-body-text);
-          margin: 0 0 var(--spacing-md) 0;
+          margin: 0 0 1rem 0;
+          letter-spacing: 0.01em;
         }
 
-        .review-author-elegant {
-          font-size: 0.9rem;
+        .review-author {
+          font-size: 0.875rem;
           color: var(--color-body-text-light);
           margin: 0;
           font-weight: 500;
+          letter-spacing: 0.02em;
         }
 
-        /* FAQ Elegant */
-        .faq-elegant {
-          max-width: 700px;
+        /* FAQ Section */
+        .faq-section {
+          padding: 4rem 0 5rem;
+        }
+
+        .faq-list {
+          max-width: 800px;
           margin: 0 auto;
+        }
+
+        .faq-answer {
+          font-size: 0.9375rem;
+          line-height: 1.7;
+          letter-spacing: 0.01em;
         }
 
         /* Responsive */
         @media (max-width: 968px) {
-          .hero-wrapper {
+          .hero-grid {
             grid-template-columns: 1fr;
-            gap: var(--spacing-2xl);
+            gap: 2rem;
           }
 
           .hero-images {
-            flex-direction: column-reverse;
+            flex-direction: column;
           }
 
-          .thumbnail-gallery {
+          .thumbnail-strip {
             flex-direction: row;
+            overflow-x: auto;
           }
 
-          .product-name {
-            font-size: 2rem;
+          .product-title {
+            font-size: 1.875rem;
           }
 
-          .section-heading {
-            font-size: 1.75rem;
+          .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
           }
 
-          .benefits-minimal {
+          .ingredients-grid,
+          .benefits-grid {
             grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+
+          .hero-section,
+          .description-section,
+          .ingredients-section,
+          .benefits-section,
+          .usage-section,
+          .reviews-section,
+          .faq-section {
+            padding: 2.5rem 0;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .thumbnail,
-          .size-option {
+          .size-btn {
             transition: none;
           }
         }
