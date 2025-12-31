@@ -36,10 +36,14 @@
     },
     "accent": {
       "teal": "#5A7A7C",
+      "tealLight": "#7A9A9C",
+      "tealDark": "#4A6668",
       "stone": "#E8E4DC",
       "gold": "#B8976A",
       "charcoal": "#2D3F40",
-      "white": "#FFFFFF"
+      "white": "#FFFFFF",
+      "glassWhite": "rgba(255, 255, 255, 0.92)",
+      "glassOverlay": "rgba(255, 255, 255, 0.06)"
     },
     "status": {
       "success": "#7A9A9C",
