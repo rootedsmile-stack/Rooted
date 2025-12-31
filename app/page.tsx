@@ -217,21 +217,21 @@ export default function HomePage() {
           background-color: var(--color-body-bg);
         }
 
-        /* Hero Section */
+        /* Hero Section - TIGHTENED */
         .hero-section {
-          padding: 3rem 0 4rem;
+          padding: 2rem 0 2.5rem; /* Was 3rem 0 4rem */
         }
 
         .hero-grid {
           display: grid;
           grid-template-columns: 1.2fr 1fr;
-          gap: 4rem;
+          gap: 3rem; /* Was 4rem */
           align-items: start;
         }
 
         .hero-images {
           display: flex;
-          gap: 1rem;
+          gap: 0.75rem; /* Was 1rem */
           flex-direction: row-reverse;
         }
 
@@ -257,7 +257,7 @@ export default function HomePage() {
         .thumbnail-strip {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
+          gap: 0.5rem; /* Was 0.75rem */
         }
 
         .thumbnail {
@@ -284,7 +284,7 @@ export default function HomePage() {
         }
 
         .product-info {
-          padding-top: 1rem;
+          padding-top: 0; /* Was 1rem */
         }
 
         .product-info-inner {
@@ -295,7 +295,7 @@ export default function HomePage() {
           font-size: 2.25rem;
           font-weight: 400;
           letter-spacing: 0.02em;
-          margin: 0 0 0.5rem 0;
+          margin: 0 0 0.25rem 0; /* Was 0 0 0.5rem 0 */
           color: var(--color-primary-dark);
           line-height: 1.2;
         }
@@ -303,7 +303,7 @@ export default function HomePage() {
         .product-subtitle {
           font-size: 1rem;
           color: var(--color-body-text-light);
-          margin: 0 0 1.5rem 0;
+          margin: 0 0 1rem 0; /* Was 0 0 1.5rem 0 */
           font-style: italic;
           letter-spacing: 0.01em;
         }
@@ -312,7 +312,7 @@ export default function HomePage() {
           display: flex;
           align-items: baseline;
           gap: 0.75rem;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem; /* Was 1.5rem */
         }
 
         .current-price {
@@ -329,7 +329,7 @@ export default function HomePage() {
         }
 
         .size-selector {
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem; /* Was 1.5rem */
         }
 
         .size-label {
@@ -337,7 +337,7 @@ export default function HomePage() {
           font-size: 0.8125rem;
           text-transform: uppercase;
           letter-spacing: 0.1em;
-          margin-bottom: 0.75rem;
+          margin-bottom: 0.5rem; /* Was 0.75rem */
           color: var(--color-body-text);
           font-weight: 500;
         }
@@ -349,7 +349,7 @@ export default function HomePage() {
 
         .size-btn {
           flex: 1;
-          padding: 0.75rem 1rem;
+          padding: 0.65rem 1rem; /* Was 0.75rem 1rem */
           background: transparent;
           border: 1px solid var(--color-body-border);
           color: var(--color-body-text);
@@ -357,6 +357,7 @@ export default function HomePage() {
           cursor: pointer;
           transition: all 0.2s ease;
           letter-spacing: 0.02em;
+          min-height: 44px;
         }
 
         .size-btn:hover {
@@ -370,8 +371,8 @@ export default function HomePage() {
         }
 
         .product-desc {
-          margin: 2rem 0;
-          padding: 1.5rem 0;
+          margin: 1.25rem 0; /* Was 2rem 0 */
+          padding: 1rem 0; /* Was 1.5rem 0 */
           border-top: 1px solid var(--color-body-border);
           border-bottom: 1px solid var(--color-body-border);
         }
@@ -387,7 +388,7 @@ export default function HomePage() {
         .product-features {
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.35rem; /* Was 0.5rem */
         }
 
         .feature {
@@ -396,9 +397,9 @@ export default function HomePage() {
           letter-spacing: 0.01em;
         }
 
-        /* Description Section */
+        /* Description Section - TIGHTENED */
         .description-section {
-          padding: 3rem 0;
+          padding: 2.5rem 0; /* Was 3rem 0 */
           background-color: var(--color-accent-eucalyptus);
         }
 
@@ -412,7 +413,7 @@ export default function HomePage() {
           font-size: 1.75rem;
           font-weight: 400;
           letter-spacing: 0.02em;
-          margin: 0 0 1rem 0;
+          margin: 0 0 0.75rem 0; /* Was 0 0 1rem 0 */
           color: var(--color-primary-dark);
         }
 
@@ -424,9 +425,9 @@ export default function HomePage() {
           letter-spacing: 0.01em;
         }
 
-        /* Ingredients Section */
+        /* Ingredients Section - TIGHTENED */
         .ingredients-section {
-          padding: 4rem 0;
+          padding: 2.5rem 0; /* Was 4rem 0 */
         }
 
         .section-title {
@@ -434,27 +435,27 @@ export default function HomePage() {
           font-weight: 400;
           text-align: center;
           letter-spacing: 0.02em;
-          margin: 0 0 3rem 0;
+          margin: 0 0 1.75rem 0; /* Was 0 0 3rem 0 */
           color: var(--color-primary-dark);
         }
 
         .ingredients-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 2.5rem;
+          gap: 1.5rem; /* Was 2.5rem */
           max-width: 900px;
           margin: 0 auto;
         }
 
         .ingredient-item {
-          padding-bottom: 1.5rem;
+          padding-bottom: 1rem; /* Was 1.5rem */
           border-bottom: 1px solid var(--color-body-border);
         }
 
         .ingredient-name {
           font-size: 1.0625rem;
           font-weight: 500;
-          margin: 0 0 0.5rem 0;
+          margin: 0 0 0.35rem 0; /* Was 0 0 0.5rem 0 */
           color: var(--color-primary-dark);
           letter-spacing: 0.01em;
         }
@@ -467,16 +468,16 @@ export default function HomePage() {
           letter-spacing: 0.01em;
         }
 
-        /* Benefits Section */
+        /* Benefits Section - TIGHTENED */
         .benefits-section {
-          padding: 4rem 0;
+          padding: 2.5rem 0; /* Was 4rem 0 */
           background-color: var(--color-accent-peach);
         }
 
         .benefits-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 2.5rem;
+          gap: 1.75rem; /* Was 2.5rem */
           max-width: 1000px;
           margin: 0 auto;
         }
@@ -488,7 +489,7 @@ export default function HomePage() {
         .benefit-name {
           font-size: 1.0625rem;
           font-weight: 500;
-          margin: 0 0 0.75rem 0;
+          margin: 0 0 0.5rem 0; /* Was 0 0 0.75rem 0 */
           color: var(--color-primary-dark);
           letter-spacing: 0.01em;
         }
@@ -501,9 +502,9 @@ export default function HomePage() {
           letter-spacing: 0.01em;
         }
 
-        /* Usage Section */
+        /* Usage Section - TIGHTENED */
         .usage-section {
-          padding: 4rem 0;
+          padding: 2.5rem 0; /* Was 4rem 0 */
         }
 
         .steps-list {
@@ -513,8 +514,8 @@ export default function HomePage() {
 
         .usage-step {
           display: flex;
-          gap: 1.5rem;
-          margin-bottom: 2rem;
+          gap: 1rem; /* Was 1.5rem */
+          margin-bottom: 1.25rem; /* Was 2rem */
           align-items: flex-start;
         }
 
@@ -537,13 +538,13 @@ export default function HomePage() {
           line-height: 1.7;
           color: var(--color-body-text);
           margin: 0;
-          padding-top: 0.5rem;
+          padding-top: 0.4rem; /* Was 0.5rem */
           letter-spacing: 0.01em;
         }
 
-        /* Reviews Section */
+        /* Reviews Section - TIGHTENED */
         .reviews-section {
-          padding: 4rem 0;
+          padding: 2.5rem 0; /* Was 4rem 0 */
           background-color: var(--color-accent-eucalyptus);
         }
 
@@ -551,23 +552,24 @@ export default function HomePage() {
           max-width: 800px;
           margin: 0 auto;
           display: grid;
-          gap: 3rem;
+          gap: 1.75rem; /* Was 3rem */
         }
 
         .review-item {
           text-align: center;
-          padding-bottom: 2rem;
+          padding-bottom: 1.5rem; /* Was 2rem */
           border-bottom: 1px solid var(--color-body-border);
         }
 
         .review-item:last-child {
           border-bottom: none;
+          padding-bottom: 0;
         }
 
         .review-stars {
           font-size: 0.875rem;
           color: var(--color-secondary-main);
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem; /* Was 1rem */
           letter-spacing: 0.15em;
         }
 
@@ -576,7 +578,7 @@ export default function HomePage() {
           line-height: 1.7;
           font-style: italic;
           color: var(--color-body-text);
-          margin: 0 0 1rem 0;
+          margin: 0 0 0.75rem 0; /* Was 0 0 1rem 0 */
           letter-spacing: 0.01em;
         }
 
@@ -588,9 +590,9 @@ export default function HomePage() {
           letter-spacing: 0.02em;
         }
 
-        /* FAQ Section */
+        /* FAQ Section - TIGHTENED */
         .faq-section {
-          padding: 4rem 0 5rem;
+          padding: 2.5rem 0 3rem; /* Was 4rem 0 5rem */
         }
 
         .faq-list {
@@ -604,11 +606,15 @@ export default function HomePage() {
           letter-spacing: 0.01em;
         }
 
-        /* Responsive */
+        /* Responsive - MOBILE TIGHTENED */
         @media (max-width: 968px) {
+          .hero-section {
+            padding: 1.5rem 0; /* Was 2rem 0 2.5rem */
+          }
+
           .hero-grid {
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 1.5rem; /* Was 2rem */
           }
 
           .hero-images {
@@ -618,6 +624,7 @@ export default function HomePage() {
           .thumbnail-strip {
             flex-direction: row;
             overflow-x: auto;
+            gap: 0.5rem;
           }
 
           .product-title {
@@ -626,23 +633,35 @@ export default function HomePage() {
 
           .section-title {
             font-size: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.25rem; /* Was 2rem */
           }
 
           .ingredients-grid,
           .benefits-grid {
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 1.25rem; /* Was 2rem */
           }
 
-          .hero-section,
           .description-section,
           .ingredients-section,
           .benefits-section,
           .usage-section,
           .reviews-section,
           .faq-section {
-            padding: 2.5rem 0;
+            padding: 1.75rem 0; /* Was 2.5rem 0 */
+          }
+
+          .usage-step {
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+          }
+
+          .reviews-list {
+            gap: 1.25rem;
+          }
+
+          .review-item {
+            padding-bottom: 1.25rem;
           }
         }
 
