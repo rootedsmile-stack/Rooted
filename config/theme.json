@@ -1,50 +1,55 @@
 {
   "colors": {
     "couponPanel": {
-      "background": "#2D5016",
-      "text": "#FFFFFF",
-      "accent": "#F4E5D3"
+      "background": "#CDD4B1",
+      "text": "#4A4A3A",
+      "accent": "#DCA278"
     },
     "header": {
-      "background": "#FFFFFF",
-      "text": "#2D5016",
-      "border": "#E8DCC8"
+      "background": "#FFF9E2",
+      "text": "#4A4A3A",
+      "border": "#EBECCC"
     },
     "body": {
-      "background": "#FDFBF7",
-      "text": "#3A3A3A",
-      "textLight": "#6B6B6B",
+      "background": "#FFF9E2",
+      "text": "#4A4A3A",
+      "textLight": "#7A7A6A",
       "cardBackground": "#FFFFFF",
-      "border": "#E8DCC8"
+      "border": "#EBECCC"
     },
     "footer": {
-      "background": "#2D5016",
-      "text": "#F4E5D3",
-      "linkHover": "#FFFFFF"
+      "background": "#CDD4B1",
+      "text": "#4A4A3A",
+      "linkHover": "#DCA278"
     },
     "primary": {
-      "main": "#2D5016",
-      "hover": "#3D6820",
-      "light": "#4A7F2A",
-      "dark": "#1E3610"
+      "main": "#6B7A5E",
+      "hover": "#5A6950",
+      "light": "#8A9A7D",
+      "dark": "#4A5A3E"
     },
     "secondary": {
-      "main": "#D4A574",
-      "hover": "#C69563",
-      "light": "#E8C9A0",
-      "dark": "#B8864F"
+      "main": "#DCA278",
+      "hover": "#C99268",
+      "light": "#E8B598",
+      "dark": "#B88258"
     },
     "accent": {
-      "sage": "#8BA888",
-      "cream": "#F4E5D3",
-      "terracotta": "#C87941",
-      "warmGray": "#AFA396"
+      "sage": "#CDD4B1",
+      "cream": "#FEEDCD",
+      "terracotta": "#DCA278",
+      "warmGray": "#EBECCC",
+      "eucalyptus": "#CDD4B1",
+      "peach": "#FEEDCD",
+      "ivory": "#FFF9E2",
+      "pistachio": "#EBECCC",
+      "clay": "#DCA278"
     },
     "status": {
-      "success": "#4A7F2A",
-      "error": "#C94C3E",
-      "warning": "#D4A574",
-      "info": "#5A8299"
+      "success": "#6B7A5E",
+      "error": "#C85A54",
+      "warning": "#DCA278",
+      "info": "#8A9A7D"
     }
   },
   "typography": {
