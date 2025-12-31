@@ -1,592 +1,372 @@
-'use client';
+// app/page.tsx
+import Image from 'next/image'
+import Link from 'next/link'
+import { GlassPanel } from '@/components/GlassPanel'
+import { FadeIn } from '@/components/FadeIn'
+import { FloatingCard } from '@/components/FloatingCard'
+import Button from '@/components/Button'
 
-import { useState } from 'react';
-import CouponPanel from '../components/CouponPanel';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Container from '../components/Container';
-import Button from '../components/Button';
-import Accordion from '../components/Accordion';
-import CartDrawer from '../components/CartDrawer';
-import { product } from '../content/product';
-
-export default function HomePage() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
-
-  const openCart = () => setIsCartOpen(true);
-  const closeCart = () => setIsCartOpen(false);
-
-  const reviews = [
-    {
-      id: 1,
-      name: 'Sarah M.',
-      rating: 5,
-      date: '2024-12-15',
-      comment: 'Love this tooth powder! My teeth feel cleaner than ever, and I appreciate the natural ingredients.',
-      verified: true,
-    },
-    {
-      id: 2,
-      name: 'James K.',
-      rating: 5,
-      date: '2024-12-10',
-      comment: 'Took a few days to adjust to the powder format, but now I prefer it over paste. Great product!',
-      verified: true,
-    },
-    {
-      id: 3,
-      name: 'Emily R.',
-      rating: 4,
-      date: '2024-12-05',
-      comment: 'The taste is interesting - very herbal. Works well and the jar lasts a long time.',
-      verified: true,
-    },
-  ];
-
+export default function Home() {
   return (
-    <>
-      <CouponPanel />
-      <Header />
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+      
+      {/* Hero Section - Full Screen Moody Editorial */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hero-background.jpg"
+            alt="Natural herbal ingredients"
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900"></div>
+        </div>
 
-      <main style={{ backgroundColor: 'var(--color-body-bg)' }}>
-        {/* Hero Product Section */}
-        <section style={{ padding: '2.5rem 0 3rem' }}>
-          <Container>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr',
-              gap: '3rem',
-              alignItems: 'start'
-            }} className="hero-responsive-grid">
-              {/* Product Image */}
-              <div style={{
-                aspectRatio: '3/4',
-                background: 'linear-gradient(135deg, var(--color-accent-eucalyptus) 0%, var(--color-accent-peach) 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                maxWidth: '500px',
-                margin: '0 auto',
-                width: '100%'
-              }}>
-                <span style={{ fontSize: '6rem', opacity: 0.6 }}>🌿</span>
-              </div>
-
-              {/* Product Info */}
-              <div style={{ maxWidth: '550px', margin: '0 auto', width: '100%' }}>
-                <h1 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(2rem, 5vw, 2.75rem)',
-                  fontWeight: 400,
-                  letterSpacing: '0.02em',
-                  margin: '0 0 0.5rem 0',
-                  color: 'var(--color-primary-dark)',
-                  lineHeight: 1.15
-                }}>
-                  {product.productName}
-                </h1>
-                
-                <p style={{
-                  fontSize: '1.0625rem',
-                  color: 'var(--color-body-text-light)',
-                  margin: '0 0 1.5rem 0',
-                  fontStyle: 'italic',
-                  letterSpacing: '0.01em'
-                }}>
-                  {product.tagline}
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Left: Text Content */}
+            <div>
+              <FadeIn direction="up" delay={100}>
+                <p className="text-teal-400 text-sm uppercase tracking-widest mb-4">
+                  Ancient Wisdom, Modern Care
                 </p>
-                
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  gap: '0.75rem',
-                  marginBottom: '1.5rem',
-                  paddingTop: '0.5rem'
-                }}>
-                  <span style={{
-                    fontSize: '2rem',
-                    fontWeight: 400,
-                    color: 'var(--color-primary-dark)',
-                    letterSpacing: '0.01em'
-                  }}>
-                    ${(selectedVariant.price / 100).toFixed(2)}
+              </FadeIn>
+              
+              <FadeIn direction="up" delay={200}>
+                <h1 className="text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                  Nature's Path to a
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-teal-600">
+                    Radiant Smile
                   </span>
-                  {selectedVariant.compareAtPrice && (
-                    <span style={{
-                      fontSize: '1.25rem',
-                      color: 'var(--color-body-text-light)',
-                      textDecoration: 'line-through'
-                    }}>
-                      ${(selectedVariant.compareAtPrice / 100).toFixed(2)}
-                    </span>
-                  )}
+                </h1>
+              </FadeIn>
+              
+              <FadeIn direction="up" delay={300}>
+                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+                  Discover the transformative power of Ayurvedic herbal tooth powder. 
+                  Crafted with tradition, proven by science, trusted by thousands.
+                </p>
+              </FadeIn>
+              
+              <FadeIn direction="up" delay={400}>
+                <div className="flex gap-4">
+                  <Button variant="primary" size="lg">
+                    Shop Now
+                  </Button>
+                  <Button variant="outline" size="lg">
+                    Learn More
+                  </Button>
                 </div>
-
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '0.8125rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    marginBottom: '0.75rem',
-                    color: 'var(--color-body-text)',
-                    fontWeight: 500
-                  }}>
-                    Size
-                  </label>
-                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                    {product.variants.map((variant) => (
-                      <button
-                        key={variant.id}
-                        onClick={() => setSelectedVariant(variant)}
-                        style={{
-                          flex: '1 1 auto',
-                          minWidth: '100px',
-                          padding: '0.75rem 1rem',
-                          background: selectedVariant.id === variant.id ? 'var(--color-primary-main)' : 'transparent',
-                          border: '1px solid',
-                          borderColor: selectedVariant.id === variant.id ? 'var(--color-primary-main)' : 'var(--color-body-border)',
-                          color: selectedVariant.id === variant.id ? 'white' : 'var(--color-body-text)',
-                          fontSize: '0.875rem',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s ease',
-                          letterSpacing: '0.02em',
-                          minHeight: '44px'
-                        }}
-                        onMouseOver={(e) => {
-                          if (selectedVariant.id !== variant.id) {
-                            e.currentTarget.style.borderColor = 'var(--color-primary-main)';
-                          }
-                        }}
-                        onMouseOut={(e) => {
-                          if (selectedVariant.id !== variant.id) {
-                            e.currentTarget.style.borderColor = 'var(--color-body-border)';
-                          }
-                        }}
-                      >
-                        {variant.size}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <Button variant="primary" size="large" fullWidth onClick={openCart}>
-                  Add to Cart
-                </Button>
-
-                <div style={{
-                  margin: '1.75rem 0',
-                  padding: '1.25rem 0',
-                  borderTop: '1px solid var(--color-body-border)',
-                  borderBottom: '1px solid var(--color-body-border)'
-                }}>
-                  <p style={{
-                    fontSize: '0.9375rem',
-                    lineHeight: 1.7,
-                    color: 'var(--color-body-text)',
-                    margin: 0,
-                    letterSpacing: '0.01em'
-                  }}>
-                    {product.shortDescription}
-                  </p>
-                </div>
-              </div>
+              </FadeIn>
             </div>
-          </Container>
-        </section>
 
-        {/* Divider */}
-        <div style={{ borderTop: '1px solid var(--color-body-border)', opacity: 0.6 }} />
+            {/* Right: Product Showcase */}
+            <FadeIn direction="right" delay={500}>
+              <FloatingCard intensity="medium" glowColor="teal">
+                <GlassPanel variant="dark" blur="lg" className="p-8">
+                  <Image
+                    src="/images/product-hero.png"
+                    alt="Rooted Smile Herbal Tooth Powder"
+                    width={500}
+                    height={500}
+                    className="w-full h-auto"
+                  />
+                </GlassPanel>
+              </FloatingCard>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
 
-        {/* Editorial Introduction */}
-        <section style={{ padding: '3rem 0' }}>
-          <Container>
-            <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-              <div style={{
-                fontSize: '0.6875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.15em',
-                marginBottom: '1rem',
-                color: 'var(--color-body-text-light)',
-                fontWeight: 500
-              }}>
-                OUR PHILOSOPHY
-              </div>
-              <h2 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                fontWeight: 400,
-                letterSpacing: '0.02em',
-                margin: '0 0 1rem 0',
-                color: 'var(--color-primary-dark)',
-                lineHeight: 1.2
-              }}>
-                A Traditional Approach to Oral Care
+      {/* Benefits Section - Editorial Grid */}
+      <section className="py-32 bg-slate-900/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <FadeIn direction="up" delay={100}>
+            <div className="text-center mb-20">
+              <p className="text-teal-400 text-sm uppercase tracking-widest mb-4">
+                Why Choose Rooted Smile
+              </p>
+              <h2 className="text-5xl font-bold text-white mb-6">
+                The Science of Natural Care
               </h2>
-              <p style={{
-                fontSize: '1rem',
-                lineHeight: 1.8,
-                color: 'var(--color-body-text)',
-                margin: 0,
-                letterSpacing: '0.01em'
-              }}>
-                Our herbal tooth powder combines time-honored botanical ingredients with modern oral care science. 
-                Each carefully selected ingredient works in harmony to cleanse, strengthen, and refresh.
+              <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+                Every ingredient carefully selected for maximum effectiveness and purity
               </p>
             </div>
-          </Container>
-        </section>
+          </FadeIn>
 
-        {/* Divider */}
-        <div style={{ borderTop: '1px solid var(--color-body-border)', opacity: 0.6 }} />
-
-        {/* Ingredients Section */}
-        <section id="ingredients" style={{ padding: '3rem 0' }}>
-          <Container>
-            <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-              <div style={{
-                fontSize: '0.6875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.15em',
-                marginBottom: '1rem',
-                color: 'var(--color-body-text-light)',
-                fontWeight: 500,
-                textAlign: 'center'
-              }}>
-                FORMULATION
-              </div>
-              <h2 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                fontWeight: 400,
-                textAlign: 'center',
-                letterSpacing: '0.02em',
-                margin: '0 0 2rem 0',
-                color: 'var(--color-primary-dark)'
-              }}>
-                Ingredients
-              </h2>
-              
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                gap: '2rem 3rem'
-              }}>
-                {product.ingredients.map((ingredient, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      paddingBottom: '1.5rem',
-                      borderBottom: '1px solid var(--color-body-border)'
-                    }}
-                  >
-                    <h3 style={{
-                      fontSize: '1.0625rem',
-                      fontWeight: 500,
-                      margin: '0 0 0.5rem 0',
-                      color: 'var(--color-primary-dark)',
-                      letterSpacing: '0.01em'
-                    }}>
-                      {ingredient.name}
-                    </h3>
-                    <p style={{
-                      fontSize: '0.9375rem',
-                      lineHeight: 1.6,
-                      color: 'var(--color-body-text)',
-                      margin: 0,
-                      letterSpacing: '0.01em',
-                      opacity: 0.85
-                    }}>
-                      {ingredient.purpose}
-                    </p>
+          {/* Benefits Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* Benefit 1 */}
+            <FadeIn direction="up" delay={200}>
+              <FloatingCard intensity="subtle" glowColor="teal">
+                <GlassPanel variant="dark" className="p-8 h-full">
+                  <div className="w-16 h-16 bg-teal-500/20 rounded-full flex items-center justify-center mb-6">
+                    <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </section>
+                  <h3 className="text-2xl font-bold text-white mb-4">100% Natural</h3>
+                  <p className="text-slate-400 leading-relaxed">
+                    No chemicals, no artificial additives. Just pure, potent herbs working in harmony with your body.
+                  </p>
+                </GlassPanel>
+              </FloatingCard>
+            </FadeIn>
 
-        {/* Benefits Section with subtle background */}
-        <section
-          id="benefits"
-          style={{
-            padding: '3rem 0',
-            backgroundColor: 'var(--color-accent-cream)',
-            backgroundImage: 'linear-gradient(to bottom, transparent, var(--color-accent-cream) 10%, var(--color-accent-cream) 90%, transparent)'
-          }}
-        >
-          <Container>
-            <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-              <div style={{
-                fontSize: '0.6875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.15em',
-                marginBottom: '1rem',
-                color: 'var(--color-body-text-light)',
-                fontWeight: 500,
-                textAlign: 'center'
-              }}>
-                WHY CHOOSE
-              </div>
-              <h2 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                fontWeight: 400,
-                textAlign: 'center',
-                letterSpacing: '0.02em',
-                margin: '0 0 2.5rem 0',
-                color: 'var(--color-primary-dark)'
-              }}>
-                Benefits
-              </h2>
-              
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '2rem'
-              }}>
-                {product.benefits.map((benefit, index) => (
-                  <div key={index}>
-                    <h3 style={{
-                      fontSize: '1.0625rem',
-                      fontWeight: 500,
-                      margin: '0 0 0.75rem 0',
-                      color: 'var(--color-primary-dark)',
-                      letterSpacing: '0.01em'
-                    }}>
-                      {benefit.title}
-                    </h3>
-                    <p style={{
-                      fontSize: '0.9375rem',
-                      lineHeight: 1.6,
-                      color: 'var(--color-body-text)',
-                      margin: 0,
-                      letterSpacing: '0.01em',
-                      opacity: 0.85
-                    }}>
-                      {benefit.description}
-                    </p>
+            {/* Benefit 2 */}
+            <FadeIn direction="up" delay={300}>
+              <FloatingCard intensity="subtle" glowColor="teal">
+                <GlassPanel variant="dark" className="p-8 h-full">
+                  <div className="w-16 h-16 bg-teal-500/20 rounded-full flex items-center justify-center mb-6">
+                    <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
                   </div>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </section>
+                  <h3 className="text-2xl font-bold text-white mb-4">Ayurvedic Formula</h3>
+                  <p className="text-slate-400 leading-relaxed">
+                    Time-tested ingredients backed by 5,000 years of traditional wisdom and modern research.
+                  </p>
+                </GlassPanel>
+              </FloatingCard>
+            </FadeIn>
 
-        {/* Divider */}
-        <div style={{ borderTop: '1px solid var(--color-body-border)', opacity: 0.6 }} />
-
-        {/* How to Use Section */}
-        <section id="how-to-use" style={{ padding: '3rem 0' }}>
-          <Container>
-            <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-              <div style={{
-                fontSize: '0.6875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.15em',
-                marginBottom: '1rem',
-                color: 'var(--color-body-text-light)',
-                fontWeight: 500,
-                textAlign: 'center'
-              }}>
-                RITUAL
-              </div>
-              <h2 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                fontWeight: 400,
-                textAlign: 'center',
-                letterSpacing: '0.02em',
-                margin: '0 0 2.5rem 0',
-                color: 'var(--color-primary-dark)'
-              }}>
-                How to Use
-              </h2>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                {product.howToUse.map((step) => (
-                  <div
-                    key={step.step}
-                    style={{
-                      display: 'flex',
-                      gap: '1.25rem',
-                      alignItems: 'flex-start'
-                    }}
-                  >
-                    <div style={{
-                      minWidth: '40px',
-                      height: '40px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--color-primary-main)',
-                      color: 'white',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '0.9375rem',
-                      fontWeight: 500,
-                      flexShrink: 0
-                    }}>
-                      {step.step}
-                    </div>
-                    <p style={{
-                      fontSize: '0.9375rem',
-                      lineHeight: 1.7,
-                      color: 'var(--color-body-text)',
-                      margin: 0,
-                      paddingTop: '0.5rem',
-                      letterSpacing: '0.01em'
-                    }}>
-                      {step.instruction}
-                    </p>
+            {/* Benefit 3 */}
+            <FadeIn direction="up" delay={400}>
+              <FloatingCard intensity="subtle" glowColor="teal">
+                <GlassPanel variant="dark" className="p-8 h-full">
+                  <div className="w-16 h-16 bg-teal-500/20 rounded-full flex items-center justify-center mb-6">
+                    <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                   </div>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </section>
+                  <h3 className="text-2xl font-bold text-white mb-4">Proven Results</h3>
+                  <p className="text-slate-400 leading-relaxed">
+                    Join thousands experiencing whiter teeth, healthier gums, and lasting freshness naturally.
+                  </p>
+                </GlassPanel>
+              </FloatingCard>
+            </FadeIn>
 
-        {/* Reviews Section with subtle background */}
-        <section
-          id="reviews"
-          style={{
-            padding: '3rem 0',
-            backgroundColor: 'var(--color-accent-eucalyptus)',
-            backgroundImage: 'linear-gradient(to bottom, transparent, var(--color-accent-eucalyptus) 10%, var(--color-accent-eucalyptus) 90%, transparent)'
-          }}
-        >
-          <Container>
-            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-              <div style={{
-                fontSize: '0.6875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.15em',
-                marginBottom: '1rem',
-                color: 'var(--color-body-text-light)',
-                fontWeight: 500,
-                textAlign: 'center'
-              }}>
-                TESTIMONIALS
-              </div>
-              <h2 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                fontWeight: 400,
-                textAlign: 'center',
-                letterSpacing: '0.02em',
-                margin: '0 0 2.5rem 0',
-                color: 'var(--color-primary-dark)'
-              }}>
-                What Our Customers Say
-              </h2>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-                {reviews.map((review) => (
-                  <div
-                    key={review.id}
-                    style={{
-                      textAlign: 'center',
-                      paddingBottom: '2rem',
-                      borderBottom: '1px solid var(--color-body-border)',
-                      opacity: 0.4
-                    }}
-                  >
-                    <div style={{
-                      fontSize: '1rem',
-                      color: 'var(--color-secondary-main)',
-                      marginBottom: '1rem',
-                      letterSpacing: '0.2em'
-                    }}>
-                      {'★'.repeat(review.rating)}
-                    </div>
-                    <p style={{
-                      fontSize: '1.125rem',
-                      lineHeight: 1.7,
-                      fontStyle: 'italic',
-                      color: 'var(--color-body-text)',
-                      margin: '0 0 1rem 0',
-                      letterSpacing: '0.01em'
-                    }}>
-                      "{review.comment}"
-                    </p>
-                    <p style={{
-                      fontSize: '0.875rem',
-                      color: 'var(--color-body-text-light)',
-                      margin: 0,
-                      fontWeight: 500,
-                      letterSpacing: '0.02em'
-                    }}>
-                      — {review.name}
-                    </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Product Section */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-900/20 to-slate-900/20"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Product Image */}
+            <FadeIn direction="left" delay={100}>
+              <FloatingCard intensity="medium" glowColor="gold">
+                <div className="relative">
+                  <Image
+                    src="/images/product-featured.png"
+                    alt="Featured Product"
+                    width={600}
+                    height={600}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </FloatingCard>
+            </FadeIn>
+
+            {/* Product Details */}
+            <div>
+              <FadeIn direction="right" delay={200}>
+                <p className="text-gold-400 text-sm uppercase tracking-widest mb-4">
+                  Bestseller
+                </p>
+                <h2 className="text-5xl font-bold text-white mb-6">
+                  Premium Herbal Tooth Powder
+                </h2>
+                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+                  Our signature blend combines neem, clove, cinnamon, and 12 other 
+                  powerful herbs for complete oral care. Experience the difference 
+                  natural ingredients can make.
+                </p>
+              </FadeIn>
+
+              <FadeIn direction="right" delay={300}>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3 text-slate-300">
+                    <svg className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Whitens teeth naturally without harsh chemicals</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-300">
+                    <svg className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Strengthens gums and prevents bleeding</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-300">
+                    <svg className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Long-lasting fresh breath from natural oils</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-300">
+                    <svg className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Reduces sensitivity and protects enamel</span>
+                  </li>
+                </ul>
+              </FadeIn>
+
+              <FadeIn direction="right" delay={400}>
+                <div className="flex items-center gap-6 mb-8">
+                  <div>
+                    <p className="text-4xl font-bold text-white">$24.99</p>
+                    <p className="text-sm text-slate-400">One-time purchase</p>
                   </div>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </section>
+                  <div className="h-12 w-px bg-slate-700"></div>
+                  <div>
+                    <p className="text-4xl font-bold text-teal-400">$19.99</p>
+                    <p className="text-sm text-slate-400">Subscribe & save 20%</p>
+                  </div>
+                </div>
+              </FadeIn>
 
-        {/* FAQ Section */}
-        <section id="faq" style={{ padding: '3rem 0 4rem' }}>
-          <Container>
-            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-              <h2 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                fontWeight: 400,
-                textAlign: 'center',
-                letterSpacing: '0.02em',
-                margin: '0 0 2rem 0',
-                color: 'var(--color-primary-dark)'
-              }}>
-                Frequently Asked Questions
+              <FadeIn direction="right" delay={500}>
+                <Button variant="primary" size="lg">
+                  Add to Cart
+                </Button>
+              </FadeIn>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Section */}
+      <section className="py-32 bg-slate-900/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <FadeIn direction="up" delay={100}>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-bold text-white mb-6">
+                Trusted by Thousands
               </h2>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {product.faqs.map((faq, index) => (
-                  <Accordion key={index} title={faq.question}>
-                    <p style={{
-                      fontSize: '0.9375rem',
-                      lineHeight: 1.7,
-                      letterSpacing: '0.01em',
-                      margin: 0
-                    }}>
-                      {faq.answer}
-                    </p>
-                  </Accordion>
-                ))}
-              </div>
+              <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+                Real results from real people who made the switch to natural
+              </p>
             </div>
-          </Container>
-        </section>
+          </FadeIn>
 
-        {/* Divider */}
-        <div style={{ borderTop: '1px solid var(--color-body-border)', opacity: 0.6 }} />
-      </main>
+          <div className="grid md:grid-cols-3 gap-8">
+            
+            {/* Testimonial 1 */}
+            <FadeIn direction="up" delay={200}>
+              <GlassPanel variant="dark" className="p-8">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-slate-300 mb-6 italic leading-relaxed">
+                  "My teeth have never felt cleaner. The natural ingredients really make a difference. No more sensitivity!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-teal-500/20 rounded-full"></div>
+                  <div>
+                    <p className="text-white font-semibold">Sarah M.</p>
+                    <p className="text-sm text-slate-400">Verified Customer</p>
+                  </div>
+                </div>
+              </GlassPanel>
+            </FadeIn>
 
-      <Footer />
-      <CartDrawer isOpen={isCartOpen} onClose={closeCart} />
+            {/* Testimonial 2 */}
+            <FadeIn direction="up" delay={300}>
+              <GlassPanel variant="dark" className="p-8">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-slate-300 mb-6 italic leading-relaxed">
+                  "Switched from commercial toothpaste 6 months ago. My dentist noticed the improvement immediately!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-teal-500/20 rounded-full"></div>
+                  <div>
+                    <p className="text-white font-semibold">James L.</p>
+                    <p className="text-sm text-slate-400">Verified Customer</p>
+                  </div>
+                </div>
+              </GlassPanel>
+            </FadeIn>
 
-      <style jsx>{`
-        @media (min-width: 768px) {
-          .hero-responsive-grid {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 4rem !important;
-          }
-        }
+            {/* Testimonial 3 */}
+            <FadeIn direction="up" delay={400}>
+              <GlassPanel variant="dark" className="p-8">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-slate-300 mb-6 italic leading-relaxed">
+                  "Love the natural taste and how fresh my mouth feels all day. Will never go back to regular toothpaste!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-teal-500/20 rounded-full"></div>
+                  <div>
+                    <p className="text-white font-semibold">Maya P.</p>
+                    <p className="text-sm text-slate-400">Verified Customer</p>
+                  </div>
+                </div>
+              </GlassPanel>
+            </FadeIn>
 
-        @media (max-width: 767px) {
-          section {
-            padding: 2rem 0 !important;
-          }
-        }
+          </div>
+        </div>
+      </section>
 
-        @media (prefers-reduced-motion: reduce) {
-          * {
-            transition: none !important;
-            animation: none !important;
-          }
-        }
-      `}</style>
-    </>
-  );
+      {/* CTA Section */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-teal-600/20 to-teal-800/20"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <FadeIn direction="up" delay={100}>
+            <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6">
+              Ready to Transform Your Smile?
+            </h2>
+          </FadeIn>
+          
+          <FadeIn direction="up" delay={200}>
+            <p className="text-xl text-slate-300 mb-10 leading-relaxed">
+              Join the natural oral care revolution. Your smile will thank you.
+            </p>
+          </FadeIn>
+          
+          <FadeIn direction="up" delay={300}>
+            <Button variant="primary" size="lg">
+              Shop All Products
+            </Button>
+          </FadeIn>
+        </div>
+      </section>
+
+    </div>
+  )
 }
