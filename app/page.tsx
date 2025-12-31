@@ -13,7 +13,6 @@ import { product } from '../content/product';
 export default function HomePage() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
@@ -50,82 +49,188 @@ export default function HomePage() {
       <CouponPanel />
       <Header />
 
-      <main className="main-content">
+      <main style={{ backgroundColor: 'var(--color-body-bg)' }}>
         {/* Hero Product Section */}
-        <section className="hero-section">
+        <section style={{ padding: '2.5rem 0 3rem' }}>
           <Container>
-            <div className="hero-grid">
-              <div className="hero-images">
-                <div className="main-image-wrapper">
-                  <div className="main-image">
-                    <span className="placeholder-icon">🌿</span>
-                  </div>
-                </div>
-                <div className="thumbnail-strip">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div 
-                      key={i} 
-                      className={`thumbnail ${activeImageIndex === i - 1 ? 'active' : ''}`}
-                      onClick={() => setActiveImageIndex(i - 1)}
-                    >
-                      <span className="thumb-icon">🌿</span>
-                    </div>
-                  ))}
-                </div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+              gap: '3rem',
+              alignItems: 'start'
+            }} className="hero-responsive-grid">
+              {/* Product Image */}
+              <div style={{
+                aspectRatio: '3/4',
+                background: 'linear-gradient(135deg, var(--color-accent-eucalyptus) 0%, var(--color-accent-peach) 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                maxWidth: '500px',
+                margin: '0 auto',
+                width: '100%'
+              }}>
+                <span style={{ fontSize: '6rem', opacity: 0.6 }}>🌿</span>
               </div>
 
-              <div className="product-info">
-                <div className="product-info-inner">
-                  <h1 className="product-title">{product.productName}</h1>
-                  <p className="product-subtitle">{product.tagline}</p>
-                  
-                  <div className="price-display">
-                    <span className="current-price">${(selectedVariant.price / 100).toFixed(2)}</span>
-                    {selectedVariant.compareAtPrice && (
-                      <span className="original-price">${(selectedVariant.compareAtPrice / 100).toFixed(2)}</span>
-                    )}
-                  </div>
+              {/* Product Info */}
+              <div style={{ maxWidth: '550px', margin: '0 auto', width: '100%' }}>
+                <h1 style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(2rem, 5vw, 2.75rem)',
+                  fontWeight: 400,
+                  letterSpacing: '0.02em',
+                  margin: '0 0 0.5rem 0',
+                  color: 'var(--color-primary-dark)',
+                  lineHeight: 1.15
+                }}>
+                  {product.productName}
+                </h1>
+                
+                <p style={{
+                  fontSize: '1.0625rem',
+                  color: 'var(--color-body-text-light)',
+                  margin: '0 0 1.5rem 0',
+                  fontStyle: 'italic',
+                  letterSpacing: '0.01em'
+                }}>
+                  {product.tagline}
+                </p>
+                
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: '0.75rem',
+                  marginBottom: '1.5rem',
+                  paddingTop: '0.5rem'
+                }}>
+                  <span style={{
+                    fontSize: '2rem',
+                    fontWeight: 400,
+                    color: 'var(--color-primary-dark)',
+                    letterSpacing: '0.01em'
+                  }}>
+                    ${(selectedVariant.price / 100).toFixed(2)}
+                  </span>
+                  {selectedVariant.compareAtPrice && (
+                    <span style={{
+                      fontSize: '1.25rem',
+                      color: 'var(--color-body-text-light)',
+                      textDecoration: 'line-through'
+                    }}>
+                      ${(selectedVariant.compareAtPrice / 100).toFixed(2)}
+                    </span>
+                  )}
+                </div>
 
-                  <div className="size-selector">
-                    <label className="size-label">Size</label>
-                    <div className="size-buttons">
-                      {product.variants.map((variant) => (
-                        <button
-                          key={variant.id}
-                          className={`size-btn ${selectedVariant.id === variant.id ? 'active' : ''}`}
-                          onClick={() => setSelectedVariant(variant)}
-                        >
-                          {variant.size}
-                        </button>
-                      ))}
-                    </div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{
+                    display: 'block',
+                    fontSize: '0.8125rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    marginBottom: '0.75rem',
+                    color: 'var(--color-body-text)',
+                    fontWeight: 500
+                  }}>
+                    Size
+                  </label>
+                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    {product.variants.map((variant) => (
+                      <button
+                        key={variant.id}
+                        onClick={() => setSelectedVariant(variant)}
+                        style={{
+                          flex: '1 1 auto',
+                          minWidth: '100px',
+                          padding: '0.75rem 1rem',
+                          background: selectedVariant.id === variant.id ? 'var(--color-primary-main)' : 'transparent',
+                          border: '1px solid',
+                          borderColor: selectedVariant.id === variant.id ? 'var(--color-primary-main)' : 'var(--color-body-border)',
+                          color: selectedVariant.id === variant.id ? 'white' : 'var(--color-body-text)',
+                          fontSize: '0.875rem',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease',
+                          letterSpacing: '0.02em',
+                          minHeight: '44px'
+                        }}
+                        onMouseOver={(e) => {
+                          if (selectedVariant.id !== variant.id) {
+                            e.currentTarget.style.borderColor = 'var(--color-primary-main)';
+                          }
+                        }}
+                        onMouseOut={(e) => {
+                          if (selectedVariant.id !== variant.id) {
+                            e.currentTarget.style.borderColor = 'var(--color-body-border)';
+                          }
+                        }}
+                      >
+                        {variant.size}
+                      </button>
+                    ))}
                   </div>
+                </div>
 
-                  <Button variant="primary" size="large" fullWidth onClick={openCart}>
-                    Add to Cart
-                  </Button>
+                <Button variant="primary" size="large" fullWidth onClick={openCart}>
+                  Add to Cart
+                </Button>
 
-                  <div className="product-desc">
-                    <p>{product.shortDescription}</p>
-                  </div>
-
-                  <div className="product-features">
-                    <div className="feature">✓ Natural Ingredients</div>
-                    <div className="feature">✓ Cruelty Free</div>
-                    <div className="feature">✓ Eco-Friendly</div>
-                  </div>
+                <div style={{
+                  margin: '1.75rem 0',
+                  padding: '1.25rem 0',
+                  borderTop: '1px solid var(--color-body-border)',
+                  borderBottom: '1px solid var(--color-body-border)'
+                }}>
+                  <p style={{
+                    fontSize: '0.9375rem',
+                    lineHeight: 1.7,
+                    color: 'var(--color-body-text)',
+                    margin: 0,
+                    letterSpacing: '0.01em'
+                  }}>
+                    {product.shortDescription}
+                  </p>
                 </div>
               </div>
             </div>
           </Container>
         </section>
 
-        {/* Description Section */}
-        <section className="description-section">
+        {/* Divider */}
+        <div style={{ borderTop: '1px solid var(--color-body-border)', opacity: 0.6 }} />
+
+        {/* Editorial Introduction */}
+        <section style={{ padding: '3rem 0' }}>
           <Container>
-            <div className="desc-content">
-              <h2 className="desc-title">A Traditional Approach to Oral Care</h2>
-              <p className="desc-text">
+            <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+              <div style={{
+                fontSize: '0.6875rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                marginBottom: '1rem',
+                color: 'var(--color-body-text-light)',
+                fontWeight: 500
+              }}>
+                OUR PHILOSOPHY
+              </div>
+              <h2 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                fontWeight: 400,
+                letterSpacing: '0.02em',
+                margin: '0 0 1rem 0',
+                color: 'var(--color-primary-dark)',
+                lineHeight: 1.2
+              }}>
+                A Traditional Approach to Oral Care
+              </h2>
+              <p style={{
+                fontSize: '1rem',
+                lineHeight: 1.8,
+                color: 'var(--color-body-text)',
+                margin: 0,
+                letterSpacing: '0.01em'
+              }}>
                 Our herbal tooth powder combines time-honored botanical ingredients with modern oral care science. 
                 Each carefully selected ingredient works in harmony to cleanse, strengthen, and refresh.
               </p>
@@ -133,542 +238,352 @@ export default function HomePage() {
           </Container>
         </section>
 
+        {/* Divider */}
+        <div style={{ borderTop: '1px solid var(--color-body-border)', opacity: 0.6 }} />
+
         {/* Ingredients Section */}
-        <section className="ingredients-section" id="ingredients">
+        <section id="ingredients" style={{ padding: '3rem 0' }}>
           <Container>
-            <h2 className="section-title">Ingredients</h2>
-            <div className="ingredients-grid">
-              {product.ingredients.map((ingredient, index) => (
-                <div key={index} className="ingredient-item">
-                  <h3 className="ingredient-name">{ingredient.name}</h3>
-                  <p className="ingredient-purpose">{ingredient.purpose}</p>
-                </div>
-              ))}
+            <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+              <div style={{
+                fontSize: '0.6875rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                marginBottom: '1rem',
+                color: 'var(--color-body-text-light)',
+                fontWeight: 500,
+                textAlign: 'center'
+              }}>
+                FORMULATION
+              </div>
+              <h2 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                fontWeight: 400,
+                textAlign: 'center',
+                letterSpacing: '0.02em',
+                margin: '0 0 2rem 0',
+                color: 'var(--color-primary-dark)'
+              }}>
+                Ingredients
+              </h2>
+              
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '2rem 3rem'
+              }}>
+                {product.ingredients.map((ingredient, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      paddingBottom: '1.5rem',
+                      borderBottom: '1px solid var(--color-body-border)'
+                    }}
+                  >
+                    <h3 style={{
+                      fontSize: '1.0625rem',
+                      fontWeight: 500,
+                      margin: '0 0 0.5rem 0',
+                      color: 'var(--color-primary-dark)',
+                      letterSpacing: '0.01em'
+                    }}>
+                      {ingredient.name}
+                    </h3>
+                    <p style={{
+                      fontSize: '0.9375rem',
+                      lineHeight: 1.6,
+                      color: 'var(--color-body-text)',
+                      margin: 0,
+                      letterSpacing: '0.01em',
+                      opacity: 0.85
+                    }}>
+                      {ingredient.purpose}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </Container>
         </section>
 
-        {/* Benefits Section */}
-        <section className="benefits-section" id="benefits">
+        {/* Benefits Section with subtle background */}
+        <section
+          id="benefits"
+          style={{
+            padding: '3rem 0',
+            backgroundColor: 'var(--color-accent-cream)',
+            backgroundImage: 'linear-gradient(to bottom, transparent, var(--color-accent-cream) 10%, var(--color-accent-cream) 90%, transparent)'
+          }}
+        >
           <Container>
-            <h2 className="section-title">Benefits</h2>
-            <div className="benefits-grid">
-              {product.benefits.map((benefit, index) => (
-                <div key={index} className="benefit-item">
-                  <h3 className="benefit-name">{benefit.title}</h3>
-                  <p className="benefit-text">{benefit.description}</p>
-                </div>
-              ))}
+            <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+              <div style={{
+                fontSize: '0.6875rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                marginBottom: '1rem',
+                color: 'var(--color-body-text-light)',
+                fontWeight: 500,
+                textAlign: 'center'
+              }}>
+                WHY CHOOSE
+              </div>
+              <h2 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                fontWeight: 400,
+                textAlign: 'center',
+                letterSpacing: '0.02em',
+                margin: '0 0 2.5rem 0',
+                color: 'var(--color-primary-dark)'
+              }}>
+                Benefits
+              </h2>
+              
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '2rem'
+              }}>
+                {product.benefits.map((benefit, index) => (
+                  <div key={index}>
+                    <h3 style={{
+                      fontSize: '1.0625rem',
+                      fontWeight: 500,
+                      margin: '0 0 0.75rem 0',
+                      color: 'var(--color-primary-dark)',
+                      letterSpacing: '0.01em'
+                    }}>
+                      {benefit.title}
+                    </h3>
+                    <p style={{
+                      fontSize: '0.9375rem',
+                      lineHeight: 1.6,
+                      color: 'var(--color-body-text)',
+                      margin: 0,
+                      letterSpacing: '0.01em',
+                      opacity: 0.85
+                    }}>
+                      {benefit.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </Container>
         </section>
+
+        {/* Divider */}
+        <div style={{ borderTop: '1px solid var(--color-body-border)', opacity: 0.6 }} />
 
         {/* How to Use Section */}
-        <section className="usage-section" id="how-to-use">
+        <section id="how-to-use" style={{ padding: '3rem 0' }}>
           <Container>
-            <h2 className="section-title">How to Use</h2>
-            <div className="steps-list">
-              {product.howToUse.map((step) => (
-                <div key={step.step} className="usage-step">
-                  <span className="step-number">{step.step}</span>
-                  <p className="step-instruction">{step.instruction}</p>
-                </div>
-              ))}
+            <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+              <div style={{
+                fontSize: '0.6875rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                marginBottom: '1rem',
+                color: 'var(--color-body-text-light)',
+                fontWeight: 500,
+                textAlign: 'center'
+              }}>
+                RITUAL
+              </div>
+              <h2 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                fontWeight: 400,
+                textAlign: 'center',
+                letterSpacing: '0.02em',
+                margin: '0 0 2.5rem 0',
+                color: 'var(--color-primary-dark)'
+              }}>
+                How to Use
+              </h2>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                {product.howToUse.map((step) => (
+                  <div
+                    key={step.step}
+                    style={{
+                      display: 'flex',
+                      gap: '1.25rem',
+                      alignItems: 'flex-start'
+                    }}
+                  >
+                    <div style={{
+                      minWidth: '40px',
+                      height: '40px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--color-primary-main)',
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.9375rem',
+                      fontWeight: 500,
+                      flexShrink: 0
+                    }}>
+                      {step.step}
+                    </div>
+                    <p style={{
+                      fontSize: '0.9375rem',
+                      lineHeight: 1.7,
+                      color: 'var(--color-body-text)',
+                      margin: 0,
+                      paddingTop: '0.5rem',
+                      letterSpacing: '0.01em'
+                    }}>
+                      {step.instruction}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </Container>
         </section>
 
-        {/* Reviews Section */}
-        <section className="reviews-section" id="reviews">
+        {/* Reviews Section with subtle background */}
+        <section
+          id="reviews"
+          style={{
+            padding: '3rem 0',
+            backgroundColor: 'var(--color-accent-eucalyptus)',
+            backgroundImage: 'linear-gradient(to bottom, transparent, var(--color-accent-eucalyptus) 10%, var(--color-accent-eucalyptus) 90%, transparent)'
+          }}
+        >
           <Container>
-            <h2 className="section-title">What Our Customers Say</h2>
-            <div className="reviews-list">
-              {reviews.map((review) => (
-                <div key={review.id} className="review-item">
-                  <div className="review-stars">{'★'.repeat(review.rating)}</div>
-                  <p className="review-quote">"{review.comment}"</p>
-                  <p className="review-author">— {review.name}</p>
-                </div>
-              ))}
+            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+              <div style={{
+                fontSize: '0.6875rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                marginBottom: '1rem',
+                color: 'var(--color-body-text-light)',
+                fontWeight: 500,
+                textAlign: 'center'
+              }}>
+                TESTIMONIALS
+              </div>
+              <h2 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                fontWeight: 400,
+                textAlign: 'center',
+                letterSpacing: '0.02em',
+                margin: '0 0 2.5rem 0',
+                color: 'var(--color-primary-dark)'
+              }}>
+                What Our Customers Say
+              </h2>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+                {reviews.map((review) => (
+                  <div
+                    key={review.id}
+                    style={{
+                      textAlign: 'center',
+                      paddingBottom: '2rem',
+                      borderBottom: '1px solid var(--color-body-border)',
+                      opacity: 0.4
+                    }}
+                  >
+                    <div style={{
+                      fontSize: '1rem',
+                      color: 'var(--color-secondary-main)',
+                      marginBottom: '1rem',
+                      letterSpacing: '0.2em'
+                    }}>
+                      {'★'.repeat(review.rating)}
+                    </div>
+                    <p style={{
+                      fontSize: '1.125rem',
+                      lineHeight: 1.7,
+                      fontStyle: 'italic',
+                      color: 'var(--color-body-text)',
+                      margin: '0 0 1rem 0',
+                      letterSpacing: '0.01em'
+                    }}>
+                      "{review.comment}"
+                    </p>
+                    <p style={{
+                      fontSize: '0.875rem',
+                      color: 'var(--color-body-text-light)',
+                      margin: 0,
+                      fontWeight: 500,
+                      letterSpacing: '0.02em'
+                    }}>
+                      — {review.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </Container>
         </section>
 
         {/* FAQ Section */}
-        <section className="faq-section" id="faq">
+        <section id="faq" style={{ padding: '3rem 0 4rem' }}>
           <Container>
-            <h2 className="section-title">Frequently Asked Questions</h2>
-            <div className="faq-list">
-              {product.faqs.map((faq, index) => (
-                <Accordion key={index} title={faq.question}>
-                  <p className="faq-answer">{faq.answer}</p>
-                </Accordion>
-              ))}
+            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+              <h2 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                fontWeight: 400,
+                textAlign: 'center',
+                letterSpacing: '0.02em',
+                margin: '0 0 2rem 0',
+                color: 'var(--color-primary-dark)'
+              }}>
+                Frequently Asked Questions
+              </h2>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {product.faqs.map((faq, index) => (
+                  <Accordion key={index} title={faq.question}>
+                    <p style={{
+                      fontSize: '0.9375rem',
+                      lineHeight: 1.7,
+                      letterSpacing: '0.01em',
+                      margin: 0
+                    }}>
+                      {faq.answer}
+                    </p>
+                  </Accordion>
+                ))}
+              </div>
             </div>
           </Container>
         </section>
+
+        {/* Divider */}
+        <div style={{ borderTop: '1px solid var(--color-body-border)', opacity: 0.6 }} />
       </main>
 
       <Footer />
       <CartDrawer isOpen={isCartOpen} onClose={closeCart} />
 
       <style jsx>{`
-        .main-content {
-          background-color: var(--color-body-bg);
-        }
-
-        /* Hero Section - TIGHTENED */
-        .hero-section {
-          padding: 2rem 0 2.5rem; /* Was 3rem 0 4rem */
-        }
-
-        .hero-grid {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 3rem; /* Was 4rem */
-          align-items: start;
-        }
-
-        .hero-images {
-          display: flex;
-          gap: 0.75rem; /* Was 1rem */
-          flex-direction: row-reverse;
-        }
-
-        .main-image-wrapper {
-          flex: 1;
-        }
-
-        .main-image {
-          width: 100%;
-          aspect-ratio: 2/3;
-          background: linear-gradient(135deg, var(--color-accent-eucalyptus) 0%, var(--color-accent-peach) 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 2px;
-        }
-
-        .placeholder-icon {
-          font-size: 5rem;
-          opacity: 0.6;
-        }
-
-        .thumbnail-strip {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem; /* Was 0.75rem */
-        }
-
-        .thumbnail {
-          width: 70px;
-          height: 90px;
-          background: linear-gradient(135deg, var(--color-accent-eucalyptus) 0%, var(--color-accent-peach) 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          border: 2px solid transparent;
-          transition: border-color 0.2s ease;
-          border-radius: 2px;
-        }
-
-        .thumbnail:hover,
-        .thumbnail.active {
-          border-color: var(--color-primary-main);
-        }
-
-        .thumb-icon {
-          font-size: 1.5rem;
-          opacity: 0.7;
-        }
-
-        .product-info {
-          padding-top: 0; /* Was 1rem */
-        }
-
-        .product-info-inner {
-          max-width: 500px;
-        }
-
-        .product-title {
-          font-size: 2.25rem;
-          font-weight: 400;
-          letter-spacing: 0.02em;
-          margin: 0 0 0.25rem 0; /* Was 0 0 0.5rem 0 */
-          color: var(--color-primary-dark);
-          line-height: 1.2;
-        }
-
-        .product-subtitle {
-          font-size: 1rem;
-          color: var(--color-body-text-light);
-          margin: 0 0 1rem 0; /* Was 0 0 1.5rem 0 */
-          font-style: italic;
-          letter-spacing: 0.01em;
-        }
-
-        .price-display {
-          display: flex;
-          align-items: baseline;
-          gap: 0.75rem;
-          margin-bottom: 1rem; /* Was 1.5rem */
-        }
-
-        .current-price {
-          font-size: 1.5rem;
-          font-weight: 400;
-          color: var(--color-primary-dark);
-          letter-spacing: 0.01em;
-        }
-
-        .original-price {
-          font-size: 1.125rem;
-          color: var(--color-body-text-light);
-          text-decoration: line-through;
-        }
-
-        .size-selector {
-          margin-bottom: 1rem; /* Was 1.5rem */
-        }
-
-        .size-label {
-          display: block;
-          font-size: 0.8125rem;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          margin-bottom: 0.5rem; /* Was 0.75rem */
-          color: var(--color-body-text);
-          font-weight: 500;
-        }
-
-        .size-buttons {
-          display: flex;
-          gap: 0.5rem;
-        }
-
-        .size-btn {
-          flex: 1;
-          padding: 0.65rem 1rem; /* Was 0.75rem 1rem */
-          background: transparent;
-          border: 1px solid var(--color-body-border);
-          color: var(--color-body-text);
-          font-size: 0.875rem;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          letter-spacing: 0.02em;
-          min-height: 44px;
-        }
-
-        .size-btn:hover {
-          border-color: var(--color-primary-main);
-        }
-
-        .size-btn.active {
-          background: var(--color-primary-main);
-          border-color: var(--color-primary-main);
-          color: white;
-        }
-
-        .product-desc {
-          margin: 1.25rem 0; /* Was 2rem 0 */
-          padding: 1rem 0; /* Was 1.5rem 0 */
-          border-top: 1px solid var(--color-body-border);
-          border-bottom: 1px solid var(--color-body-border);
-        }
-
-        .product-desc p {
-          font-size: 0.9375rem;
-          line-height: 1.7;
-          color: var(--color-body-text);
-          margin: 0;
-          letter-spacing: 0.01em;
-        }
-
-        .product-features {
-          display: flex;
-          flex-direction: column;
-          gap: 0.35rem; /* Was 0.5rem */
-        }
-
-        .feature {
-          font-size: 0.875rem;
-          color: var(--color-body-text);
-          letter-spacing: 0.01em;
-        }
-
-        /* Description Section - TIGHTENED */
-        .description-section {
-          padding: 2.5rem 0; /* Was 3rem 0 */
-          background-color: var(--color-accent-eucalyptus);
-        }
-
-        .desc-content {
-          max-width: 800px;
-          margin: 0 auto;
-          text-align: center;
-        }
-
-        .desc-title {
-          font-size: 1.75rem;
-          font-weight: 400;
-          letter-spacing: 0.02em;
-          margin: 0 0 0.75rem 0; /* Was 0 0 1rem 0 */
-          color: var(--color-primary-dark);
-        }
-
-        .desc-text {
-          font-size: 1rem;
-          line-height: 1.8;
-          color: var(--color-body-text);
-          margin: 0;
-          letter-spacing: 0.01em;
-        }
-
-        /* Ingredients Section - TIGHTENED */
-        .ingredients-section {
-          padding: 2.5rem 0; /* Was 4rem 0 */
-        }
-
-        .section-title {
-          font-size: 1.75rem;
-          font-weight: 400;
-          text-align: center;
-          letter-spacing: 0.02em;
-          margin: 0 0 1.75rem 0; /* Was 0 0 3rem 0 */
-          color: var(--color-primary-dark);
-        }
-
-        .ingredients-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1.5rem; /* Was 2.5rem */
-          max-width: 900px;
-          margin: 0 auto;
-        }
-
-        .ingredient-item {
-          padding-bottom: 1rem; /* Was 1.5rem */
-          border-bottom: 1px solid var(--color-body-border);
-        }
-
-        .ingredient-name {
-          font-size: 1.0625rem;
-          font-weight: 500;
-          margin: 0 0 0.35rem 0; /* Was 0 0 0.5rem 0 */
-          color: var(--color-primary-dark);
-          letter-spacing: 0.01em;
-        }
-
-        .ingredient-purpose {
-          font-size: 0.9375rem;
-          line-height: 1.6;
-          color: var(--color-body-text);
-          margin: 0;
-          letter-spacing: 0.01em;
-        }
-
-        /* Benefits Section - TIGHTENED */
-        .benefits-section {
-          padding: 2.5rem 0; /* Was 4rem 0 */
-          background-color: var(--color-accent-peach);
-        }
-
-        .benefits-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.75rem; /* Was 2.5rem */
-          max-width: 1000px;
-          margin: 0 auto;
-        }
-
-        .benefit-item {
-          text-align: left;
-        }
-
-        .benefit-name {
-          font-size: 1.0625rem;
-          font-weight: 500;
-          margin: 0 0 0.5rem 0; /* Was 0 0 0.75rem 0 */
-          color: var(--color-primary-dark);
-          letter-spacing: 0.01em;
-        }
-
-        .benefit-text {
-          font-size: 0.9375rem;
-          line-height: 1.6;
-          color: var(--color-body-text);
-          margin: 0;
-          letter-spacing: 0.01em;
-        }
-
-        /* Usage Section - TIGHTENED */
-        .usage-section {
-          padding: 2.5rem 0; /* Was 4rem 0 */
-        }
-
-        .steps-list {
-          max-width: 700px;
-          margin: 0 auto;
-        }
-
-        .usage-step {
-          display: flex;
-          gap: 1rem; /* Was 1.5rem */
-          margin-bottom: 1.25rem; /* Was 2rem */
-          align-items: flex-start;
-        }
-
-        .step-number {
-          min-width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          background-color: var(--color-primary-main);
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.875rem;
-          font-weight: 500;
-          flex-shrink: 0;
-        }
-
-        .step-instruction {
-          font-size: 0.9375rem;
-          line-height: 1.7;
-          color: var(--color-body-text);
-          margin: 0;
-          padding-top: 0.4rem; /* Was 0.5rem */
-          letter-spacing: 0.01em;
-        }
-
-        /* Reviews Section - TIGHTENED */
-        .reviews-section {
-          padding: 2.5rem 0; /* Was 4rem 0 */
-          background-color: var(--color-accent-eucalyptus);
-        }
-
-        .reviews-list {
-          max-width: 800px;
-          margin: 0 auto;
-          display: grid;
-          gap: 1.75rem; /* Was 3rem */
-        }
-
-        .review-item {
-          text-align: center;
-          padding-bottom: 1.5rem; /* Was 2rem */
-          border-bottom: 1px solid var(--color-body-border);
-        }
-
-        .review-item:last-child {
-          border-bottom: none;
-          padding-bottom: 0;
-        }
-
-        .review-stars {
-          font-size: 0.875rem;
-          color: var(--color-secondary-main);
-          margin-bottom: 0.75rem; /* Was 1rem */
-          letter-spacing: 0.15em;
-        }
-
-        .review-quote {
-          font-size: 1.0625rem;
-          line-height: 1.7;
-          font-style: italic;
-          color: var(--color-body-text);
-          margin: 0 0 0.75rem 0; /* Was 0 0 1rem 0 */
-          letter-spacing: 0.01em;
-        }
-
-        .review-author {
-          font-size: 0.875rem;
-          color: var(--color-body-text-light);
-          margin: 0;
-          font-weight: 500;
-          letter-spacing: 0.02em;
-        }
-
-        /* FAQ Section - TIGHTENED */
-        .faq-section {
-          padding: 2.5rem 0 3rem; /* Was 4rem 0 5rem */
-        }
-
-        .faq-list {
-          max-width: 800px;
-          margin: 0 auto;
-        }
-
-        .faq-answer {
-          font-size: 0.9375rem;
-          line-height: 1.7;
-          letter-spacing: 0.01em;
-        }
-
-        /* Responsive - MOBILE TIGHTENED */
-        @media (max-width: 968px) {
-          .hero-section {
-            padding: 1.5rem 0; /* Was 2rem 0 2.5rem */
+        @media (min-width: 768px) {
+          .hero-responsive-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 4rem !important;
           }
+        }
 
-          .hero-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem; /* Was 2rem */
-          }
-
-          .hero-images {
-            flex-direction: column;
-          }
-
-          .thumbnail-strip {
-            flex-direction: row;
-            overflow-x: auto;
-            gap: 0.5rem;
-          }
-
-          .product-title {
-            font-size: 1.875rem;
-          }
-
-          .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem; /* Was 2rem */
-          }
-
-          .ingredients-grid,
-          .benefits-grid {
-            grid-template-columns: 1fr;
-            gap: 1.25rem; /* Was 2rem */
-          }
-
-          .description-section,
-          .ingredients-section,
-          .benefits-section,
-          .usage-section,
-          .reviews-section,
-          .faq-section {
-            padding: 1.75rem 0; /* Was 2.5rem 0 */
-          }
-
-          .usage-step {
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-          }
-
-          .reviews-list {
-            gap: 1.25rem;
-          }
-
-          .review-item {
-            padding-bottom: 1.25rem;
+        @media (max-width: 767px) {
+          section {
+            padding: 2rem 0 !important;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .thumbnail,
-          .size-btn {
-            transition: none;
+          * {
+            transition: none !important;
+            animation: none !important;
           }
         }
       `}</style>
