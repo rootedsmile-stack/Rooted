@@ -1,8 +1,9 @@
-name = "herbal-tooth-powder-store"
-compatibility_date = "2024-01-01"
+name = "rooted"
+compatibility_date = "2024-12-31"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
 
-# D1 Database binding for Cloudflare Pages
 [[d1_databases]]
 binding = "DB"
-database_name = "tooth-powder-orders"
-database_id = "" # Fill this after creating D1 database
+database_name = "rooted-db"
+database_id = "YOUR_D1_DATABASE_ID"
