@@ -1,98 +1,77 @@
-import { Inter, Playfair_Display } from 'next/font/google';
-import '../styles/globals.css';
-import type { Metadata } from 'next';
-import themeConfig from '../config/theme.json';
+// app/layout.tsx
+import './globals.css'
+import { Inter } from 'next/font/google'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import themeConfig from '@/theme.json'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
+const inter = Inter({ subsets: ['latin'] })
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  display: 'swap',
-});
-
-export const metadata: Metadata = {
-  title: 'Pure Herbal Tooth Powder | Natural Oral Care',
-  description: 'Premium herbal tooth powder crafted with traditional botanical ingredients for your daily oral care routine.',
-  keywords: 'herbal tooth powder, natural oral care, botanical toothpaste, eco-friendly dental care',
-  openGraph: {
-    title: 'Pure Herbal Tooth Powder',
-    description: 'Premium herbal tooth powder crafted with traditional botanical ingredients',
-    type: 'website',
-  },
-};
+export const metadata = {
+  title: 'Rooted Smile - Natural Herbal Tooth Powder',
+  description: 'Discover the power of nature with our premium herbal tooth powder. Made with traditional Ayurvedic ingredients for a healthier, brighter smile.',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  // Generate CSS variables from theme.json
-  const cssVariables = `
-    :root {
-      /* Coupon Panel Colors */
-      --color-coupon-bg: ${themeConfig.colors.couponPanel.background};
-      --color-coupon-text: ${themeConfig.colors.couponPanel.text};
-      --color-coupon-accent: ${themeConfig.colors.couponPanel.accent};
-
-      /* Header Colors */
-      --color-header-bg: ${themeConfig.colors.header.background};
-      --color-header-text: ${themeConfig.colors.header.text};
-      --color-header-border: ${themeConfig.colors.header.border};
-
-      /* Body Colors */
-      --color-body-bg: ${themeConfig.colors.body.background};
-      --color-body-text: ${themeConfig.colors.body.text};
-      --color-body-text-light: ${themeConfig.colors.body.textLight};
-      --color-body-card-bg: ${themeConfig.colors.body.cardBackground};
-      --color-body-border: ${themeConfig.colors.body.border};
-
-      /* Footer Colors */
-      --color-footer-bg: ${themeConfig.colors.footer.background};
-      --color-footer-text: ${themeConfig.colors.footer.text};
-      --color-footer-link-hover: ${themeConfig.colors.footer.linkHover};
-
-      /* Primary Colors */
-      --color-primary-main: ${themeConfig.colors.primary.main};
-      --color-primary-hover: ${themeConfig.colors.primary.hover};
-      --color-primary-light: ${themeConfig.colors.primary.light};
-      --color-primary-dark: ${themeConfig.colors.primary.dark};
-
-      /* Secondary Colors */
-      --color-secondary-main: ${themeConfig.colors.secondary.main};
-      --color-secondary-hover: ${themeConfig.colors.secondary.hover};
-      --color-secondary-light: ${themeConfig.colors.secondary.light};
-      --color-secondary-dark: ${themeConfig.colors.secondary.dark};
-
-      /* Accent Colors */
-      --color-accent-sage: ${themeConfig.colors.accent.sage};
-      --color-accent-cream: ${themeConfig.colors.accent.cream};
-      --color-accent-terracotta: ${themeConfig.colors.accent.terracotta};
-      --color-accent-warm-gray: ${themeConfig.colors.accent.warmGray};
-
-      /* Status Colors */
-      --color-status-success: ${themeConfig.colors.status.success};
-      --color-status-error: ${themeConfig.colors.status.error};
-      --color-status-warning: ${themeConfig.colors.status.warning};
-      --color-status-info: ${themeConfig.colors.status.info};
-
-      /* Typography */
-      --font-heading: ${inter.style.fontFamily}, ${themeConfig.typography.fontFamily.heading};
-      --font-body: ${playfair.style.fontFamily}, ${themeConfig.typography.fontFamily.body};
-    }
-  `;
-
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en">
       <head>
-        <style dangerouslySetInnerHTML={{ __html: cssVariables }} />
-        <link rel="icon" href="/favicon.ico" />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            :root {
+              /* Primary Brand Colors */
+              --color-teal: ${themeConfig.colors.teal};
+              --color-teal-light: ${themeConfig.colors.tealLight};
+              --color-teal-dark: ${themeConfig.colors.tealDark};
+              --color-stone: ${themeConfig.colors.stone};
+              --color-gold: ${themeConfig.colors.gold};
+              --color-charcoal: ${themeConfig.colors.charcoal};
+              --color-white: ${themeConfig.colors.white};
+              
+              /* Glass Effects */
+              --color-glass-white: ${themeConfig.colors.glassWhite};
+              --color-glass-overlay: ${themeConfig.colors.glassOverlay};
+              
+              /* Typography */
+              --font-heading: ${themeConfig.typography.fontFamily.heading};
+              --font-body: ${themeConfig.typography.fontFamily.body};
+              
+              /* Spacing */
+              --spacing-xs: ${themeConfig.spacing.xs};
+              --spacing-sm: ${themeConfig.spacing.sm};
+              --spacing-md: ${themeConfig.spacing.md};
+              --spacing-lg: ${themeConfig.spacing.lg};
+              --spacing-xl: ${themeConfig.spacing.xl};
+              
+              /* Border Radius */
+              --radius-sm: ${themeConfig.borderRadius.sm};
+              --radius-md: ${themeConfig.borderRadius.md};
+              --radius-lg: ${themeConfig.borderRadius.lg};
+              
+              /* Shadows */
+              --shadow-sm: ${themeConfig.shadows.sm};
+              --shadow-md: ${themeConfig.shadows.md};
+              --shadow-lg: ${themeConfig.shadows.lg};
+            }
+            
+            body {
+              background-color: ${themeConfig.colors.charcoal};
+              color: ${themeConfig.colors.white};
+            }
+          `
+        }} />
       </head>
-      <body>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <Footer />
+      </body>
     </html>
-  );
+  )
 }
