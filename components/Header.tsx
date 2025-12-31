@@ -11,12 +11,16 @@ export default function Header() {
   };
 
   const navLinks = [
-    { href: '#benefits', label: 'Benefits' },
     { href: '#ingredients', label: 'Ingredients' },
+    { href: '#benefits', label: 'Benefits' },
     { href: '#how-to-use', label: 'How to Use' },
     { href: '#reviews', label: 'Reviews' },
     { href: '#faq', label: 'FAQ' },
   ];
+
+  const handleNavClick = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -52,18 +56,21 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="nav-mobile" aria-label="Mobile navigation">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="nav-mobile-link"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+          <>
+            <div className="mobile-backdrop" onClick={toggleMobileMenu} />
+            <nav className="nav-mobile" aria-label="Mobile navigation">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="nav-mobile-link"
+                  onClick={handleNavClick}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </>
         )}
       </header>
       <style jsx>{`
@@ -73,56 +80,77 @@ export default function Header() {
           position: sticky;
           top: 0;
           z-index: 50;
-          box-shadow: var(--shadow-sm);
+          backdrop-filter: blur(8px);
+          background-color: rgba(255, 249, 226, 0.95);
         }
 
         .header-container {
           max-width: 1200px;
           margin: 0 auto;
-          padding: var(--spacing-lg) var(--spacing-lg);
+          padding: 1rem 1.5rem;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          min-height: 80px;
+          min-height: 70px;
         }
 
         .logo {
-          font-family: var(--font-heading);
-          font-size: 1.5rem;
-          font-weight: 600;
+          font-family: var(--font-display);
+          font-size: 1.125rem;
+          font-weight: 400;
           color: var(--color-header-text);
           text-decoration: none;
           transition: color 0.2s ease;
+          letter-spacing: 0.02em;
         }
 
         .logo:hover {
-          color: var(--color-primary-hover);
+          color: var(--color-primary-main);
         }
 
         /* Desktop Navigation */
         .nav-desktop {
           display: flex;
-          gap: var(--spacing-xl);
+          gap: 2rem;
           align-items: center;
         }
 
         .nav-link {
           color: var(--color-header-text);
           text-decoration: none;
-          font-weight: 500;
-          font-size: 0.95rem;
+          font-weight: 400;
+          font-size: 0.875rem;
           transition: color 0.2s ease;
-          padding: var(--spacing-sm) 0;
+          padding: 0.5rem 0;
+          position: relative;
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+          font-size: 0.75rem;
+        }
+
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background-color: var(--color-primary-main);
+          transition: width 0.25s ease-out;
         }
 
         .nav-link:hover {
           color: var(--color-primary-main);
         }
 
+        .nav-link:hover::after {
+          width: 100%;
+        }
+
         .nav-link:focus-visible {
           outline: 2px solid var(--color-primary-main);
           outline-offset: 4px;
-          border-radius: var(--radius-sm);
+          border-radius: 2px;
         }
 
         /* Mobile Menu Toggle */
@@ -131,7 +159,7 @@ export default function Header() {
           background: transparent;
           border: none;
           cursor: pointer;
-          padding: var(--spacing-sm);
+          padding: 0.5rem;
           min-width: 44px;
           min-height: 44px;
           align-items: center;
@@ -141,14 +169,14 @@ export default function Header() {
         .mobile-menu-toggle:focus-visible {
           outline: 2px solid var(--color-primary-main);
           outline-offset: 2px;
-          border-radius: var(--radius-sm);
+          border-radius: 2px;
         }
 
         .hamburger {
           display: flex;
           flex-direction: column;
           gap: 4px;
-          width: 24px;
+          width: 22px;
         }
 
         .hamburger span {
@@ -168,48 +196,91 @@ export default function Header() {
         }
 
         .hamburger.open span:nth-child(3) {
-          transform: rotate(-45deg) translate(7px, -7px);
+          transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Backdrop */
+        .mobile-backdrop {
+          display: none;
+          position: fixed;
+          top: 70px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.4);
+          z-index: 49;
+          animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
 
         /* Mobile Navigation */
         .nav-mobile {
           display: none;
           flex-direction: column;
+          position: fixed;
+          top: 70px;
+          right: 0;
+          width: 280px;
+          max-width: 85vw;
+          height: calc(100vh - 70px);
           background-color: var(--color-header-bg);
-          border-top: 1px solid var(--color-header-border);
-          padding: var(--spacing-lg);
-          gap: var(--spacing-md);
+          border-left: 1px solid var(--color-header-border);
+          padding: 2rem 1.5rem;
+          gap: 0.5rem;
+          z-index: 50;
+          box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+          animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+          }
+          to {
+            transform: translateX(0);
+          }
         }
 
         .nav-mobile-link {
           color: var(--color-header-text);
           text-decoration: none;
-          font-weight: 500;
-          font-size: 1rem;
-          padding: var(--spacing-md);
-          transition: color 0.2s ease;
+          font-weight: 400;
+          font-size: 0.9375rem;
+          padding: 1rem;
+          transition: color 0.2s ease, background-color 0.2s ease;
           min-height: 44px;
           display: flex;
           align-items: center;
+          border-radius: 4px;
+          letter-spacing: 0.02em;
         }
 
         .nav-mobile-link:hover {
           color: var(--color-primary-main);
+          background-color: var(--color-accent-cream);
         }
 
         .nav-mobile-link:focus-visible {
           outline: 2px solid var(--color-primary-main);
           outline-offset: 2px;
-          border-radius: var(--radius-sm);
         }
 
         @media (max-width: 768px) {
           .header-container {
-            padding: var(--spacing-md);
+            padding: 0.75rem 1rem;
+            min-height: 60px;
           }
 
           .logo {
-            font-size: 1.25rem;
+            font-size: 1rem;
           }
 
           .nav-desktop {
@@ -220,8 +291,14 @@ export default function Header() {
             display: flex;
           }
 
+          .mobile-backdrop {
+            display: block;
+          }
+
           .nav-mobile {
             display: flex;
+            top: 60px;
+            height: calc(100vh - 60px);
           }
         }
 
@@ -229,7 +306,14 @@ export default function Header() {
           .hamburger span,
           .nav-link,
           .nav-mobile-link,
-          .logo {
+          .logo,
+          .mobile-backdrop,
+          .nav-mobile {
+            transition: none;
+            animation: none;
+          }
+          
+          .nav-link::after {
             transition: none;
           }
         }
