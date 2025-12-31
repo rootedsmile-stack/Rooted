@@ -1,27 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Raleway:wght@300;400;500;600&display=swap');
 
 :root {
   /* Colors are injected by layout.tsx from theme.json */
   
-  /* Spacing - REDUCED for tighter layout */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 0.75rem;
-  --spacing-lg: 1rem;
-  --spacing-xl: 1.5rem;
-  --spacing-2xl: 2rem;
-  --spacing-3xl: 3rem;
+  /* Spacing - VERY TIGHT for luxury feel */
+  --spacing-xs: 0.125rem;
+  --spacing-sm: 0.25rem;
+  --spacing-md: 0.5rem;
+  --spacing-lg: 0.75rem;
+  --spacing-xl: 1rem;
+  --spacing-2xl: 1.5rem;
+  --spacing-3xl: 2rem;
 
   /* Border Radius */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Raleway', sans-serif;
 }
 
 * {
@@ -39,35 +43,38 @@ body {
   font-family: var(--font-body);
   background-color: var(--color-body-bg);
   color: var(--color-body-text);
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.02em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.1;
   color: var(--color-primary-main);
+  letter-spacing: 0.03em;
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-md);
+  font-size: 2.75rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 h2 {
   font-size: 2rem;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
 
 h3 {
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-sm);
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-xs);
 }
 
 p {
   margin-bottom: var(--spacing-md);
+  line-height: 1.6;
 }
 
 a {
@@ -96,20 +103,20 @@ img {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
+  padding: 0 var(--spacing-2xl);
 }
 
 .section {
-  padding: var(--spacing-2xl) 0;
+  padding: var(--spacing-3xl) 0;
 }
 
 @media (max-width: 768px) {
   html {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   h2 {
@@ -117,14 +124,14 @@ img {
   }
 
   h3 {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
 
   .container {
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-xl);
   }
 
   .section {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-2xl) 0;
   }
 }
