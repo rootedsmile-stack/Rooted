@@ -202,11 +202,11 @@ export default function Footer() {
           </GlassPanel>
         </div>
 
-        {/* Trust Badges */}
+        {/* Trust Badges - FIXED ICON SIZES */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 pb-16 border-b border-slate-800">
           <div className="flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-slate-800/50 rounded-full flex items-center justify-center mb-3">
-              <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 bg-slate-800/50 rounded-full flex items-center justify-center mb-3">
+              <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
@@ -215,8 +215,8 @@ export default function Footer() {
           </div>
           
           <div className="flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-slate-800/50 rounded-full flex items-center justify-center mb-3">
-              <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 bg-slate-800/50 rounded-full flex items-center justify-center mb-3">
+              <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
               </svg>
             </div>
@@ -225,8 +225,8 @@ export default function Footer() {
           </div>
           
           <div className="flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-slate-800/50 rounded-full flex items-center justify-center mb-3">
-              <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 bg-slate-800/50 rounded-full flex items-center justify-center mb-3">
+              <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
             </div>
@@ -235,8 +235,8 @@ export default function Footer() {
           </div>
           
           <div className="flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-slate-800/50 rounded-full flex items-center justify-center mb-3">
-              <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 bg-slate-800/50 rounded-full flex items-center justify-center mb-3">
+              <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
               </svg>
             </div>
