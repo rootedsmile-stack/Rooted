@@ -1,5 +1,5 @@
 // app/layout.tsx
-import '@/styles/globals.css'  // Fixed path - was './globals.css'
+import '@/styles/globals.css'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -23,44 +23,63 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{
           __html: `
             :root {
-              /* Primary Brand Colors */
-              --color-teal: ${themeConfig.colors.teal};
-              --color-teal-light: ${themeConfig.colors.tealLight};
-              --color-teal-dark: ${themeConfig.colors.tealDark};
-              --color-stone: ${themeConfig.colors.stone};
-              --color-gold: ${themeConfig.colors.gold};
-              --color-charcoal: ${themeConfig.colors.charcoal};
-              --color-white: ${themeConfig.colors.white};
+              /* Accent Colors - Moody Editorial */
+              --color-teal: ${themeConfig.colors.accent.teal};
+              --color-teal-light: ${themeConfig.colors.accent.tealLight};
+              --color-teal-dark: ${themeConfig.colors.accent.tealDark};
+              --color-stone: ${themeConfig.colors.accent.stone};
+              --color-gold: ${themeConfig.colors.accent.gold};
+              --color-charcoal: ${themeConfig.colors.accent.charcoal};
+              --color-white: ${themeConfig.colors.accent.white};
               
               /* Glass Effects */
-              --color-glass-white: ${themeConfig.colors.glassWhite};
-              --color-glass-overlay: ${themeConfig.colors.glassOverlay};
+              --color-glass-white: ${themeConfig.colors.accent.glassWhite};
+              --color-glass-overlay: ${themeConfig.colors.accent.glassOverlay};
+              
+              /* Primary Colors */
+              --color-primary: ${themeConfig.colors.primary.main};
+              --color-primary-hover: ${themeConfig.colors.primary.hover};
+              --color-primary-light: ${themeConfig.colors.primary.light};
+              --color-primary-dark: ${themeConfig.colors.primary.dark};
+              
+              /* Secondary Colors */
+              --color-secondary: ${themeConfig.colors.secondary.main};
+              --color-secondary-hover: ${themeConfig.colors.secondary.hover};
+              
+              /* Body Colors */
+              --color-body-bg: ${themeConfig.colors.body.background};
+              --color-body-text: ${themeConfig.colors.body.text};
+              --color-body-text-light: ${themeConfig.colors.body.textLight};
+              
+              /* Header Colors */
+              --color-header-bg: ${themeConfig.colors.header.background};
+              --color-header-text: ${themeConfig.colors.header.text};
+              --color-header-border: ${themeConfig.colors.header.border};
+              
+              /* Footer Colors */
+              --color-footer-bg: ${themeConfig.colors.footer.background};
+              --color-footer-text: ${themeConfig.colors.footer.text};
+              --color-footer-link-hover: ${themeConfig.colors.footer.linkHover};
+              
+              /* Coupon Panel Colors */
+              --color-coupon-bg: ${themeConfig.colors.couponPanel.background};
+              --color-coupon-text: ${themeConfig.colors.couponPanel.text};
+              --color-coupon-accent: ${themeConfig.colors.couponPanel.accent};
+              
+              /* Status Colors */
+              --color-success: ${themeConfig.colors.status.success};
+              --color-error: ${themeConfig.colors.status.error};
+              --color-warning: ${themeConfig.colors.status.warning};
+              --color-info: ${themeConfig.colors.status.info};
               
               /* Typography */
               --font-heading: ${themeConfig.typography.fontFamily.heading};
               --font-body: ${themeConfig.typography.fontFamily.body};
-              
-              /* Spacing */
-              --spacing-xs: ${themeConfig.spacing.xs};
-              --spacing-sm: ${themeConfig.spacing.sm};
-              --spacing-md: ${themeConfig.spacing.md};
-              --spacing-lg: ${themeConfig.spacing.lg};
-              --spacing-xl: ${themeConfig.spacing.xl};
-              
-              /* Border Radius */
-              --radius-sm: ${themeConfig.borderRadius.sm};
-              --radius-md: ${themeConfig.borderRadius.md};
-              --radius-lg: ${themeConfig.borderRadius.lg};
-              
-              /* Shadows */
-              --shadow-sm: ${themeConfig.shadows.sm};
-              --shadow-md: ${themeConfig.shadows.md};
-              --shadow-lg: ${themeConfig.shadows.lg};
             }
             
             body {
-              background-color: ${themeConfig.colors.charcoal};
-              color: ${themeConfig.colors.white};
+              background-color: ${themeConfig.colors.body.background};
+              color: ${themeConfig.colors.body.text};
             }
           `
         }} />
