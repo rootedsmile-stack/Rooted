@@ -1,323 +1,234 @@
+// components/Header.tsx
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { GlassPanel } from './GlassPanel';
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
 
-  const navLinks = [
-    { href: '#ingredients', label: 'Ingredients' },
-    { href: '#benefits', label: 'Benefits' },
-    { href: '#how-to-use', label: 'How to Use' },
-    { href: '#reviews', label: 'Reviews' },
-    { href: '#faq', label: 'FAQ' },
-  ];
-
-  const handleNavClick = () => {
-    setIsMobileMenuOpen(false);
-  };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <>
-      <header className="header">
-        <div className="header-container">
-          <Link href="/" className="logo">
-            Pure Herbal Tooth Powder
-          </Link>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'py-4'
+          : 'py-6'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <GlassPanel
+          variant={isScrolled ? 'dark' : 'light'}
+          blur={isScrolled ? 'lg' : 'md'}
+          className={`transition-all duration-300 ${
+            isScrolled ? 'shadow-2xl' : 'shadow-lg'
+          }`}
+        >
+          <div className="px-6 py-4">
+            <div className="flex items-center justify-between">
+              
+              {/* Logo */}
+              <Link href="/" className="flex items-center gap-3 group">
+                <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center transition-transform group-hover:scale-110">
+                  <span className="text-white font-bold text-xl">R</span>
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-white group-hover:text-teal-400 transition-colors">
+                    Rooted Smile
+                  </h1>
+                  <p className="text-xs text-slate-400">Natural Oral Care</p>
+                </div>
+              </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="nav-desktop" aria-label="Main navigation">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link">
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="mobile-menu-toggle"
-            onClick={toggleMobileMenu}
-            aria-expanded={isMobileMenuOpen}
-            aria-label="Toggle navigation menu"
-          >
-            <span className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <>
-            <div className="mobile-backdrop" onClick={toggleMobileMenu} />
-            <nav className="nav-mobile" aria-label="Mobile navigation">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="nav-mobile-link"
-                  onClick={handleNavClick}
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center gap-8">
+                <Link
+                  href="/shop"
+                  className="text-slate-300 hover:text-teal-400 transition-colors font-medium"
                 >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </>
-        )}
-      </header>
-      <style jsx>{`
-        .header {
-          background-color: var(--color-header-bg);
-          border-bottom: 1px solid var(--color-header-border);
-          position: sticky;
-          top: 0;
-          z-index: 50;
-          backdrop-filter: blur(8px);
-          background-color: rgba(255, 249, 226, 0.95);
-        }
+                  Shop
+                </Link>
+                <Link
+                  href="/about"
+                  className="text-slate-300 hover:text-teal-400 transition-colors font-medium"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/benefits"
+                  className="text-slate-300 hover:text-teal-400 transition-colors font-medium"
+                >
+                  Benefits
+                </Link>
+                <Link
+                  href="/reviews"
+                  className="text-slate-300 hover:text-teal-400 transition-colors font-medium"
+                >
+                  Reviews
+                </Link>
+                <Link
+                  href="/contact"
+                  className="text-slate-300 hover:text-teal-400 transition-colors font-medium"
+                >
+                  Contact
+                </Link>
+              </nav>
 
-        .header-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 1rem 1.5rem;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          min-height: 70px;
-        }
+              {/* CTA & Cart */}
+              <div className="hidden md:flex items-center gap-4">
+                <Link
+                  href="/cart"
+                  className="relative p-2 text-slate-300 hover:text-teal-400 transition-colors"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-teal-500 text-white text-xs rounded-full flex items-center justify-center">
+                    0
+                  </span>
+                </Link>
+                
+                <Link
+                  href="/shop"
+                  className="px-6 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg font-medium hover:from-teal-600 hover:to-teal-700 transition-all shadow-lg hover:shadow-teal-500/50"
+                >
+                  Shop Now
+                </Link>
+              </div>
 
-        .logo {
-          font-family: var(--font-display);
-          font-size: 1.125rem;
-          font-weight: 400;
-          color: var(--color-header-text);
-          text-decoration: none;
-          transition: color 0.2s ease;
-          letter-spacing: 0.02em;
-        }
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden p-2 text-slate-300 hover:text-teal-400 transition-colors"
+              >
+                {isMobileMenuOpen ? (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
 
-        .logo:hover {
-          color: var(--color-primary-main);
-        }
-
-        /* Desktop Navigation */
-        .nav-desktop {
-          display: flex;
-          gap: 2rem;
-          align-items: center;
-        }
-
-        .nav-link {
-          color: var(--color-header-text);
-          text-decoration: none;
-          font-weight: 400;
-          font-size: 0.875rem;
-          transition: color 0.2s ease;
-          padding: 0.5rem 0;
-          position: relative;
-          letter-spacing: 0.03em;
-          text-transform: uppercase;
-          font-size: 0.75rem;
-        }
-
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0;
-          height: 1px;
-          background-color: var(--color-primary-main);
-          transition: width 0.25s ease-out;
-        }
-
-        .nav-link:hover {
-          color: var(--color-primary-main);
-        }
-
-        .nav-link:hover::after {
-          width: 100%;
-        }
-
-        .nav-link:focus-visible {
-          outline: 2px solid var(--color-primary-main);
-          outline-offset: 4px;
-          border-radius: 2px;
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-          display: none;
-          background: transparent;
-          border: none;
-          cursor: pointer;
-          padding: 0.5rem;
-          min-width: 44px;
-          min-height: 44px;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .mobile-menu-toggle:focus-visible {
-          outline: 2px solid var(--color-primary-main);
-          outline-offset: 2px;
-          border-radius: 2px;
-        }
-
-        .hamburger {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          width: 22px;
-        }
-
-        .hamburger span {
-          display: block;
-          width: 100%;
-          height: 2px;
-          background-color: var(--color-header-text);
-          transition: all 0.3s ease;
-        }
-
-        .hamburger.open span:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.open span:nth-child(2) {
-          opacity: 0;
-        }
-
-        .hamburger.open span:nth-child(3) {
-          transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Mobile Backdrop */
-        .mobile-backdrop {
-          display: none;
-          position: fixed;
-          top: 70px;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(0, 0, 0, 0.4);
-          z-index: 49;
-          animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        /* Mobile Navigation */
-        .nav-mobile {
-          display: none;
-          flex-direction: column;
-          position: fixed;
-          top: 70px;
-          right: 0;
-          width: 280px;
-          max-width: 85vw;
-          height: calc(100vh - 70px);
-          background-color: var(--color-header-bg);
-          border-left: 1px solid var(--color-header-border);
-          padding: 2rem 1.5rem;
-          gap: 0.5rem;
-          z-index: 50;
-          box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
-          animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-          from {
-            transform: translateX(100%);
-          }
-          to {
-            transform: translateX(0);
-          }
-        }
-
-        .nav-mobile-link {
-          color: var(--color-header-text);
-          text-decoration: none;
-          font-weight: 400;
-          font-size: 0.9375rem;
-          padding: 1rem;
-          transition: color 0.2s ease, background-color 0.2s ease;
-          min-height: 44px;
-          display: flex;
-          align-items: center;
-          border-radius: 4px;
-          letter-spacing: 0.02em;
-        }
-
-        .nav-mobile-link:hover {
-          color: var(--color-primary-main);
-          background-color: var(--color-accent-cream);
-        }
-
-        .nav-mobile-link:focus-visible {
-          outline: 2px solid var(--color-primary-main);
-          outline-offset: 2px;
-        }
-
-        @media (max-width: 768px) {
-          .header-container {
-            padding: 0.75rem 1rem;
-            min-height: 60px;
-          }
-
-          .logo {
-            font-size: 1rem;
-          }
-
-          .nav-desktop {
-            display: none;
-          }
-
-          .mobile-menu-toggle {
-            display: flex;
-          }
-
-          .mobile-backdrop {
-            display: block;
-          }
-
-          .nav-mobile {
-            display: flex;
-            top: 60px;
-            height: calc(100vh - 60px);
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .hamburger span,
-          .nav-link,
-          .nav-mobile-link,
-          .logo,
-          .mobile-backdrop,
-          .nav-mobile {
-            transition: none;
-            animation: none;
-          }
-          
-          .nav-link::after {
-            transition: none;
-          }
-        }
-      `}</style>
-    </>
+            {/* Mobile Menu */}
+            {isMobileMenuOpen && (
+              <div className="md:hidden mt-6 pt-6 border-t border-white/10">
+                <nav className="flex flex-col gap-4">
+                  <Link
+                    href="/shop"
+                    className="text-slate-300 hover:text-teal-400 transition-colors font-medium py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Shop
+                  </Link>
+                  <Link
+                    href="/about"
+                    className="text-slate-300 hover:text-teal-400 transition-colors font-medium py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href="/benefits"
+                    className="text-slate-300 hover:text-teal-400 transition-colors font-medium py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Benefits
+                  </Link>
+                  <Link
+                    href="/reviews"
+                    className="text-slate-300 hover:text-teal-400 transition-colors font-medium py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Reviews
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="text-slate-300 hover:text-teal-400 transition-colors font-medium py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Contact
+                  </Link>
+                  
+                  <div className="flex items-center gap-4 pt-4 border-t border-white/10">
+                    <Link
+                      href="/cart"
+                      className="flex items-center gap-2 text-slate-300 hover:text-teal-400 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                        />
+                      </svg>
+                      Cart (0)
+                    </Link>
+                    
+                    <Link
+                      href="/shop"
+                      className="flex-1 px-6 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg font-medium text-center hover:from-teal-600 hover:to-teal-700 transition-all"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Shop Now
+                    </Link>
+                  </div>
+                </nav>
+              </div>
+            )}
+          </div>
+        </GlassPanel>
+      </div>
+    </header>
   );
 }
