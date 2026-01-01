@@ -16,9 +16,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-body antialiased">
+      <body className="antialiased">
+        {/* Fixed elements */}
         <CouponPanel />
         <Header />
+        
+        {/* Spacer to push content below fixed header (44px coupon + ~72px header) */}
+        <div className="h-[116px]"></div>
+        
+        {/* Main content */}
         <main className="min-h-screen">
           {children}
         </main>
