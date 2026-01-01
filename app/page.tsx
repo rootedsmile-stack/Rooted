@@ -1,19 +1,16 @@
 // app/page.tsx
 import Link from 'next/link'
-import { GlassPanel } from '@/components/GlassPanel'
 import { FadeIn } from '@/components/FadeIn'
 import { FloatingCard } from '@/components/FloatingCard'
-import Button from '@/components/Button'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-900 via-teal-800 to-teal-900">
+    <div className="min-h-screen">
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-teal-800 via-teal-900 to-teal-950">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-800/60 via-teal-900 to-teal-950"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gold-500/10 via-transparent to-transparent"></div>
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl"></div>
@@ -32,7 +29,7 @@ export default function Home() {
               </FadeIn>
               
               <FadeIn direction="up" delay={200}>
-                <h1 className="font-display text-5xl lg:text-7xl font-light text-stone-100 mb-8 leading-[1.1] tracking-wide">
+                <h1 className="text-5xl lg:text-7xl font-light text-stone-100 mb-8 leading-[1.1] tracking-wide">
                   Nature&apos;s Path to a
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-500 font-normal">
                     Radiant Smile
@@ -51,7 +48,7 @@ export default function Home() {
                 <div className="flex flex-wrap gap-4">
                   <Link 
                     href="/shop"
-                    className="px-10 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all shadow-lg hover:shadow-glow-gold tracking-widest text-sm uppercase"
+                    className="px-10 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all shadow-lg tracking-widest text-sm uppercase"
                   >
                     Shop Now
                   </Link>
@@ -68,13 +65,13 @@ export default function Home() {
             {/* Right: Product Showcase */}
             <FadeIn direction="right" delay={500}>
               <FloatingCard intensity="medium" glowColor="gold">
-                <div className="backdrop-blur-lg bg-teal-800/30 border border-gold-500/20 p-10 shadow-2xl">
+                <div className="bg-teal-800/50 border border-gold-500/20 p-10 shadow-2xl">
                   <div className="aspect-square w-full max-w-[450px] mx-auto bg-gradient-to-br from-teal-700/30 to-teal-900/50 flex items-center justify-center">
                     <div className="text-center">
                       <div className="w-36 h-36 mx-auto mb-8 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center shadow-2xl shadow-gold-500/30">
-                        <span className="text-white font-display font-bold text-6xl">R</span>
+                        <span className="text-white font-bold text-6xl">R</span>
                       </div>
-                      <p className="text-gold-400 text-xl font-display tracking-wide">Herbal Tooth Powder</p>
+                      <p className="text-gold-400 text-xl tracking-wide">Herbal Tooth Powder</p>
                       <p className="text-stone-400 text-sm mt-3 tracking-widest uppercase">100% Natural Ingredients</p>
                       <div className="mt-6 flex justify-center gap-1">
                         {[...Array(5)].map((_, i) => (
@@ -93,15 +90,15 @@ export default function Home() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-32 bg-teal-900/50">
+      <section className="py-24 bg-teal-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <FadeIn direction="up" delay={100}>
-            <div className="text-center mb-20">
+            <div className="text-center mb-16">
               <p className="text-gold-400 text-sm uppercase tracking-[0.2em] mb-4 font-medium">
                 Why Choose Rooted Smile
               </p>
-              <h2 className="font-display text-4xl lg:text-5xl font-light text-stone-100 mb-6 tracking-wide">
+              <h2 className="text-4xl lg:text-5xl font-light text-stone-100 mb-6 tracking-wide">
                 The Science of Natural Care
               </h2>
               <p className="text-xl text-stone-400 max-w-3xl mx-auto font-light">
@@ -119,13 +116,13 @@ export default function Home() {
             ].map((benefit, index) => (
               <FadeIn key={benefit.title} direction="up" delay={200 + index * 100}>
                 <FloatingCard intensity="subtle" glowColor="teal">
-                  <div className="backdrop-blur-md bg-teal-800/30 border border-white/10 p-8 h-full">
+                  <div className="bg-teal-800/50 border border-teal-700 p-8 h-full">
                     <div className="w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center mb-6">
                       <svg className="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={benefit.icon} />
                       </svg>
                     </div>
-                    <h3 className="font-display text-2xl text-stone-100 mb-4 tracking-wide">{benefit.title}</h3>
+                    <h3 className="text-2xl text-stone-100 mb-4 tracking-wide">{benefit.title}</h3>
                     <p className="text-stone-400 leading-relaxed font-light">{benefit.desc}</p>
                   </div>
                 </FloatingCard>
@@ -136,21 +133,19 @@ export default function Home() {
       </section>
 
       {/* Featured Product Section */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-gold-900/10 to-teal-900/10"></div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-teal-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
             {/* Product Display */}
             <FadeIn direction="left" delay={100}>
               <FloatingCard intensity="medium" glowColor="gold">
-                <div className="aspect-square w-full max-w-[550px] mx-auto bg-gradient-to-br from-gold-900/20 via-teal-800/30 to-teal-900/40 flex items-center justify-center border border-gold-500/20">
+                <div className="aspect-square w-full max-w-[550px] mx-auto bg-gradient-to-br from-teal-800 to-teal-900 flex items-center justify-center border border-gold-500/20">
                   <div className="text-center p-10">
                     <div className="w-44 h-44 mx-auto mb-8 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center shadow-2xl shadow-gold-500/30">
-                      <span className="text-white font-display font-bold text-7xl">R</span>
+                      <span className="text-white font-bold text-7xl">R</span>
                     </div>
-                    <p className="text-gold-400 text-2xl font-display tracking-wide">Premium Blend</p>
+                    <p className="text-gold-400 text-2xl tracking-wide">Premium Blend</p>
                     <p className="text-stone-400 text-sm mt-3 tracking-widest uppercase">Herbal Tooth Powder</p>
                     <div className="mt-6 flex justify-center gap-1">
                       {[...Array(5)].map((_, i) => (
@@ -170,7 +165,7 @@ export default function Home() {
                 <p className="text-gold-400 text-sm uppercase tracking-[0.2em] mb-4 font-medium">
                   Bestseller
                 </p>
-                <h2 className="font-display text-4xl lg:text-5xl font-light text-stone-100 mb-6 tracking-wide">
+                <h2 className="text-4xl lg:text-5xl font-light text-stone-100 mb-6 tracking-wide">
                   Premium Herbal Tooth Powder
                 </h2>
                 <p className="text-xl text-stone-300 mb-10 leading-relaxed font-light">
@@ -200,12 +195,12 @@ export default function Home() {
               <FadeIn direction="right" delay={400}>
                 <div className="flex items-center gap-8 mb-10">
                   <div>
-                    <p className="text-4xl font-display text-stone-100">$24.99</p>
+                    <p className="text-4xl text-stone-100">$24.99</p>
                     <p className="text-sm text-stone-500 tracking-wide">One-time purchase</p>
                   </div>
                   <div className="h-14 w-px bg-teal-700"></div>
                   <div>
-                    <p className="text-4xl font-display text-gold-400">$19.99</p>
+                    <p className="text-4xl text-gold-400">$19.99</p>
                     <p className="text-sm text-stone-500 tracking-wide">Subscribe &amp; save 20%</p>
                   </div>
                 </div>
@@ -214,7 +209,7 @@ export default function Home() {
               <FadeIn direction="right" delay={500}>
                 <Link 
                   href="/shop"
-                  className="inline-block px-12 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all shadow-lg hover:shadow-glow-gold tracking-widest text-sm uppercase"
+                  className="inline-block px-12 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all shadow-lg tracking-widest text-sm uppercase"
                 >
                   Add to Cart
                 </Link>
@@ -225,12 +220,12 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-32 bg-teal-900/70">
+      <section className="py-24 bg-teal-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <FadeIn direction="up" delay={100}>
-            <div className="text-center mb-20">
-              <h2 className="font-display text-4xl lg:text-5xl font-light text-stone-100 mb-6 tracking-wide">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-light text-stone-100 mb-6 tracking-wide">
                 Trusted by Thousands
               </h2>
               <p className="text-xl text-stone-400 max-w-3xl mx-auto font-light">
@@ -246,7 +241,7 @@ export default function Home() {
               { name: 'Maya P.', initials: 'MP', quote: 'Love the natural taste and how fresh my mouth feels all day. Will never go back to regular toothpaste!' },
             ].map((testimonial, index) => (
               <FadeIn key={testimonial.name} direction="up" delay={200 + index * 100}>
-                <div className="backdrop-blur-md bg-teal-800/30 border border-white/10 p-8">
+                <div className="bg-teal-800/50 border border-teal-700 p-8">
                   <div className="flex gap-1 mb-6">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
@@ -274,12 +269,10 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-gold-600/10 to-teal-600/10"></div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-24 bg-teal-950">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeIn direction="up" delay={100}>
-            <h2 className="font-display text-4xl lg:text-6xl font-light text-stone-100 mb-8 tracking-wide">
+            <h2 className="text-4xl lg:text-6xl font-light text-stone-100 mb-8 tracking-wide">
               Ready to Transform Your Smile?
             </h2>
           </FadeIn>
@@ -293,7 +286,7 @@ export default function Home() {
           <FadeIn direction="up" delay={300}>
             <Link 
               href="/shop"
-              className="inline-block px-14 py-5 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all shadow-lg hover:shadow-glow-gold tracking-widest text-sm uppercase"
+              className="inline-block px-14 py-5 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all shadow-lg tracking-widest text-sm uppercase"
             >
               Shop All Products
             </Link>
