@@ -9,7 +9,7 @@ export default function CouponPanel() {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-teal-900 text-stone-100 py-3 relative z-[60]">
+    <div className="fixed top-0 left-0 right-0 z-[100] bg-teal-950 text-stone-100 py-3">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center gap-2 text-center">
           <span className="text-gold-400">✦</span>
