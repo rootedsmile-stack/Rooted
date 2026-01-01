@@ -1,3 +1,4 @@
+// components/CouponPanel.tsx
 'use client';
 
 import { useState } from 'react';
@@ -8,100 +9,26 @@ export default function CouponPanel() {
   if (!isVisible) return null;
 
   return (
-    <>
-      <div className="coupon-panel">
-        <div className="coupon-content">
-          <p className="coupon-text">
-            🌿 Limited Time: <span className="coupon-highlight">Free Shipping</span> on orders over $50
+    <div className="bg-teal-900 text-stone-100 py-3 relative z-[60]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-center gap-2 text-center">
+          <span className="text-gold-400">✦</span>
+          <p className="text-sm tracking-wide">
+            Limited Time: <span className="text-gold-400 font-semibold">Free Shipping</span> on orders over $50
           </p>
+          <span className="text-gold-400">✦</span>
+          
           <button 
-            className="coupon-close"
             onClick={() => setIsVisible(false)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-white transition-colors p-1"
             aria-label="Close announcement"
           >
-            ×
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
         </div>
       </div>
-      <style jsx>{`
-        .coupon-panel {
-          background-color: var(--color-coupon-bg);
-          color: var(--color-coupon-text);
-          padding: var(--spacing-sm) 0;
-          position: relative;
-          z-index: 100;
-        }
-
-        .coupon-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 var(--spacing-lg);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: var(--spacing-md);
-          position: relative;
-        }
-
-        .coupon-text {
-          margin: 0;
-          font-size: 0.95rem;
-          font-weight: 500;
-          letter-spacing: 0.3px;
-          text-align: center;
-        }
-
-        .coupon-highlight {
-          color: var(--color-coupon-accent);
-          font-weight: 600;
-        }
-
-        .coupon-close {
-          background: transparent;
-          border: none;
-          color: var(--color-coupon-text);
-          font-size: 1.5rem;
-          line-height: 1;
-          cursor: pointer;
-          padding: var(--spacing-xs);
-          position: absolute;
-          right: var(--spacing-md);
-          top: 50%;
-          transform: translateY(-50%);
-          opacity: 0.8;
-          transition: opacity 0.2s ease;
-          min-width: 44px;
-          min-height: 44px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .coupon-close:hover {
-          opacity: 1;
-        }
-
-        .coupon-close:focus-visible {
-          outline: 2px solid var(--color-coupon-accent);
-          outline-offset: 2px;
-          border-radius: var(--radius-sm);
-        }
-
-        @media (max-width: 768px) {
-          .coupon-content {
-            padding: 0 var(--spacing-md);
-          }
-
-          .coupon-text {
-            font-size: 0.875rem;
-            padding-right: var(--spacing-3xl);
-          }
-
-          .coupon-close {
-            right: var(--spacing-sm);
-          }
-        }
-      `}</style>
-    </>
+    </div>
   );
 }
