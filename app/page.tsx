@@ -1,5 +1,4 @@
 // app/page.tsx
-import Image from 'next/image'
 import Link from 'next/link'
 import { GlassPanel } from '@/components/GlassPanel'
 import { FadeIn } from '@/components/FadeIn'
@@ -8,89 +7,104 @@ import Button from '@/components/Button'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-b from-teal-900 via-teal-800 to-teal-900">
       
-      {/* Hero Section - Full Screen Moody Editorial */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Gradient (replacing missing image) */}
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
+        {/* Background Effects */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-900/40 via-slate-900 to-slate-950"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-800/20 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-800/60 via-teal-900 to-teal-950"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gold-500/10 via-transparent to-transparent"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl"></div>
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
             {/* Left: Text Content */}
             <div>
               <FadeIn direction="up" delay={100}>
-                <p className="text-teal-400 text-sm uppercase tracking-widest mb-4">
+                <p className="text-gold-400 text-sm uppercase tracking-[0.2em] mb-6 font-medium">
                   Ancient Wisdom, Modern Care
                 </p>
               </FadeIn>
               
               <FadeIn direction="up" delay={200}>
-                <h1 className="text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                  Nature's Path to a
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-teal-600">
+                <h1 className="font-display text-5xl lg:text-7xl font-light text-stone-100 mb-8 leading-[1.1] tracking-wide">
+                  Nature&apos;s Path to a
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-500 font-normal">
                     Radiant Smile
                   </span>
                 </h1>
               </FadeIn>
               
               <FadeIn direction="up" delay={300}>
-                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+                <p className="text-xl text-stone-300 mb-10 leading-relaxed font-light">
                   Discover the transformative power of Ayurvedic herbal tooth powder. 
                   Crafted with tradition, proven by science, trusted by thousands.
                 </p>
               </FadeIn>
               
               <FadeIn direction="up" delay={400}>
-                <div className="flex gap-4">
-                  <Button variant="primary" size="lg">
+                <div className="flex flex-wrap gap-4">
+                  <Link 
+                    href="/shop"
+                    className="px-10 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all shadow-lg hover:shadow-glow-gold tracking-widest text-sm uppercase"
+                  >
                     Shop Now
-                  </Button>
-                  <Button variant="outline" size="lg">
+                  </Link>
+                  <Link 
+                    href="/about"
+                    className="px-10 py-4 border border-stone-400 text-stone-300 font-medium hover:bg-stone-100/10 hover:border-stone-300 transition-all tracking-widest text-sm uppercase"
+                  >
                     Learn More
-                  </Button>
+                  </Link>
                 </div>
               </FadeIn>
             </div>
 
-            {/* Right: Product Showcase (placeholder for missing image) */}
+            {/* Right: Product Showcase */}
             <FadeIn direction="right" delay={500}>
-              <FloatingCard intensity="medium" glowColor="teal">
-                <GlassPanel variant="dark" blur="lg" className="p-8">
-                  <div className="aspect-square w-full max-w-[500px] mx-auto bg-gradient-to-br from-teal-800/30 to-slate-800/50 rounded-lg flex items-center justify-center">
+              <FloatingCard intensity="medium" glowColor="gold">
+                <div className="backdrop-blur-lg bg-teal-800/30 border border-gold-500/20 p-10 shadow-2xl">
+                  <div className="aspect-square w-full max-w-[450px] mx-auto bg-gradient-to-br from-teal-700/30 to-teal-900/50 flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center">
-                        <span className="text-white font-bold text-5xl">R</span>
+                      <div className="w-36 h-36 mx-auto mb-8 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center shadow-2xl shadow-gold-500/30">
+                        <span className="text-white font-display font-bold text-6xl">R</span>
                       </div>
-                      <p className="text-teal-400 text-lg font-medium">Herbal Tooth Powder</p>
-                      <p className="text-slate-400 text-sm mt-2">100% Natural Ingredients</p>
+                      <p className="text-gold-400 text-xl font-display tracking-wide">Herbal Tooth Powder</p>
+                      <p className="text-stone-400 text-sm mt-3 tracking-widest uppercase">100% Natural Ingredients</p>
+                      <div className="mt-6 flex justify-center gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <svg key={i} className="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </GlassPanel>
+                </div>
               </FloatingCard>
             </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section - Editorial Grid */}
-      <section className="py-32 bg-slate-900/50">
+      {/* Benefits Section */}
+      <section className="py-32 bg-teal-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <FadeIn direction="up" delay={100}>
             <div className="text-center mb-20">
-              <p className="text-teal-400 text-sm uppercase tracking-widest mb-4">
+              <p className="text-gold-400 text-sm uppercase tracking-[0.2em] mb-4 font-medium">
                 Why Choose Rooted Smile
               </p>
-              <h2 className="text-5xl font-bold text-white mb-6">
+              <h2 className="font-display text-4xl lg:text-5xl font-light text-stone-100 mb-6 tracking-wide">
                 The Science of Natural Care
               </h2>
-              <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+              <p className="text-xl text-stone-400 max-w-3xl mx-auto font-light">
                 Every ingredient carefully selected for maximum effectiveness and purity
               </p>
             </div>
@@ -98,82 +112,49 @@ export default function Home() {
 
           {/* Benefits Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            {/* Benefit 1 */}
-            <FadeIn direction="up" delay={200}>
-              <FloatingCard intensity="subtle" glowColor="teal">
-                <GlassPanel variant="dark" className="p-8 h-full">
-                  <div className="w-16 h-16 bg-teal-500/20 rounded-full flex items-center justify-center mb-6">
-                    <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+            {[
+              { icon: 'M5 13l4 4L19 7', title: '100% Natural', desc: 'No chemicals, no artificial additives. Just pure, potent herbs working in harmony with your body.' },
+              { icon: 'M13 10V3L4 14h7v7l9-11h-7z', title: 'Ayurvedic Formula', desc: 'Time-tested ingredients backed by 5,000 years of traditional wisdom and modern research.' },
+              { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Proven Results', desc: 'Join thousands experiencing whiter teeth, healthier gums, and lasting freshness naturally.' },
+            ].map((benefit, index) => (
+              <FadeIn key={benefit.title} direction="up" delay={200 + index * 100}>
+                <FloatingCard intensity="subtle" glowColor="teal">
+                  <div className="backdrop-blur-md bg-teal-800/30 border border-white/10 p-8 h-full">
+                    <div className="w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center mb-6">
+                      <svg className="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={benefit.icon} />
+                      </svg>
+                    </div>
+                    <h3 className="font-display text-2xl text-stone-100 mb-4 tracking-wide">{benefit.title}</h3>
+                    <p className="text-stone-400 leading-relaxed font-light">{benefit.desc}</p>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">100% Natural</h3>
-                  <p className="text-slate-400 leading-relaxed">
-                    No chemicals, no artificial additives. Just pure, potent herbs working in harmony with your body.
-                  </p>
-                </GlassPanel>
-              </FloatingCard>
-            </FadeIn>
-
-            {/* Benefit 2 */}
-            <FadeIn direction="up" delay={300}>
-              <FloatingCard intensity="subtle" glowColor="teal">
-                <GlassPanel variant="dark" className="p-8 h-full">
-                  <div className="w-16 h-16 bg-teal-500/20 rounded-full flex items-center justify-center mb-6">
-                    <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Ayurvedic Formula</h3>
-                  <p className="text-slate-400 leading-relaxed">
-                    Time-tested ingredients backed by 5,000 years of traditional wisdom and modern research.
-                  </p>
-                </GlassPanel>
-              </FloatingCard>
-            </FadeIn>
-
-            {/* Benefit 3 */}
-            <FadeIn direction="up" delay={400}>
-              <FloatingCard intensity="subtle" glowColor="teal">
-                <GlassPanel variant="dark" className="p-8 h-full">
-                  <div className="w-16 h-16 bg-teal-500/20 rounded-full flex items-center justify-center mb-6">
-                    <svg className="w-8 h-8 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Proven Results</h3>
-                  <p className="text-slate-400 leading-relaxed">
-                    Join thousands experiencing whiter teeth, healthier gums, and lasting freshness naturally.
-                  </p>
-                </GlassPanel>
-              </FloatingCard>
-            </FadeIn>
-
+                </FloatingCard>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Featured Product Section */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-teal-900/20 to-slate-900/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-gold-900/10 to-teal-900/10"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
-            {/* Product Image Placeholder */}
+            {/* Product Display */}
             <FadeIn direction="left" delay={100}>
               <FloatingCard intensity="medium" glowColor="gold">
-                <div className="aspect-square w-full max-w-[600px] mx-auto bg-gradient-to-br from-amber-900/20 via-slate-800/50 to-slate-900/50 rounded-lg flex items-center justify-center border border-amber-500/10">
-                  <div className="text-center p-8">
-                    <div className="w-40 h-40 mx-auto mb-6 bg-gradient-to-br from-amber-400/80 to-amber-600/80 rounded-full flex items-center justify-center shadow-lg shadow-amber-500/20">
-                      <span className="text-white font-bold text-6xl">R</span>
+                <div className="aspect-square w-full max-w-[550px] mx-auto bg-gradient-to-br from-gold-900/20 via-teal-800/30 to-teal-900/40 flex items-center justify-center border border-gold-500/20">
+                  <div className="text-center p-10">
+                    <div className="w-44 h-44 mx-auto mb-8 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center shadow-2xl shadow-gold-500/30">
+                      <span className="text-white font-display font-bold text-7xl">R</span>
                     </div>
-                    <p className="text-amber-400 text-xl font-medium">Premium Blend</p>
-                    <p className="text-slate-400 text-sm mt-2">Herbal Tooth Powder</p>
-                    <div className="mt-4 flex justify-center gap-2">
+                    <p className="text-gold-400 text-2xl font-display tracking-wide">Premium Blend</p>
+                    <p className="text-stone-400 text-sm mt-3 tracking-widest uppercase">Herbal Tooth Powder</p>
+                    <div className="mt-6 flex justify-center gap-1">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                        <svg key={i} className="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
@@ -186,192 +167,136 @@ export default function Home() {
             {/* Product Details */}
             <div>
               <FadeIn direction="right" delay={200}>
-                <p className="text-amber-400 text-sm uppercase tracking-widest mb-4">
+                <p className="text-gold-400 text-sm uppercase tracking-[0.2em] mb-4 font-medium">
                   Bestseller
                 </p>
-                <h2 className="text-5xl font-bold text-white mb-6">
+                <h2 className="font-display text-4xl lg:text-5xl font-light text-stone-100 mb-6 tracking-wide">
                   Premium Herbal Tooth Powder
                 </h2>
-                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+                <p className="text-xl text-stone-300 mb-10 leading-relaxed font-light">
                   Our signature blend combines neem, clove, cinnamon, and 12 other 
-                  powerful herbs for complete oral care. Experience the difference 
-                  natural ingredients can make.
+                  powerful herbs for complete oral care.
                 </p>
               </FadeIn>
 
               <FadeIn direction="right" delay={300}>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start gap-3 text-slate-300">
-                    <svg className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Whitens teeth naturally without harsh chemicals</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-slate-300">
-                    <svg className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Strengthens gums and prevents bleeding</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-slate-300">
-                    <svg className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Long-lasting fresh breath from natural oils</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-slate-300">
-                    <svg className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Reduces sensitivity and protects enamel</span>
-                  </li>
+                <ul className="space-y-4 mb-10">
+                  {[
+                    'Whitens teeth naturally without harsh chemicals',
+                    'Strengthens gums and prevents bleeding',
+                    'Long-lasting fresh breath from natural oils',
+                    'Reduces sensitivity and protects enamel',
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-4 text-stone-300">
+                      <svg className="w-6 h-6 text-gold-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="font-light">{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </FadeIn>
 
               <FadeIn direction="right" delay={400}>
-                <div className="flex items-center gap-6 mb-8">
+                <div className="flex items-center gap-8 mb-10">
                   <div>
-                    <p className="text-4xl font-bold text-white">$24.99</p>
-                    <p className="text-sm text-slate-400">One-time purchase</p>
+                    <p className="text-4xl font-display text-stone-100">$24.99</p>
+                    <p className="text-sm text-stone-500 tracking-wide">One-time purchase</p>
                   </div>
-                  <div className="h-12 w-px bg-slate-700"></div>
+                  <div className="h-14 w-px bg-teal-700"></div>
                   <div>
-                    <p className="text-4xl font-bold text-teal-400">$19.99</p>
-                    <p className="text-sm text-slate-400">Subscribe & save 20%</p>
+                    <p className="text-4xl font-display text-gold-400">$19.99</p>
+                    <p className="text-sm text-stone-500 tracking-wide">Subscribe &amp; save 20%</p>
                   </div>
                 </div>
               </FadeIn>
 
               <FadeIn direction="right" delay={500}>
-                <Button variant="primary" size="lg">
+                <Link 
+                  href="/shop"
+                  className="inline-block px-12 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all shadow-lg hover:shadow-glow-gold tracking-widest text-sm uppercase"
+                >
                   Add to Cart
-                </Button>
+                </Link>
               </FadeIn>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* Social Proof Section */}
-      <section className="py-32 bg-slate-900/70">
+      {/* Testimonials Section */}
+      <section className="py-32 bg-teal-900/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <FadeIn direction="up" delay={100}>
             <div className="text-center mb-20">
-              <h2 className="text-5xl font-bold text-white mb-6">
+              <h2 className="font-display text-4xl lg:text-5xl font-light text-stone-100 mb-6 tracking-wide">
                 Trusted by Thousands
               </h2>
-              <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+              <p className="text-xl text-stone-400 max-w-3xl mx-auto font-light">
                 Real results from real people who made the switch to natural
               </p>
             </div>
           </FadeIn>
 
           <div className="grid md:grid-cols-3 gap-8">
-            
-            {/* Testimonial 1 */}
-            <FadeIn direction="up" delay={200}>
-              <GlassPanel variant="dark" className="p-8">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-slate-300 mb-6 italic leading-relaxed">
-                  "My teeth have never felt cleaner. The natural ingredients really make a difference. No more sensitivity!"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center">
-                    <span className="text-teal-400 font-semibold">SM</span>
+            {[
+              { name: 'Sarah M.', initials: 'SM', quote: 'My teeth have never felt cleaner. The natural ingredients really make a difference. No more sensitivity!' },
+              { name: 'James L.', initials: 'JL', quote: 'Switched from commercial toothpaste 6 months ago. My dentist noticed the improvement immediately!' },
+              { name: 'Maya P.', initials: 'MP', quote: 'Love the natural taste and how fresh my mouth feels all day. Will never go back to regular toothpaste!' },
+            ].map((testimonial, index) => (
+              <FadeIn key={testimonial.name} direction="up" delay={200 + index * 100}>
+                <div className="backdrop-blur-md bg-teal-800/30 border border-white/10 p-8">
+                  <div className="flex gap-1 mb-6">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
                   </div>
-                  <div>
-                    <p className="text-white font-semibold">Sarah M.</p>
-                    <p className="text-sm text-slate-400">Verified Customer</p>
-                  </div>
-                </div>
-              </GlassPanel>
-            </FadeIn>
-
-            {/* Testimonial 2 */}
-            <FadeIn direction="up" delay={300}>
-              <GlassPanel variant="dark" className="p-8">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-slate-300 mb-6 italic leading-relaxed">
-                  "Switched from commercial toothpaste 6 months ago. My dentist noticed the improvement immediately!"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center">
-                    <span className="text-teal-400 font-semibold">JL</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold">James L.</p>
-                    <p className="text-sm text-slate-400">Verified Customer</p>
+                  <p className="text-stone-300 mb-8 italic leading-relaxed font-light">
+                    &quot;{testimonial.quote}&quot;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gold-500/20 rounded-full flex items-center justify-center">
+                      <span className="text-gold-400 font-semibold text-sm">{testimonial.initials}</span>
+                    </div>
+                    <div>
+                      <p className="text-stone-100 font-medium">{testimonial.name}</p>
+                      <p className="text-sm text-stone-500">Verified Customer</p>
+                    </div>
                   </div>
                 </div>
-              </GlassPanel>
-            </FadeIn>
-
-            {/* Testimonial 3 */}
-            <FadeIn direction="up" delay={400}>
-              <GlassPanel variant="dark" className="p-8">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-slate-300 mb-6 italic leading-relaxed">
-                  "Love the natural taste and how fresh my mouth feels all day. Will never go back to regular toothpaste!"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center">
-                    <span className="text-teal-400 font-semibold">MP</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold">Maya P.</p>
-                    <p className="text-sm text-slate-400">Verified Customer</p>
-                  </div>
-                </div>
-              </GlassPanel>
-            </FadeIn>
-
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-teal-600/20 to-teal-800/20"></div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-gold-600/10 to-teal-600/10"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeIn direction="up" delay={100}>
-            <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h2 className="font-display text-4xl lg:text-6xl font-light text-stone-100 mb-8 tracking-wide">
               Ready to Transform Your Smile?
             </h2>
           </FadeIn>
           
           <FadeIn direction="up" delay={200}>
-            <p className="text-xl text-slate-300 mb-10 leading-relaxed">
+            <p className="text-xl text-stone-300 mb-12 leading-relaxed font-light">
               Join the natural oral care revolution. Your smile will thank you.
             </p>
           </FadeIn>
           
           <FadeIn direction="up" delay={300}>
-            <Button variant="primary" size="lg">
+            <Link 
+              href="/shop"
+              className="inline-block px-14 py-5 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all shadow-lg hover:shadow-glow-gold tracking-widest text-sm uppercase"
+            >
               Shop All Products
-            </Button>
+            </Link>
           </FadeIn>
         </div>
       </section>
