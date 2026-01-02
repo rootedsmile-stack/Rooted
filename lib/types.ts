@@ -131,10 +131,67 @@ export interface UpdateOrderInput {
   notes?: string;
 }
 
+// ============================================
+// PAYMENT INTEGRATION TYPES (NEW)
+// ============================================
+
+// Cart item type for shopping cart
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image?: string;
+  variant_id?: string;
+  variant_size?: string;
+  variant_weight?: string;
+}
+
 // Cloudflare Workers environment bindings
 export interface Env {
   DB: D1Database;
+  
+  // Payment provider credentials
+  STRIPE_SECRET_KEY: string;
+  STRIPE_WEBHOOK_SECRET: string;
+  PAYPAL_CLIENT_ID: string;
+  PAYPAL_CLIENT_SECRET: string;
+  PAYPAL_MODE: 'sandbox' | 'production';
+  
   // Add other bindings here as needed (KV, R2, etc.)
+}
+
+// D1 Database types for Cloudflare Workers
+export interface D1Database {
+  prepare(query: string): D1PreparedStatement;
+  dump(): Promise<ArrayBuffer>;
+  batch<T = unknown>(statements: D1PreparedStatement[]): Promise<D1Result<T>[]>;
+  exec(query: string): Promise<D1ExecResult>;
+}
+
+export interface D1PreparedStatement {
+  bind(...values: unknown[]): D1PreparedStatement;
+  first<T = unknown>(colName?: string): Promise<T | null>;
+  run<T = unknown>(): Promise<D1Result<T>>;
+  all<T = unknown>(): Promise<D1Result<T>>;
+  raw<T = unknown>(): Promise<T[]>;
+}
+
+export interface D1Result<T = unknown> {
+  results?: T[];
+  success: boolean;
+  error?: string;
+  meta: {
+    duration: number;
+    size_after: number;
+    rows_read: number;
+    rows_written: number;
+  };
+}
+
+export interface D1ExecResult {
+  count: number;
+  duration: number;
 }
 
 // API response types
@@ -152,4 +209,37 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
     total: number;
     totalPages: number;
   };
+}
+
+// Stripe checkout types
+export interface StripeCheckoutRequest {
+  items: CartItem[];
+  customerEmail: string;
+  customerName: string;
+}
+
+export interface StripeCheckoutResponse {
+  sessionId: string;
+  url: string;
+}
+
+// PayPal order types
+export interface PayPalCreateOrderRequest {
+  items: CartItem[];
+  customerEmail: string;
+  customerName: string;
+}
+
+export interface PayPalCreateOrderResponse {
+  orderID: string;
+}
+
+export interface PayPalCaptureOrderRequest {
+  orderID: string;
+}
+
+export interface PayPalCaptureOrderResponse {
+  success: boolean;
+  orderId: string;
+  captureId: string;
 }
