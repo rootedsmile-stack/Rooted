@@ -1,6 +1,6 @@
 // app/api/stripe/webhook/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import type { Env, Order } from '@/types';
+import type { Env, Order } from '@/lib/types';
 
 export const runtime = 'edge';
 
