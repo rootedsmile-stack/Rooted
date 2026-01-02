@@ -1,6 +1,6 @@
 // app/api/paypal/create-order/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import type { CartItem, Env } from '@/types';
+import type { CartItem, Env } from '@/lib/types';
 
 export const runtime = 'edge';
 
