@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Script from 'next/script';
 
@@ -27,6 +27,7 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const [paypalLoaded, setPaypalLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const paypalRendered = useRef(false); // Prevent multiple renders
 
   useEffect(() => {
     // Load cart from localStorage
@@ -86,10 +87,19 @@ export default function CheckoutPage() {
 
   // PayPal button configuration
   useEffect(() => {
-    if (!paypalLoaded || !window.paypal || cartItems.length === 0) return;
+    if (!paypalLoaded || !window.paypal || cartItems.length === 0 || paypalRendered.current) return;
 
     const initPayPalButtons = async () => {
       if (!window.paypal) return;
+      
+      // Mark as rendered to prevent duplicates
+      paypalRendered.current = true;
+
+      // Clear any existing buttons
+      const container = document.getElementById('paypal-button-container');
+      if (container) {
+        container.innerHTML = '';
+      }
       
       try {
         await window.paypal.Buttons({
@@ -162,6 +172,7 @@ export default function CheckoutPage() {
         }).render('#paypal-button-container');
       } catch (err) {
         console.error('PayPal button initialization error:', err);
+        paypalRendered.current = false; // Allow retry on error
       }
     };
 
@@ -189,6 +200,7 @@ export default function CheckoutPage() {
       <Script
         src={`https://www.paypal.com/sdk/js?client-id=${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}&currency=USD`}
         onLoad={() => setPaypalLoaded(true)}
+        strategy="lazyOnload"
       />
 
       <div className="min-h-screen bg-zinc-900 text-zinc-100 py-20 px-8">
