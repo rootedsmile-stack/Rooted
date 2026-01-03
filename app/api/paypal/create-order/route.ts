@@ -34,13 +34,13 @@ async function getPayPalAccessToken(
     throw new Error('Failed to get PayPal access token');
   }
 
-  const data = await response.json();
+  const data = await response.json() as { access_token: string };
   return data.access_token;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body: CreateOrderRequest = await request.json();
+    const body = await request.json() as CreateOrderRequest;
     const { items, customerEmail, customerName } = body;
 
     if (!items || items.length === 0) {
@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const order = await response.json();
+    const order = await response.json() as { id: string };
 
     return NextResponse.json({
       orderID: order.id,
