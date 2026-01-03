@@ -1,205 +1,164 @@
-// app/shop/page.tsx
-import Link from 'next/link'
-import { FadeIn } from '@/components/FadeIn'
-import { FloatingCard } from '@/components/FloatingCard'
+'use client';
 
-const products = [
-  {
-    id: 'classic-blend',
-    name: 'Classic Herbal Blend',
-    subtitle: 'Daily Care Formula',
-    price: 24.99,
-    subscribePrice: 19.99,
-    description: 'Our signature blend with neem, clove, and cinnamon for complete oral care.',
-    badge: 'Bestseller',
-  },
-  {
-    id: 'whitening-blend',
-    name: 'Whitening Formula',
-    subtitle: 'Brightening Blend',
-    price: 29.99,
-    subscribePrice: 23.99,
-    description: 'Enhanced with activated charcoal and kaolin clay for natural whitening.',
-    badge: 'Popular',
-  },
-  {
-    id: 'sensitive-blend',
-    name: 'Sensitive Care',
-    subtitle: 'Gentle Formula',
-    price: 27.99,
-    subscribePrice: 22.39,
-    description: 'Extra gentle formula with chamomile and aloe for sensitive teeth and gums.',
-    badge: null,
-  },
-  {
-    id: 'kids-blend',
-    name: 'Kids Natural',
-    subtitle: 'Mild Mint Flavor',
-    price: 19.99,
-    subscribePrice: 15.99,
-    description: 'Kid-friendly formula with a mild mint taste they&apos;ll love.',
-    badge: 'New',
-  },
-  {
-    id: 'gum-restore',
-    name: 'Gum Restore',
-    subtitle: 'Intensive Care',
-    price: 34.99,
-    subscribePrice: 27.99,
-    description: 'Concentrated formula with myrrh and tea tree for gum health.',
-    badge: null,
-  },
-  {
-    id: 'travel-kit',
-    name: 'Travel Kit',
-    subtitle: '3-Pack Minis',
-    price: 18.99,
-    subscribePrice: null,
-    description: 'Perfect for on-the-go. Includes Classic, Whitening, and Sensitive.',
-    badge: 'Limited',
-  },
-]
+import { useState } from 'react';
+import { useCart } from '@/lib/cart-context';
+import { useRouter } from 'next/navigation';
 
 export default function ShopPage() {
+  const { addItem } = useCart();
+  const router = useRouter();
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  // Example product - replace with your actual product data
+  const product = {
+    id: 'herbal-tooth-powder-4oz',
+    name: 'Herbal Tooth Powder - 4oz',
+    price: 24.99,
+    image: '/images/product.jpg', // Update with your image path
+    variant_id: 'default',
+    variant_size: 'Standard',
+    variant_weight: '4oz',
+  };
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      image: product.image,
+      variant_id: product.variant_id,
+      variant_size: product.variant_size,
+      variant_weight: product.variant_weight,
+    });
+
+    // Show feedback
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 2000);
+  };
+
+  const handleBuyNow = () => {
+    // Add to cart and go directly to checkout
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      image: product.image,
+      variant_id: product.variant_id,
+      variant_size: product.variant_size,
+      variant_weight: product.variant_weight,
+    });
+    
+    router.push('/checkout');
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-900 via-teal-800 to-teal-900">
-      
-      {/* Hero Section */}
-      <section className="py-20 bg-teal-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn direction="up" delay={100}>
-            <div className="text-center">
-              <p className="text-gold-400 text-sm uppercase tracking-[0.2em] mb-4 font-medium">
-                Shop Our Collection
-              </p>
-              <h1 className="text-4xl lg:text-6xl font-light text-stone-100 mb-6 tracking-wide">
-                Natural Oral Care
-              </h1>
-              <p className="text-xl text-stone-400 max-w-2xl mx-auto font-light">
-                Discover our range of Ayurvedic herbal tooth powders, each crafted with intention and the finest natural ingredients.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+    <div className="min-h-screen bg-zinc-900 text-zinc-100 py-20 px-8">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl font-light mb-12 text-center">Shop</h1>
 
-      {/* Filter Bar */}
-      <section className="py-6 bg-teal-900/50 border-y border-teal-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <span className="text-stone-400 text-sm">Filter by:</span>
-              <button className="px-4 py-2 text-sm text-stone-300 hover:text-gold-400 transition-colors">
-                All Products
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Product Image */}
+          <div className="bg-zinc-800/50 rounded-lg overflow-hidden aspect-square flex items-center justify-center">
+            <div className="text-zinc-600 text-center p-8">
+              <svg
+                className="w-32 h-32 mx-auto mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              <p className="text-sm">Product Image</p>
+            </div>
+          </div>
+
+          {/* Product Details */}
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-3xl font-light mb-2">{product.name}</h2>
+              <p className="text-2xl text-teal-400 font-medium">
+                ${product.price.toFixed(2)}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <p className="text-zinc-400 leading-relaxed">
+                Our premium herbal tooth powder is crafted from natural ingredients 
+                to give you a naturally radiant smile. Free from harsh chemicals 
+                and artificial additives.
+              </p>
+
+              <div className="space-y-2">
+                <h3 className="font-medium text-sm text-zinc-400">Key Benefits:</h3>
+                <ul className="space-y-2 text-zinc-300">
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-teal-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span>100% Natural Ingredients</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-teal-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span>Whitens & Strengthens Teeth</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-teal-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span>Fresh Breath All Day</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Add to Cart Buttons */}
+            <div className="space-y-3 pt-4">
+              <button
+                onClick={handleAddToCart}
+                className="w-full px-8 py-4 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                {addedToCart ? 'Added to Cart! ✓' : 'Add to Cart'}
               </button>
-              <button className="px-4 py-2 text-sm text-stone-300 hover:text-gold-400 transition-colors">
-                Bestsellers
-              </button>
-              <button className="px-4 py-2 text-sm text-stone-300 hover:text-gold-400 transition-colors">
-                New Arrivals
+
+              <button
+                onClick={handleBuyNow}
+                className="w-full px-8 py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border border-zinc-700 rounded-lg font-medium transition-all duration-300"
+              >
+                Buy Now
               </button>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-stone-400 text-sm">Sort:</span>
-              <select className="bg-teal-800 text-stone-300 text-sm px-3 py-2 border border-teal-700 focus:outline-none focus:border-gold-500">
-                <option>Featured</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Newest</option>
-              </select>
+
+            {/* Trust Badges */}
+            <div className="pt-6 border-t border-zinc-700 space-y-3">
+              <div className="flex items-center gap-3 text-sm text-zinc-400">
+                <svg className="w-5 h-5 text-teal-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                  <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z" />
+                </svg>
+                <span>Free shipping on orders over $50</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-zinc-400">
+                <svg className="w-5 h-5 text-teal-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+                </svg>
+                <span>30-day money back guarantee</span>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Products Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => (
-              <FadeIn key={product.id} direction="up" delay={100 + index * 50}>
-                <FloatingCard intensity="subtle" glowColor="teal">
-                  <div className="bg-teal-800/50 border border-teal-700 overflow-hidden group">
-                    {/* Product Image */}
-                    <div className="aspect-square bg-gradient-to-br from-teal-700/30 to-teal-900/50 flex items-center justify-center relative">
-                      {product.badge && (
-                        <span className="absolute top-4 left-4 px-3 py-1 bg-gold-500 text-white text-xs uppercase tracking-wider">
-                          {product.badge}
-                        </span>
-                      )}
-                      <div className="text-center">
-                        <div className="w-28 h-28 mx-auto mb-4 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                          <span className="text-white font-bold text-4xl">R</span>
-                        </div>
-                        <p className="text-gold-400 text-lg tracking-wide">{product.subtitle}</p>
-                      </div>
-                    </div>
-                    
-                    {/* Product Info */}
-                    <div className="p-6">
-                      <h3 className="text-xl text-stone-100 mb-2 tracking-wide">{product.name}</h3>
-                      <p className="text-stone-400 text-sm mb-4 font-light">{product.description}</p>
-                      
-                      <div className="flex items-center justify-between mb-4">
-                        <div>
-                          <p className="text-2xl text-stone-100">${product.price}</p>
-                          {product.subscribePrice && (
-                            <p className="text-sm text-gold-400">
-                              ${product.subscribePrice} with subscription
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      
-                      <button className="w-full py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-medium hover:from-gold-600 hover:to-gold-700 transition-all tracking-wide text-sm uppercase">
-                        Add to Cart
-                      </button>
-                    </div>
-                  </div>
-                </FloatingCard>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Subscribe & Save Banner */}
-      <section className="py-16 bg-teal-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <FadeIn direction="up" delay={100}>
-            <p className="text-gold-400 text-sm uppercase tracking-[0.2em] mb-4 font-medium">
-              Subscribe &amp; Save
-            </p>
-            <h2 className="text-3xl lg:text-4xl font-light text-stone-100 mb-6 tracking-wide">
-              Save 20% on Every Order
-            </h2>
-            <p className="text-lg text-stone-400 mb-8 font-light">
-              Never run out of your favorite products. Subscribe and get free shipping plus 20% off every delivery.
-            </p>
-            <div className="flex flex-wrap justify-center gap-8 text-stone-300">
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Cancel anytime</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Free shipping</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Flexible delivery</span>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
+      </div>
     </div>
-  )
+  );
 }
