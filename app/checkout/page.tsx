@@ -89,6 +89,8 @@ export default function CheckoutPage() {
     if (!paypalLoaded || !window.paypal || cartItems.length === 0) return;
 
     const initPayPalButtons = async () => {
+      if (!window.paypal) return;
+      
       try {
         await window.paypal.Buttons({
           style: {
