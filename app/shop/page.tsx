@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useCart } from '@/lib/cart-context';
 import { useRouter } from 'next/navigation';
 
@@ -10,6 +10,7 @@ export default function ShopPage() {
   const { addItem } = useCart();
   const router = useRouter();
   const [addedToCart, setAddedToCart] = useState(false);
+  const addingRef = useRef(false); // Prevent double-add
 
   // Example product - replace with your actual product data
   const product = {
@@ -23,6 +24,10 @@ export default function ShopPage() {
   };
 
   const handleAddToCart = () => {
+    // Prevent double-add
+    if (addingRef.current) return;
+    addingRef.current = true;
+
     addItem({
       id: product.id,
       name: product.name,
@@ -36,11 +41,21 @@ export default function ShopPage() {
 
     // Show feedback
     setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000);
+    
+    // Dispatch event to open cart panel
+    window.dispatchEvent(new CustomEvent('openCart'));
+
+    setTimeout(() => {
+      setAddedToCart(false);
+      addingRef.current = false;
+    }, 2000);
   };
 
   const handleBuyNow = () => {
-    // Add to cart and go directly to checkout
+    // Prevent double-add
+    if (addingRef.current) return;
+    addingRef.current = true;
+
     addItem({
       id: product.id,
       name: product.name,
@@ -126,7 +141,8 @@ export default function ShopPage() {
             <div className="space-y-3 pt-4">
               <button
                 onClick={handleAddToCart}
-                className="w-full px-8 py-4 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2"
+                disabled={addingRef.current}
+                className="w-full px-8 py-4 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -136,7 +152,8 @@ export default function ShopPage() {
 
               <button
                 onClick={handleBuyNow}
-                className="w-full px-8 py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border border-zinc-700 rounded-lg font-medium transition-all duration-300"
+                disabled={addingRef.current}
+                className="w-full px-8 py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border border-zinc-700 rounded-lg font-medium transition-all duration-300 disabled:opacity-50"
               >
                 Buy Now
               </button>
