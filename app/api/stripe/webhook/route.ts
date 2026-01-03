@@ -1,6 +1,6 @@
 // app/api/stripe/webhook/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import type { Env, Order } from '@/lib/types';
+import type { Env } from '@/lib/types';
 
 export const runtime = 'edge';
 
@@ -76,14 +76,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const event = JSON.parse(payload);
+    const event = JSON.parse(payload) as {
+      type: string;
+      data: {
+        object: {
+          id: string;
+          customer_email?: string;
+          customer_details?: { email?: string };
+          payment_intent?: string;
+          metadata?: {
+            customer_name?: string;
+            items?: string;
+            total_amount?: string;
+          };
+        };
+      };
+    };
 
     // Handle checkout.session.completed event
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
 
       // Extract metadata
-      const customerEmail = session.customer_email || session.customer_details?.email;
+      const customerEmail = session.customer_email || session.customer_details?.email || '';
       const customerName = session.metadata?.customer_name || '';
       const items = session.metadata?.items || '[]';
       const totalAmount = parseFloat(session.metadata?.total_amount || '0');
@@ -92,35 +107,48 @@ export async function POST(request: NextRequest) {
       // Create order in D1
       const orderId = `ord_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
       
-      const order: Order = {
-        id: orderId,
-        customer_email: customerEmail,
-        customer_name: customerName,
-        total_amount: totalAmount,
-        payment_method: 'stripe',
-        payment_id: paymentId,
-        status: 'paid',
-        items: items,
-        created_at: new Date().toISOString(),
-      };
+      const now = new Date().toISOString();
 
-      // Insert into D1 database
+      // Insert into D1 database - matching your existing schema
       await DB.prepare(
         `INSERT INTO orders (
-          id, customer_email, customer_name, total_amount, 
-          payment_method, payment_id, status, items, created_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+          id, created_at, updated_at,
+          customer_email, customer_first_name, customer_last_name, customer_phone,
+          shipping_address_line1, shipping_address_line2, shipping_city, 
+          shipping_state, shipping_postal_code, shipping_country,
+          variant_id, variant_size, variant_weight, quantity,
+          unit_price, subtotal, shipping_cost, tax_amount, discount_amount, total_amount,
+          status, payment_intent_id, payment_status, payment_method
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       )
         .bind(
-          order.id,
-          order.customer_email,
-          order.customer_name,
-          order.total_amount,
-          order.payment_method,
-          order.payment_id,
-          order.status,
-          order.items,
-          order.created_at
+          orderId,
+          now,
+          now,
+          customerEmail,
+          customerName.split(' ')[0] || '',
+          customerName.split(' ').slice(1).join(' ') || '',
+          null,
+          'N/A', // shipping_address_line1 - to be collected separately
+          null,
+          'N/A',
+          'N/A',
+          'N/A',
+          'US',
+          'default', // variant_id
+          'Standard', // variant_size
+          '4oz', // variant_weight
+          1, // quantity
+          Math.round(totalAmount * 100), // unit_price in cents
+          Math.round(totalAmount * 100), // subtotal in cents
+          0, // shipping_cost
+          0, // tax_amount
+          0, // discount_amount
+          Math.round(totalAmount * 100), // total_amount in cents
+          'paid',
+          paymentId,
+          'paid',
+          'stripe'
         )
         .run();
 
