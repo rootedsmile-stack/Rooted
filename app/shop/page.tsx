@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState } from 'react';
 import { useCart } from '@/lib/cart-context';
 import { useRouter } from 'next/navigation';
