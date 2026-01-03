@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CouponPanel from '@/components/CouponPanel'
+import { CartProvider } from '@/lib/cart-context'
 
 export const metadata = {
   title: 'Rooted Smile - Natural Herbal Tooth Powder',
@@ -17,18 +18,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {/* Fixed elements */}
-        <CouponPanel />
-        <Header />
-        
-        {/* Spacer to push content below fixed header (44px coupon + ~72px header) */}
-        <div className="h-[116px]"></div>
-        
-        {/* Main content */}
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <CartProvider>
+          {/* Fixed elements */}
+          <CouponPanel />
+          <Header />
+          
+          {/* Spacer to push content below fixed header (44px coupon + ~72px header) */}
+          <div className="h-[116px]"></div>
+          
+          {/* Main content */}
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   )
