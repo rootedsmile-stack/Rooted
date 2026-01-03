@@ -8,6 +8,9 @@ export interface CartItem {
   price: number;
   quantity: number;
   image?: string;
+  variant_id?: string;
+  variant_size?: string;
+  variant_weight?: string;
 }
 
 interface CartContextType {
@@ -43,6 +46,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (mounted) {
       localStorage.setItem('cart', JSON.stringify(items));
+      
+      // Dispatch custom event so other components can react to cart changes
+      window.dispatchEvent(new CustomEvent('cartUpdated', { detail: items }));
     }
   }, [items, mounted]);
 
