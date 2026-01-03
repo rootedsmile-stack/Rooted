@@ -32,7 +32,7 @@ export default function CheckoutPage() {
     // Load cart from localStorage
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
-      setCartItems(JSON.parse(savedCart));
+      setCartItems(JSON.parse(savedCart) as CartItem[]);
     }
   }, []);
 
@@ -68,14 +68,16 @@ export default function CheckoutPage() {
         }),
       });
 
-      const data = await response.json();
+      const data = await response.json() as { error?: string; url?: string };
 
       if (!response.ok) {
         throw new Error(data.error || 'Checkout failed');
       }
 
       // Redirect to Stripe Checkout
-      window.location.href = data.url;
+      if (data.url) {
+        window.location.href = data.url;
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Payment failed');
       setLoading(false);
@@ -112,13 +114,13 @@ export default function CheckoutPage() {
               }),
             });
 
-            const data = await response.json();
+            const data = await response.json() as { error?: string; orderID?: string };
 
             if (!response.ok) {
               throw new Error(data.error || 'Failed to create order');
             }
 
-            return data.orderID;
+            return data.orderID || '';
           },
           onApprove: async (data: { orderID: string }) => {
             setLoading(true);
@@ -131,7 +133,10 @@ export default function CheckoutPage() {
                 body: JSON.stringify({ orderID: data.orderID }),
               });
 
-              const result = await response.json();
+              const result = await response.json() as { 
+                error?: string; 
+                orderId?: string;
+              };
 
               if (!response.ok) {
                 throw new Error(result.error || 'Payment capture failed');
