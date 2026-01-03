@@ -12,7 +12,7 @@ interface CheckoutRequest {
 
 export async function POST(request: NextRequest) {
   try {
-    const body: CheckoutRequest = await request.json();
+    const body = await request.json() as CheckoutRequest;
     const { items, customerEmail, customerName } = body;
 
     if (!items || items.length === 0) {
@@ -90,7 +90,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const sessionData = await session.json();
+    const sessionData = await session.json() as {
+      id: string;
+      url: string;
+    };
 
     return NextResponse.json({
       sessionId: sessionData.id,
