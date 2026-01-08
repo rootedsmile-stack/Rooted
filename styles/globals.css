@@ -1,117 +1,262 @@
+/* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap');
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
 
-@layer base {
-  :root {
-    /* Primary Colors */
-    --color-teal: #5A7A7C;
-    --color-teal-light: #7A9A9C;
-    --color-teal-dark: #4A6668;
-    
-    /* Accent Colors */
-    --color-gold: #B8976A;
-    --color-gold-light: #C9A227;
-    --color-charcoal: #2D3F40;
-    --color-stone: #E8E4DC;
-    --color-cream: #F4E5D3;
-    --color-white: #FFFFFF;
-    
-    /* Glass Effects */
-    --color-glass-white: rgba(255, 255, 255, 0.92);
-    --color-glass-overlay: rgba(255, 255, 255, 0.06);
-    
-    /* Spacing */
-    --spacing-xs: 0.125rem;
-    --spacing-sm: 0.25rem;
-    --spacing-md: 0.5rem;
-    --spacing-lg: 0.75rem;
-    --spacing-xl: 1rem;
-    --spacing-2xl: 1.5rem;
-    --spacing-3xl: 2rem;
+/* Root CSS Variables */
+:root {
+  /* Backgrounds */
+  --bg-page: #164340;
+  --bg-surface: rgba(255, 255, 255, 0.05);
+  --bg-surface-hover: rgba(255, 255, 255, 0.08);
+  --bg-glass: rgba(255, 255, 255, 0.08);
+  
+  /* Text */
+  --text-primary: rgba(245, 245, 244, 0.95);
+  --text-secondary: rgba(214, 211, 209, 0.85);
+  --text-tertiary: rgba(168, 162, 158, 0.70);
+  --text-muted: rgba(120, 113, 108, 0.60);
+  --text-accent: #d4af6a;
+  
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-default: rgba(255, 255, 255, 0.15);
+  --border-strong: rgba(255, 255, 255, 0.25);
+  
+  /* Effects */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --backdrop-blur: blur(16px);
+}
 
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-luxury: 0 4px 20px rgba(45, 63, 64, 0.15);
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
 
-    /* Fonts */
-    --font-display: 'Cormorant Garamond', serif;
-    --font-body: 'Raleway', sans-serif;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glass morphism utility class */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Atmospheric gradient backgrounds */
+.bg-hero {
+  background: linear-gradient(135deg, #2d7a73 0%, #1f5c57 50%, #164340 100%);
+}
+
+.bg-section {
+  background: linear-gradient(180deg, rgba(31, 92, 87, 0.6) 0%, rgba(22, 67, 64, 0.8) 100%);
+}
+
+.bg-overlay-radial {
+  background: radial-gradient(circle at center, rgba(74, 157, 148, 0.3) 0%, rgba(45, 122, 115, 0.15) 50%, transparent 100%);
+}
+
+.bg-gradient-footer {
+  background: linear-gradient(180deg, #164340 0%, #1c1917 100%);
+}
+
+/* Soft text shadows for depth */
+.text-shadow-soft {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Breathing animation for subtle movement */
+@keyframes breathe {
+  0%, 100% { 
+    transform: scale(1);
   }
-
-  html {
-    font-size: 16px;
-    scroll-behavior: smooth;
+  50% { 
+    transform: scale(1.02);
   }
+}
 
+.breathing {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Smooth section transitions */
+section {
+  transition: background-color 700ms ease-out;
+}
+
+/* Button styles with atmospheric feel */
+.btn-primary {
+  background: linear-gradient(135deg, #4a9d94 0%, #2d7a73 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(245, 245, 244, 0.98);
+  transition: all 300ms ease-out;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #6fbfb5 0%, #4a9d94 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(245, 245, 244, 0.95);
+  transition: all 300ms ease-out;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-accent {
+  background: #d4af6a;
+  color: #164340;
+  border: none;
+  transition: all 300ms ease-out;
+}
+
+.btn-accent:hover {
+  background: #e5c788;
+  box-shadow: 0 8px 24px rgba(212, 175, 106, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Card with glass effect */
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  transition: all 300ms ease-out;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.16);
+}
+
+/* Input fields with atmospheric styling */
+.input-field {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(245, 245, 244, 0.95);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: all 300ms ease-out;
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: rgba(168, 162, 158, 0.60);
+}
+
+.input-field:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(111, 191, 181, 0.5);
+}
+
+/* Soft focus rings instead of default blue */
+*:focus-visible {
+  outline: 2px solid rgba(111, 191, 181, 0.4);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 106, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 106, 0.5);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(212, 175, 106, 0.3);
+  color: rgba(245, 245, 244, 0.98);
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .breathing {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
   body {
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: 0.02em;
+    background: white;
+    color: black;
   }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: 0.03em;
-  }
-}
-
-@layer components {
-  /* Luxury Button Styles */
-  .btn-luxury {
-    @apply px-8 py-4 font-medium tracking-wide transition-all duration-300;
-    @apply bg-gradient-to-r from-teal-500 to-teal-600 text-white;
-    @apply hover:from-teal-600 hover:to-teal-700;
-    @apply shadow-luxury hover:shadow-luxury-lg hover:scale-[1.02];
-  }
-
-  .btn-luxury-outline {
-    @apply px-8 py-4 font-medium tracking-wide transition-all duration-300;
-    @apply border-2 border-teal-500 text-teal-500;
-    @apply hover:bg-teal-500 hover:text-white;
-  }
-
-  .btn-gold {
-    @apply px-8 py-4 font-medium tracking-wide transition-all duration-300;
-    @apply bg-gradient-to-r from-gold-500 to-gold-600 text-white;
-    @apply hover:from-gold-600 hover:to-gold-700;
-    @apply shadow-luxury hover:shadow-luxury-lg;
-  }
-
-  /* Glass Panel Styles */
-  .glass-panel {
-    @apply backdrop-blur-md bg-white/10 border border-white/20 rounded-lg shadow-xl;
-  }
-
-  .glass-panel-dark {
-    @apply backdrop-blur-md bg-teal-900/40 border border-white/10 rounded-lg shadow-xl;
-  }
-
-  /* Section Styles */
-  .section-luxury {
-    @apply py-24 md:py-32;
-  }
-
-  /* Heading Styles */
-  .heading-display {
-    font-family: var(--font-display);
-    @apply font-normal tracking-wide;
-  }
-}
-
-@layer utilities {
-  .text-gradient-teal {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-teal-600;
-  }
-
-  .text-gradient-gold {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600;
+  
+  .glass-panel,
+  .card {
+    background: white;
+    border: 1px solid #ddd;
   }
 }
