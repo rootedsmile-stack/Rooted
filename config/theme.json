@@ -1,61 +1,184 @@
 {
+  "name": "Rooted Smile - Atmospheric Teal",
+  "version": "2.0.0",
+  "description": "Muted teal atmospheric theme inspired by premium editorial design",
+  
   "colors": {
-    "couponPanel": {
-      "background": "#5A7A7C",
-      "text": "#FFFFFF",
-      "accent": "#B8976A"
+    "teal": {
+      "50": "#f0f9f8",
+      "100": "#d1eeea",
+      "200": "#a3ddd5",
+      "300": "#6fbfb5",
+      "400": "#4a9d94",
+      "500": "#2d7a73",
+      "600": "#1f5c57",
+      "700": "#164340",
+      "800": "#0f2d2b",
+      "900": "#081816"
     },
-    "header": {
-      "background": "rgba(90, 122, 124, 0.6)",
-      "text": "#E8E4DC",
-      "border": "rgba(232, 228, 220, 0.2)"
+    "stone": {
+      "50": "#fafaf9",
+      "100": "#f5f5f4",
+      "200": "#e7e5e4",
+      "300": "#d6d3d1",
+      "400": "#a8a29e",
+      "500": "#78716c",
+      "600": "#57534e",
+      "700": "#44403c",
+      "800": "#292524",
+      "900": "#1c1917"
     },
-    "body": {
-      "background": "#5A7A7C",
-      "text": "#E8E4DC",
-      "textLight": "rgba(232, 228, 220, 0.75)",
-      "cardBackground": "rgba(255, 255, 255, 0.92)",
-      "border": "rgba(232, 228, 220, 0.3)"
-    },
-    "footer": {
-      "background": "#2D3F40",
-      "text": "#E8E4DC",
-      "linkHover": "#B8976A"
-    },
-    "primary": {
-      "main": "#5A7A7C",
-      "hover": "#4A6668",
-      "light": "#7A9A9C",
-      "dark": "#3A5658"
-    },
-    "secondary": {
-      "main": "#B8976A",
-      "hover": "#A8866A",
-      "light": "#C8A77A",
-      "dark": "#98765A"
-    },
-    "accent": {
-      "teal": "#5A7A7C",
-      "tealLight": "#7A9A9C",
-      "tealDark": "#4A6668",
-      "stone": "#E8E4DC",
-      "gold": "#B8976A",
-      "charcoal": "#2D3F40",
-      "white": "#FFFFFF",
-      "glassWhite": "rgba(255, 255, 255, 0.92)",
-      "glassOverlay": "rgba(255, 255, 255, 0.06)"
-    },
-    "status": {
-      "success": "#7A9A9C",
-      "error": "#C85A54",
-      "warning": "#B8976A",
-      "info": "#5A7A7C"
+    "gold": {
+      "300": "#e5c788",
+      "400": "#d4af6a",
+      "500": "#c09850",
+      "600": "#a67d3d"
     }
   },
+
+  "backgrounds": {
+    "page": "#164340",
+    "surface": "rgba(255, 255, 255, 0.05)",
+    "surfaceHover": "rgba(255, 255, 255, 0.08)",
+    "overlay": "rgba(15, 45, 43, 0.8)",
+    "glass": "rgba(255, 255, 255, 0.08)"
+  },
+
+  "text": {
+    "primary": "rgba(245, 245, 244, 0.95)",
+    "secondary": "rgba(214, 211, 209, 0.85)",
+    "tertiary": "rgba(168, 162, 158, 0.70)",
+    "muted": "rgba(120, 113, 108, 0.60)",
+    "accent": "#d4af6a"
+  },
+
+  "borders": {
+    "subtle": "rgba(255, 255, 255, 0.08)",
+    "default": "rgba(255, 255, 255, 0.15)",
+    "strong": "rgba(255, 255, 255, 0.25)"
+  },
+
+  "effects": {
+    "glassPanelBg": "rgba(255, 255, 255, 0.08)",
+    "glassPanelBorder": "rgba(255, 255, 255, 0.15)",
+    "glassPanelShadow": "0 8px 32px rgba(0, 0, 0, 0.12)",
+    "backdropBlur": "16px",
+    "softShadow": "0 4px 16px rgba(0, 0, 0, 0.08)",
+    "elevatedShadow": "0 12px 48px rgba(0, 0, 0, 0.16)"
+  },
+
+  "gradients": {
+    "hero": "linear-gradient(135deg, #2d7a73 0%, #1f5c57 50%, #164340 100%)",
+    "section": "linear-gradient(180deg, rgba(31, 92, 87, 0.6) 0%, rgba(22, 67, 64, 0.8) 100%)",
+    "overlay": "radial-gradient(circle at center, rgba(74, 157, 148, 0.3) 0%, rgba(45, 122, 115, 0.15) 50%, transparent 100%)",
+    "footer": "linear-gradient(180deg, #164340 0%, #1c1917 100%)",
+    "button": "linear-gradient(135deg, #4a9d94 0%, #2d7a73 100%)",
+    "buttonHover": "linear-gradient(135deg, #6fbfb5 0%, #4a9d94 100%)"
+  },
+
+  "components": {
+    "header": {
+      "background": "rgba(15, 45, 43, 0.6)",
+      "backdropBlur": "12px",
+      "border": "rgba(255, 255, 255, 0.05)",
+      "text": "rgba(245, 245, 244, 0.90)",
+      "textHover": "#d4af6a"
+    },
+
+    "couponPanel": {
+      "background": "rgba(22, 67, 64, 0.95)",
+      "text": "rgba(245, 245, 244, 0.90)",
+      "accent": "#d4af6a"
+    },
+
+    "button": {
+      "primary": {
+        "background": "linear-gradient(135deg, #4a9d94 0%, #2d7a73 100%)",
+        "backgroundHover": "linear-gradient(135deg, #6fbfb5 0%, #4a9d94 100%)",
+        "text": "rgba(245, 245, 244, 0.98)",
+        "border": "rgba(255, 255, 255, 0.2)"
+      },
+      "secondary": {
+        "background": "rgba(255, 255, 255, 0.08)",
+        "backgroundHover": "rgba(255, 255, 255, 0.12)",
+        "text": "rgba(245, 245, 244, 0.95)",
+        "border": "rgba(255, 255, 255, 0.2)"
+      },
+      "accent": {
+        "background": "#d4af6a",
+        "backgroundHover": "#e5c788",
+        "text": "#164340",
+        "border": "transparent"
+      }
+    },
+
+    "card": {
+      "background": "rgba(255, 255, 255, 0.08)",
+      "backgroundHover": "rgba(255, 255, 255, 0.12)",
+      "border": "rgba(255, 255, 255, 0.15)",
+      "shadow": "0 8px 32px rgba(0, 0, 0, 0.12)"
+    },
+
+    "input": {
+      "background": "rgba(255, 255, 255, 0.05)",
+      "backgroundFocus": "rgba(255, 255, 255, 0.08)",
+      "border": "rgba(255, 255, 255, 0.15)",
+      "borderFocus": "rgba(111, 191, 181, 0.5)",
+      "text": "rgba(245, 245, 244, 0.95)",
+      "placeholder": "rgba(168, 162, 158, 0.60)"
+    },
+
+    "footer": {
+      "background": "linear-gradient(180deg, #164340 0%, #1c1917 100%)",
+      "text": "rgba(214, 211, 209, 0.70)",
+      "textHover": "#d4af6a",
+      "border": "rgba(255, 255, 255, 0.05)"
+    }
+  },
+
   "typography": {
     "fontFamily": {
-      "heading": "'Cormorant Garamond', serif",
-      "body": "'Raleway', sans-serif"
+      "sans": "Inter, system-ui, -apple-system, sans-serif",
+      "serif": "Georgia, serif"
+    },
+    "fontWeight": {
+      "extralight": "200",
+      "light": "300",
+      "normal": "400",
+      "medium": "500",
+      "semibold": "600"
+    },
+    "letterSpacing": {
+      "tighter": "-0.02em",
+      "tight": "-0.01em",
+      "normal": "0",
+      "wide": "0.02em",
+      "wider": "0.05em",
+      "widest": "0.1em"
     }
+  },
+
+  "spacing": {
+    "sectionPadding": {
+      "small": "4rem",
+      "medium": "6rem",
+      "large": "8rem"
+    },
+    "containerPadding": "2rem",
+    "cardPadding": "2.5rem"
+  },
+
+  "borderRadius": {
+    "small": "0.5rem",
+    "medium": "1rem",
+    "large": "1.5rem",
+    "xlarge": "2rem"
+  },
+
+  "transitions": {
+    "fast": "150ms ease-out",
+    "normal": "300ms ease-out",
+    "slow": "500ms ease-out",
+    "breathing": "4s ease-in-out"
   }
 }
