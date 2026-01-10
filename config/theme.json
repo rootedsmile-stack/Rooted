@@ -31,7 +31,7 @@
     "accent": {
       "300": "#9c7a5e",
       "400": "#8b6a4f",
-      "500": "#6b5240",
+      "500": "#6B2F2B",
       "600": "#5a4435"
     },
     "teal": {
@@ -40,7 +40,7 @@
       "200": "#b8d4cf",
       "300": "#8bb8af",
       "400": "#5e9c8f",
-      "500": "#3d7f73",
+      "500": "#2F464C",
       "600": "#2f645c",
       "700": "#244a45",
       "800": "#1a332f",
@@ -49,103 +49,103 @@
   },
 
   "backgrounds": {
-    "page": "#244a45",
+    "page": "#2F464C",
     "surface": "rgba(255, 255, 255, 0.05)",
     "surfaceHover": "rgba(255, 255, 255, 0.08)",
     "overlay": "rgba(26, 51, 47, 0.9)",
-    "glass": "rgba(255, 255, 255, 0.06)"
+    "glass": "rgba(42, 34, 24, 0.40)"
   },
 
   "text": {
-    "primary": "rgba(235, 231, 224, 0.95)",
-    "secondary": "rgba(207, 195, 175, 0.85)",
+    "primary": "#F5F467",
+    "secondary": "rgba(235, 231, 224, 0.85)",
     "tertiary": "rgba(184, 168, 137, 0.70)",
     "muted": "rgba(156, 138, 105, 0.60)",
-    "accent": "#8b6a4f"
+    "accent": "#6B2F2B"
   },
 
   "borders": {
-    "subtle": "rgba(255, 255, 255, 0.08)",
-    "default": "rgba(139, 106, 79, 0.25)",
-    "strong": "rgba(139, 106, 79, 0.40)"
+    "subtle": "rgba(245, 244, 103, 0.15)",
+    "default": "rgba(107, 47, 43, 0.30)",
+    "strong": "rgba(107, 47, 43, 0.50)"
   },
 
   "effects": {
-    "glassPanelBg": "rgba(42, 34, 24, 0.40)",
-    "glassPanelBorder": "rgba(139, 106, 79, 0.30)",
-    "glassPanelShadow": "0 8px 32px rgba(0, 0, 0, 0.30)",
+    "glassPanelBg": "rgba(26, 24, 20, 0.45)",
+    "glassPanelBorder": "rgba(107, 47, 43, 0.25)",
+    "glassPanelShadow": "0 8px 32px rgba(0, 0, 0, 0.40)",
     "backdropBlur": "20px",
-    "softShadow": "0 4px 16px rgba(0, 0, 0, 0.15)",
-    "elevatedShadow": "0 12px 48px rgba(0, 0, 0, 0.25)",
-    "texturedOverlay": "url('data:image/svg+xml,%3Csvg width=\"100\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"/%3E')"
+    "softShadow": "0 4px 16px rgba(0, 0, 0, 0.20)",
+    "elevatedShadow": "0 12px 48px rgba(0, 0, 0, 0.35)",
+    "texturedOverlay": "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"n\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23n)\" opacity=\"0.04\"/%3E%3C/svg%3E')"
   },
 
   "gradients": {
-    "hero": "linear-gradient(135deg, #2f645c 0%, #244a45 50%, #1a332f 100%)",
-    "section": "linear-gradient(180deg, rgba(36, 74, 69, 0.8) 0%, rgba(26, 51, 47, 0.95) 100%)",
-    "overlay": "radial-gradient(circle at center, rgba(61, 127, 115, 0.25) 0%, rgba(36, 74, 69, 0.15) 50%, transparent 100%)",
-    "footer": "linear-gradient(180deg, #1a332f 0%, #0f1f1d 100%)",
-    "button": "linear-gradient(135deg, #8b6a4f 0%, #6b5240 100%)",
-    "buttonHover": "linear-gradient(135deg, #9c7a5e 0%, #8b6a4f 100%)"
+    "hero": "linear-gradient(135deg, #2F464C 0%, #1a1814 100%)",
+    "section": "linear-gradient(180deg, rgba(47, 70, 76, 0.9) 0%, rgba(26, 24, 20, 0.95) 100%)",
+    "overlay": "radial-gradient(circle at center, rgba(107, 47, 43, 0.15) 0%, transparent 100%)",
+    "footer": "linear-gradient(180deg, #1a1814 0%, #0f1f1d 100%)",
+    "button": "linear-gradient(135deg, #6B2F2B 0%, #4d1f1b 100%)",
+    "buttonHover": "linear-gradient(135deg, #8b3d37 0%, #6B2F2B 100%)"
   },
 
   "components": {
     "header": {
-      "background": "rgba(26, 51, 47, 0.85)",
-      "backdropBlur": "16px",
-      "border": "rgba(139, 106, 79, 0.15)",
-      "text": "rgba(235, 231, 224, 0.90)",
-      "textHover": "#9c7a5e"
+      "background": "rgba(26, 24, 20, 0.80)",
+      "backdropBlur": "12px",
+      "border": "rgba(245, 244, 103, 0.10)",
+      "text": "#F5F467",
+      "textHover": "#ffffff"
     },
 
     "couponPanel": {
-      "background": "rgba(42, 34, 24, 0.95)",
-      "text": "rgba(235, 231, 224, 0.90)",
-      "accent": "#8b6a4f"
+      "background": "rgba(107, 47, 43, 0.95)",
+      "text": "#F5F467",
+      "accent": "#ffffff"
     },
 
     "button": {
       "primary": {
-        "background": "linear-gradient(135deg, #8b6a4f 0%, #6b5240 100%)",
-        "backgroundHover": "linear-gradient(135deg, #9c7a5e 0%, #8b6a4f 100%)",
-        "text": "rgba(245, 245, 240, 0.98)",
-        "border": "rgba(139, 106, 79, 0.40)"
+        "background": "linear-gradient(135deg, #6B2F2B 0%, #4d1f1b 100%)",
+        "backgroundHover": "linear-gradient(135deg, #8b3d37 0%, #6B2F2B 100%)",
+        "text": "#F5F467",
+        "border": "rgba(245, 244, 103, 0.20)"
       },
       "secondary": {
-        "background": "rgba(139, 106, 79, 0.15)",
-        "backgroundHover": "rgba(139, 106, 79, 0.25)",
-        "text": "rgba(235, 231, 224, 0.95)",
-        "border": "rgba(139, 106, 79, 0.40)"
+        "background": "rgba(245, 244, 103, 0.05)",
+        "backgroundHover": "rgba(245, 244, 103, 0.10)",
+        "text": "#F5F467",
+        "border": "rgba(245, 244, 103, 0.30)"
       },
       "accent": {
-        "background": "#8b6a4f",
-        "backgroundHover": "#9c7a5e",
-        "text": "#0f1f1d",
+        "background": "#F5F467",
+        "backgroundHover": "#ffffff",
+        "text": "#6B2F2B",
         "border": "transparent"
       }
     },
 
     "card": {
-      "background": "rgba(42, 34, 24, 0.40)",
-      "backgroundHover": "rgba(42, 34, 24, 0.60)",
-      "border": "rgba(139, 106, 79, 0.30)",
+      "background": "rgba(26, 24, 20, 0.40)",
+      "backgroundHover": "rgba(26, 24, 20, 0.60)",
+      "border": "rgba(107, 47, 43, 0.25)",
       "shadow": "0 8px 32px rgba(0, 0, 0, 0.30)"
     },
 
     "input": {
-      "background": "rgba(42, 34, 24, 0.30)",
-      "backgroundFocus": "rgba(42, 34, 24, 0.50)",
-      "border": "rgba(139, 106, 79, 0.30)",
-      "borderFocus": "rgba(156, 122, 94, 0.60)",
-      "text": "rgba(235, 231, 224, 0.95)",
-      "placeholder": "rgba(184, 168, 137, 0.50)"
+      "background": "rgba(26, 24, 20, 0.30)",
+      "backgroundFocus": "rgba(26, 24, 20, 0.50)",
+      "border": "rgba(107, 47, 43, 0.30)",
+      "borderFocus": "rgba(245, 244, 103, 0.40)",
+      "text": "#F5F467",
+      "placeholder": "rgba(245, 244, 103, 0.40)"
     },
 
     "footer": {
-      "background": "linear-gradient(180deg, #1a332f 0%, #0f1f1d 100%)",
-      "text": "rgba(207, 195, 175, 0.70)",
-      "textHover": "#9c7a5e",
-      "border": "rgba(139, 106, 79, 0.15)"
+      "background": "linear-gradient(180deg, #1a1814 0%, #0f1f1d 100%)",
+      "text": "rgba(245, 244, 103, 0.60)",
+      "textHover": "#F5F467",
+      "border": "rgba(107, 47, 43, 0.15)"
     }
   },
 
