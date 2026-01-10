@@ -2,50 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Serif font for the "Rooted Smile" look */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+/* Import fonts for the premium brand feel */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
 
 :root {
-  --bg-page: #2F464C;      /* From Brand Guide: Dark Teal */
-  --brand-brown: #6B2F2B;  /* From Brand Guide: Rustic Brown */
-  --brand-cream: #F5F467;  /* From Brand Guide: Cream */
+  /* Accurate Brand Guide Colors */
+  --brand-teal: #2F464C;      
+  --brand-teal-light: #44666e; /* Lighter version for the gradient top */
+  --brand-brown: #6B2F2B;  
+  --brand-cream: #F5F467;  
 }
 
 body {
-  background: var(--bg-page);
-  background-image: linear-gradient(180deg, #2F464C 0%, #1a1814 100%);
+  /* LIGHTER TEAL GRADIENT: Matches the vibrancy of the mockup */
+  background-color: var(--brand-teal);
+  background-image: linear-gradient(
+    180deg, 
+    var(--brand-teal-light) 0%, 
+    var(--brand-teal) 100%
+  );
+  background-attachment: fixed;
   color: var(--brand-cream);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
   position: relative;
 }
 
-/* --- THE SEAMLESS FILM GRAIN OVERLAY --- */
+/* SEAMLESS FILM GRAIN OVERLAY */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  /* Increased baseFrequency to 0.85 for a tighter, more "paper-like" grain */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  /* Overlay blend mode is critical to making the texture "soak" into the colors */
-  mix-blend-mode: overlay;
-  opacity: 0.18; 
+  /* High-frequency noise tile */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  
+  /* Soft-light provides a more natural "paper" interaction on lighter colors */
+  mix-blend-mode: soft-light; 
+  opacity: 0.2; 
   pointer-events: none;
   z-index: 9999;
 }
 
-/* Typography styles to match the mockup */
+/* Serif Headings matching the Typography Guide */
 h1, h2, .font-display {
   font-family: 'Playfair Display', serif;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
-/* Structured Divider from Brand Guide */
+/* Structured Layout Divider */
 .divider-rustic {
   width: 100%;
   height: 1px;
-  background: rgba(245, 244, 103, 0.15);
-  margin: 4rem 0;
+  background: rgba(245, 244, 103, 0.2);
+  margin: 3rem 0;
 }
