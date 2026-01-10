@@ -3,333 +3,44 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Inter font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
-
-/* Root CSS Variables - Rustic Earth Theme */
-:root {
-  /* Backgrounds - Dark teal moody */
-  --bg-page: #244a45;
-  --bg-surface: rgba(255, 255, 255, 0.05);
-  --bg-surface-hover: rgba(255, 255, 255, 0.08);
-  --bg-glass: rgba(42, 34, 24, 0.40);
-  
-  /* Text - Warm neutrals */
-  --text-primary: rgba(235, 231, 224, 0.95);
-  --text-secondary: rgba(207, 195, 175, 0.85);
-  --text-tertiary: rgba(184, 168, 137, 0.70);
-  --text-muted: rgba(156, 138, 105, 0.60);
-  --text-accent: #8b6a4f;
-  
-  /* Borders - Rustic browns */
-  --border-subtle: rgba(139, 106, 79, 0.15);
-  --border-default: rgba(139, 106, 79, 0.30);
-  --border-strong: rgba(139, 106, 79, 0.50);
-  
-  /* Effects */
-  --glass-bg: rgba(42, 34, 24, 0.40);
-  --glass-border: rgba(139, 106, 79, 0.30);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.30);
-  --backdrop-blur: blur(20px);
-}
-
-/* Base styles */
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg-page);
-  color: var(--text-primary);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-}
-
-/* Subtle texture overlay for rustic feel */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.5;
-}
-
-/* Glass morphism utility class - Rustic style */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: var(--backdrop-blur);
-  -webkit-backdrop-filter: var(--backdrop-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-}
-
-/* Atmospheric gradient backgrounds */
-.bg-hero {
-  background: linear-gradient(135deg, #2f645c 0%, #244a45 50%, #1a332f 100%);
-}
-
-.bg-section {
-  background: linear-gradient(180deg, rgba(36, 74, 69, 0.8) 0%, rgba(26, 51, 47, 0.95) 100%);
-}
-
-.bg-overlay-radial {
-  background: radial-gradient(circle at center, rgba(61, 127, 115, 0.25) 0%, rgba(36, 74, 69, 0.15) 50%, transparent 100%);
-}
-
-.bg-gradient-footer {
-  background: linear-gradient(180deg, #1a332f 0%, #0f1f1d 100%);
-}
-
-/* Soft text shadows for depth */
-.text-shadow-soft {
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-}
-
-/* Breathing animation for subtle movement */
-@keyframes breathe {
-  0%, 100% { 
-    transform: scale(1);
-  }
-  50% { 
-    transform: scale(1.02);
-  }
-}
-
-.breathing {
-  animation: breathe 4s ease-in-out infinite;
-}
-
-/* Smooth section transitions */
-section {
-  transition: background-color 700ms ease-out;
-}
-
-/* Button styles - Rustic browns */
-.btn-primary {
-  background: linear-gradient(135deg, #8b6a4f 0%, #6b5240 100%);
-  border: 1px solid rgba(139, 106, 79, 0.40);
-  color: rgba(245, 245, 240, 0.98);
-  transition: all 300ms ease-out;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #9c7a5e 0%, #8b6a4f 100%);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.20);
-  transform: translateY(-1px);
-}
-
-.btn-secondary {
-  background: rgba(139, 106, 79, 0.15);
-  border: 1px solid rgba(139, 106, 79, 0.40);
-  color: rgba(235, 231, 224, 0.95);
-  transition: all 300ms ease-out;
-}
-
-.btn-secondary:hover {
-  background: rgba(139, 106, 79, 0.25);
-}
-
-.btn-accent {
-  background: #8b6a4f;
-  color: #0f1f1d;
-  border: none;
-  transition: all 300ms ease-out;
-}
-
-.btn-accent:hover {
-  background: #9c7a5e;
-  box-shadow: 0 8px 24px rgba(139, 106, 79, 0.30);
-  transform: translateY(-1px);
-}
-
-/* Card with rustic glass effect */
-.card {
-  background: rgba(42, 34, 24, 0.40);
-  border: 1px solid rgba(139, 106, 79, 0.30);
-  border-radius: 0.75rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.30);
-  transition: all 300ms ease-out;
-}
-
-.card:hover {
-  background: rgba(42, 34, 24, 0.60);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.40);
-}
-
-/* Input fields with rustic styling */
-.input-field {
-  background: rgba(42, 34, 24, 0.30);
-  border: 1px solid rgba(139, 106, 79, 0.30);
-  color: rgba(235, 231, 224, 0.95);
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  transition: all 300ms ease-out;
-  outline: none;
-}
-
-.input-field::placeholder {
-  color: rgba(184, 168, 137, 0.50);
-}
-
-.input-field:focus {
-  background: rgba(42, 34, 24, 0.50);
-  border-color: rgba(156, 122, 94, 0.60);
-}
-
-/* Soft focus rings - Rustic accent */
-*:focus-visible {
-  outline: 2px solid rgba(156, 122, 94, 0.50);
-  outline-offset: 2px;
-}
-
-/* Structured divider lines - Rustic style */
-.divider-rustic {
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(139, 106, 79, 0.30) 20%,
-    rgba(139, 106, 79, 0.30) 80%,
-    transparent
-  );
-  margin: 3rem 0;
-}
-
-.divider-rustic-strong {
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(139, 106, 79, 0.50) 15%,
-    rgba(139, 106, 79, 0.50) 85%,
-    transparent
-  );
-  margin: 4rem 0;
-  position: relative;
-}
-
-.divider-rustic-strong::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  background: #8b6a4f;
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(139, 106, 79, 0.20);
-}
-
-/* Custom scrollbar - Rustic */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(42, 34, 24, 0.20);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(139, 106, 79, 0.40);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 106, 79, 0.60);
-}
-
-/* Selection color - Rustic accent */
-::selection {
-  background: rgba(139, 106, 79, 0.40);
-  color: rgba(245, 245, 240, 0.98);
-}
-
-/* Loading spinner */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.spinner {
-  animation: spin 1s linear infinite;
-}
-
-/* Fade in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.6s ease-out;
-}
-
-/* Textured paper effect for sections */
-.section-textured {
-  position: relative;
-  background: linear-gradient(180deg, rgba(36, 74, 69, 0.8) 0%, rgba(26, 51, 47, 0.95) 100%);
-}
-
-.section-textured::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23paper)' opacity='0.02'/%3E%3C/svg%3E");
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
-
-/* Reduce motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  
-  .breathing {
-    animation: none;
-  }
-}
-
-/* Print styles */
-@media print {
+@layer base {
   body {
-    background: white;
-    color: black;
+    @apply bg-brandTeal text-brandCream/90 selection:bg-brandBrown selection:text-white;
+    position: relative;
+    min-height: 100vh;
   }
-  
+
+  /* SEAMLESS FILM GRAIN OVERLAY */
+  /* This creates a fixed texture that covers the whole site */
   body::before {
-    display: none;
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Higher baseFrequency = finer grain; lower opacity = subtle feel */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.05; 
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: overlay;
   }
-  
-  .glass-panel,
-  .card {
-    background: white;
-    border: 1px solid #ddd;
+}
+
+@layer components {
+  /* Structured layout dividers like the Brand Guide grid */
+  .layout-divider {
+    @apply w-full h-[1px] my-12;
+    background: linear-gradient(to right, transparent, rgba(245, 244, 103, 0.2), transparent);
+  }
+
+  /* Rustic Paper/Glass Card */
+  .card-rustic {
+    @apply bg-glass backdrop-blur-glass border border-brand rounded-card shadow-glass;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Serif Heading Styles */
+  .heading-display {
+    @apply font-display text-brandCream tracking-tight;
   }
 }
